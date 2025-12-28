@@ -4,4 +4,5 @@ from django.contrib import admin
 from django.contrib import admin
 from .models import Blog
 
+# Is line se aapka Blog section admin panel mein nazar aane lagega
 admin.site.register(Blog)
