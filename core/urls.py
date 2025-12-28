@@ -28,3 +28,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),  # Ye line add karein
 ]
+from django.urls import path
+from website import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('blog/', views.blog_list, name='blog_list'), # Naya path
+    path('blog/', views.blog_list, name='blog_list'),
+]

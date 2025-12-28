@@ -3,107 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowAIMark | AI-Powered Digital Marketing Agency</title>
+    <title>GrowAIMark | AI Digital Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2563EB',
-                        secondary: '#10B981',
-                        accent: '#F59E0B',
-                        dark: '#0f172a',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hero-gradient { background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2), transparent), radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.1), transparent); }
     </style>
 </head>
-<body class="bg-dark text-white font-sans overflow-x-hidden">
+<body class="bg-[#0f172a] text-white">
 
-    <nav class="fixed w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
-        <div class="text-2xl font-black tracking-tighter text-white">Grow<span class="text-primary">AI</span>Mark</div>
-        <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-widest">
-            <a href="#services" class="hover:text-primary transition">Services</a>
-            <a href="#tools" class="hover:text-primary transition">AI Tools</a>
-            <a href="#portfolio" class="hover:text-primary transition">Portfolio</a>
-            <a href="#blog" class="hover:text-primary transition">Insights</a>
+    <nav class="fixed w-full z-50 glass py-4 px-10 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter">Grow<span class="text-blue-500">AI</span>Mark</div>
+        <div class="hidden md:flex space-x-8 text-sm font-bold uppercase">
+            <a href="#services" class="hover:text-blue-500 transition">Services</a>
+            <a href="{% url 'blog_list' %}" class="hover:text-blue-500 transition">Blog</a>
+            <a href="#" class="hover:text-blue-500 transition">About</a>
         </div>
-        <button class="bg-primary hover:bg-blue-700 px-6 py-2 rounded-lg font-bold transition transform hover:scale-105">Free Audit</button>
+        <a href="https://wa.me/923030001026" class="bg-blue-600 px-6 py-2 rounded-lg font-bold">Free Audit</a>
     </nav>
 
-    <header class="relative min-h-screen flex items-center pt-20 px-6 md:px-12 hero-gradient">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8 animate-fade-in">
-                <span class="inline-block px-4 py-1 rounded-full border border-primary text-primary text-xs font-bold uppercase tracking-widest">The Future of Marketing</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
-                    Transform Your Business with <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">AI Intelligence</span>
-                </h1>
-                <p class="text-lg text-gray-400 max-w-lg">
-                    We help businesses grow online through expert digital marketing services and cutting-edge AI tools. Get more traffic, leads, and sales with strategies that actually work.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <button class="bg-primary px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition">Get Your Free Audit</button>
-                    <button class="glass px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition">Explore AI Tools</button>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
-                <img src="https://img.freepik.com/free-vector/digital-marketing-agency-abstract-concept-vector-illustration-online-marketing-service-web-marketing-agency-social-media-management-seo-content-strategy-brand-advertisement-abstract-metaphor_335657-2917.jpg" alt="AI Marketing" class="relative rounded-3xl shadow-2xl border border-white/10">
-            </div>
+    <header class="pt-40 pb-20 px-10 text-center">
+        <h1 class="text-6xl font-black mb-6">Scale Your Brand with <span class="text-blue-500">AI</span></h1>
+        <p class="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">Digital marketing expert strategies combined with AI tools to grow your business faster.</p>
+        <div class="flex justify-center gap-4">
+            <a href="https://wa.me/923030001026" class="bg-blue-600 px-8 py-4 rounded-xl font-bold">Start Growing</a>
+            <a href="{% url 'blog_list' %}" class="glass px-8 py-4 rounded-xl font-bold">View Insights</a>
         </div>
     </header>
 
-    <div class="py-12 glass border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div><p class="text-3xl font-bold text-primary">500+</p><p class="text-xs text-gray-500 uppercase mt-1">Businesses Grown</p></div>
-            <div><p class="text-3xl font-bold text-secondary">98%</p><p class="text-xs text-gray-500 uppercase mt-1">Satisfaction Rate</p></div>
-            <div><p class="text-3xl font-bold text-accent">2M+</p><p class="text-xs text-gray-500 uppercase mt-1">Leads Generated</p></div>
-            <div><p class="text-3xl font-bold text-white">10+</p><p class="text-xs text-gray-500 uppercase mt-1">Years Experience</p></div>
-        </div>
-    </div>
-
-    <section id="services" class="py-24 px-6 md:px-12">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black mb-4">Core Marketing <span class="text-primary">Solutions</span></h2>
-            <p class="text-gray-400">From strategy to execution, we handle everything you need to dominate.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <div class="glass p-8 rounded-3xl group hover:border-primary transition duration-500">
-                <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition">
-                    <i class="fas fa-lightbulb text-2xl text-primary group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Digital Strategy</h3>
-                <p class="text-gray-500 mb-6 text-sm">Data-driven roadmaps to analyze competitors and deliver measurable results.</p>
-                <a href="#" class="text-primary font-bold hover:underline">Learn More →</a>
-            </div>
-            <div class="glass p-8 rounded-3xl group hover:border-secondary transition duration-500">
-                <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary transition">
-                    <i class="fas fa-search text-2xl text-secondary group-hover:text-white"></i>
-                </div>
+    <section id="services" class="py-20 px-10 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-black text-center mb-16 uppercase italic">Our <span class="text-blue-500">Core Services</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-8 rounded-3xl border-b-4 border-blue-500">
+                <i class="fas fa-search text-3xl text-blue-500 mb-6"></i>
                 <h3 class="text-xl font-bold mb-4">SEO Dominance</h3>
-                <p class="text-gray-500 mb-6 text-sm">Increase organic traffic by 150% in 6 months with our proven SEO cycles.</p>
-                <a href="#" class="text-secondary font-bold hover:underline">Learn More →</a>
+                <p class="text-gray-400 text-sm">Rank #1 on Google with AI-optimized search strategies.</p>
             </div>
-            <div class="glass p-8 rounded-3xl group hover:border-accent transition duration-500">
-                <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent transition">
-                    <i class="fas fa-chart-line text-2xl text-accent group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-4">Paid Ads (PPC)</h3>
-                <p class="text-gray-500 mb-6 text-sm">Expertly managed Google & Meta campaigns to maximize your ROI instantly.</p>
-                <a href="#" class="text-accent font-bold hover:underline">Learn More →</a>
+            <div class="glass p-8 rounded-3xl border-b-4 border-green-500">
+                <i class="fas fa-bullhorn text-3xl text-green-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4">Paid Ads</h3>
+                <p class="text-gray-400 text-sm">Maximize ROI on Facebook, Instagram, and Google Ads.</p>
+            </div>
+            <div class="glass p-8 rounded-3xl border-b-4 border-purple-500">
+                <i class="fas fa-code text-3xl text-purple-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-4">Web Development</h3>
+                <p class="text-gray-400 text-sm">Professional and fast websites built with Django and AI.</p>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/YOUR_NUMBER" class="fixed bottom-8 right-8 bg-secondary p-4 rounded-full shadow-2xl hover:scale-110 transition z-50">
-        <i class="fab fa-whatsapp text-3xl"></i>
+    <section id="blog" class="py-20 px-10 bg-black/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-black text-center mb-16 italic">LATEST <span class="text-blue-500">INSIGHTS</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for blog in blogs %}
+                <div class="glass rounded-3xl overflow-hidden group hover:border-blue-500 transition">
+                    <img src="{{ blog.image_url }}" class="w-full h-48 object-cover" alt="Blog Image">
+                    <div class="p-6">
+                        <span class="text-xs text-blue-500 font-bold uppercase">{{ blog.category }}</span>
+                        <h3 class="text-xl font-bold my-3">{{ blog.title }}</h3>
+                        <p class="text-gray-500 text-sm mb-4">{{ blog.excerpt }}</p>
+                        <a href="{% url 'blog_list' %}" class="text-blue-500 font-bold text-xs uppercase">Read More →</a>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center col-span-3 text-gray-500">No blogs published yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/923030001026" class="fixed bottom-10 right-10 bg-green-500 p-5 rounded-full shadow-2xl hover:scale-110 transition z-50">
+        <i class="fab fa-whatsapp text-3xl text-white"></i>
     </a>
 
 </body>
