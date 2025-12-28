@@ -1,3 +1,16 @@
 from django.db import models
 
 # Create your models here.
+from django.db import models
+
+class Blog(models.Model):
+    title = models.CharField(max_length=200)
+    category = models.CharField(max_length=50, default="Marketing")
+    excerpt = models.TextField() # Chota sa introduction
+    content = models.TextField() # Pura blog post
+    author = models.CharField(max_length=100, default="GrowAiMark Team")
+    date_posted = models.DateTimeField(auto_now_add=True)
+    image_url = models.URLField(blank=True) # Blog ki image ka link
+
+    def __str__(self):
+        return self.title
