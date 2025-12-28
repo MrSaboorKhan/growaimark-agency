@@ -2,63 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GrowAiMark | Premier AI-Driven Digital Agency</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowAIMark | AI-Powered Digital Marketing Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .hero-gradient { background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2), transparent), radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.1), transparent); }
+    </style>
 </head>
-<body class="bg-[#0b0f1a] text-white">
+<body class="bg-dark text-white font-sans overflow-x-hidden">
 
-    <nav class="flex justify-between items-center px-10 py-6 sticky top-0 bg-[#0b0f1a]/90 backdrop-blur-md z-50">
-        <div class="text-3xl font-extrabold tracking-tighter text-cyan-400">GrowAiMark<span class="text-white">.</span></div>
-        <div class="hidden md:flex space-x-10 text-sm font-medium uppercase tracking-widest">
-            <a href="#" class="hover:text-cyan-400 transition">Services</a>
-            <a href="#" class="hover:text-cyan-400 transition">Blog</a>
-            <a href="#" class="hover:text-cyan-400 transition">Tools</a>
-            <a href="#" class="hover:text-cyan-400 transition">About</a>
+    <nav class="fixed w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter text-white">Grow<span class="text-primary">AI</span>Mark</div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-widest">
+            <a href="#services" class="hover:text-primary transition">Services</a>
+            <a href="#tools" class="hover:text-primary transition">AI Tools</a>
+            <a href="#portfolio" class="hover:text-primary transition">Portfolio</a>
+            <a href="#blog" class="hover:text-primary transition">Insights</a>
         </div>
-        <a href="https://wa.me/YOUR_NUMBER" class="bg-cyan-500 hover:bg-cyan-600 text-black px-6 py-2 rounded-full font-bold transition">Get Started</a>
+        <button class="bg-primary hover:bg-blue-700 px-6 py-2 rounded-lg font-bold transition transform hover:scale-105">Free Audit</button>
     </nav>
 
-    <header class="relative pt-20 pb-32 px-10 text-center">
-        <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none"></div>
-        <span class="text-cyan-400 border border-cyan-400/30 px-4 py-1 rounded-full text-xs uppercase tracking-widest mb-6 inline-block">The Future of Marketing</span>
-        <h1 class="text-6xl md:text-8xl font-black mb-8 leading-tight">Elevate Your Brand <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-shadow-lg">With AI Intelligence</span></h1>
-        <p class="max-w-2xl mx-auto text-gray-400 text-xl mb-10">We don't just market; we dominate. Using advanced AI algorithms to scale your business to 10x ROI.</p>
-        <div class="flex justify-center space-x-4">
-            <button class="bg-white text-black px-10 py-4 rounded-xl font-bold hover:bg-cyan-400 transition">View Portfolio</button>
-            <button class="border border-gray-700 px-10 py-4 rounded-xl font-bold hover:bg-gray-800 transition">Free Audit</button>
+    <header class="relative min-h-screen flex items-center pt-20 px-6 md:px-12 hero-gradient">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 animate-fade-in">
+                <span class="inline-block px-4 py-1 rounded-full border border-primary text-primary text-xs font-bold uppercase tracking-widest">The Future of Marketing</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+                    Transform Your Business with <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">AI Intelligence</span>
+                </h1>
+                <p class="text-lg text-gray-400 max-w-lg">
+                    We help businesses grow online through expert digital marketing services and cutting-edge AI tools. Get more traffic, leads, and sales with strategies that actually work.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-primary px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition">Get Your Free Audit</button>
+                    <button class="glass px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition">Explore AI Tools</button>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
+                <img src="https://img.freepik.com/free-vector/digital-marketing-agency-abstract-concept-vector-illustration-online-marketing-service-web-marketing-agency-social-media-management-seo-content-strategy-brand-advertisement-abstract-metaphor_335657-2917.jpg" alt="AI Marketing" class="relative rounded-3xl shadow-2xl border border-white/10">
+            </div>
         </div>
     </header>
 
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-8 px-20 py-16 border-y border-gray-800 bg-black/50">
-        <div class="text-center"><h3 class="text-4xl font-bold text-cyan-400">500+</h3><p class="text-gray-500 uppercase text-xs mt-2">Projects Done</p></div>
-        <div class="text-center"><h3 class="text-4xl font-bold text-cyan-400">$2M+</h3><p class="text-gray-500 uppercase text-xs mt-2">Ads Managed</p></div>
-        <div class="text-center"><h3 class="text-4xl font-bold text-cyan-400">98%</h3><p class="text-gray-500 uppercase text-xs mt-2">Client Success</p></div>
-        <div class="text-center"><h3 class="text-4xl font-bold text-cyan-400">10x</h3><p class="text-gray-500 uppercase text-xs mt-2">Avg Growth</p></div>
-    </section>
+    <div class="py-12 glass border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div><p class="text-3xl font-bold text-primary">500+</p><p class="text-xs text-gray-500 uppercase mt-1">Businesses Grown</p></div>
+            <div><p class="text-3xl font-bold text-secondary">98%</p><p class="text-xs text-gray-500 uppercase mt-1">Satisfaction Rate</p></div>
+            <div><p class="text-3xl font-bold text-accent">2M+</p><p class="text-xs text-gray-500 uppercase mt-1">Leads Generated</p></div>
+            <div><p class="text-3xl font-bold text-white">10+</p><p class="text-xs text-gray-500 uppercase mt-1">Years Experience</p></div>
+        </div>
+    </div>
 
-    <section class="py-32 px-10">
-        <h2 class="text-center text-4xl font-bold mb-20 tracking-tighter">Our Core <span class="text-cyan-400">Intelligence</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="p-10 bg-[#161b29] rounded-3xl border border-gray-800 hover:border-cyan-500 transition-all group">
-                <i class="fas fa-rocket text-4xl text-cyan-400 mb-6 block group-hover:scale-110 transition"></i>
-                <h3 class="text-2xl font-bold mb-4">Precision SEO</h3>
-                <p class="text-gray-400 leading-relaxed">AI-driven keyword analysis to ensure your brand ranks where it matters most: #1 on Google.</p>
+    <section id="services" class="py-24 px-6 md:px-12">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-4">Core Marketing <span class="text-primary">Solutions</span></h2>
+            <p class="text-gray-400">From strategy to execution, we handle everything you need to dominate.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="glass p-8 rounded-3xl group hover:border-primary transition duration-500">
+                <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition">
+                    <i class="fas fa-lightbulb text-2xl text-primary group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Digital Strategy</h3>
+                <p class="text-gray-500 mb-6 text-sm">Data-driven roadmaps to analyze competitors and deliver measurable results.</p>
+                <a href="#" class="text-primary font-bold hover:underline">Learn More →</a>
             </div>
-            <div class="p-10 bg-[#161b29] rounded-3xl border border-gray-800 hover:border-cyan-500 transition-all group">
-                <i class="fas fa-brain text-4xl text-cyan-400 mb-6 block group-hover:scale-110 transition"></i>
-                <h3 class="text-2xl font-bold mb-4">Social AI</h3>
-                <p class="text-gray-400 leading-relaxed">Viral content cycles powered by audience behavior data and trend forecasting.</p>
+            <div class="glass p-8 rounded-3xl group hover:border-secondary transition duration-500">
+                <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary transition">
+                    <i class="fas fa-search text-2xl text-secondary group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">SEO Dominance</h3>
+                <p class="text-gray-500 mb-6 text-sm">Increase organic traffic by 150% in 6 months with our proven SEO cycles.</p>
+                <a href="#" class="text-secondary font-bold hover:underline">Learn More →</a>
             </div>
-            <div class="p-10 bg-[#161b29] rounded-3xl border border-gray-800 hover:border-cyan-500 transition-all group">
-                <i class="fas fa-chart-line text-4xl text-cyan-400 mb-6 block group-hover:scale-110 transition"></i>
-                <h3 class="text-2xl font-bold mb-4">Smart Ads</h3>
-                <p class="text-gray-400 leading-relaxed">Maximize every penny spent on Google and Meta Ads with our conversion-optimized funnels.</p>
+            <div class="glass p-8 rounded-3xl group hover:border-accent transition duration-500">
+                <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent transition">
+                    <i class="fas fa-chart-line text-2xl text-accent group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Paid Ads (PPC)</h3>
+                <p class="text-gray-500 mb-6 text-sm">Expertly managed Google & Meta campaigns to maximize your ROI instantly.</p>
+                <a href="#" class="text-accent font-bold hover:underline">Learn More →</a>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/YOUR_NUMBER" class="fixed bottom-10 right-10 bg-green-500 p-5 rounded-full shadow-2xl hover:scale-110 transition z-50">
+    <a href="https://wa.me/YOUR_NUMBER" class="fixed bottom-8 right-8 bg-secondary p-4 rounded-full shadow-2xl hover:scale-110 transition z-50">
         <i class="fab fa-whatsapp text-3xl"></i>
     </a>
 
