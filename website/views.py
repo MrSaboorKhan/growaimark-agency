@@ -15,3 +15,19 @@ def home(request):
 def blog_list(request):
     all_blogs = Blog.objects.all().order_by('-date_posted')
     return render(request, 'website/blog_list.html', {'blogs': all_blogs})
+
+
+from django.shortcuts import redirect
+from .models import Blog, ContactMessage
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+
+        # Data save karna
+        ContactMessage.objects.create(name=name, email=email, phone=phone, message=message)
+        return redirect('home')  # Message bhejte hi home par wapas le jaye
