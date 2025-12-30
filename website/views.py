@@ -22,15 +22,12 @@ def contact_view(request):
         phone = request.POST.get('phone')
         message = request.POST.get('message')
 
-        # Database mein save karna
         ContactMessage.objects.create(
             name=name,
             email=email,
             phone=phone,
             message=message
         )
-        # Message bhejte hi home par wapas redirect karein
         return redirect('home')
 
-    # Agar koi direct is URL par aaye toh home par bhej dein
     return redirect('home')

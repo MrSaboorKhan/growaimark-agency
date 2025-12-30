@@ -28,7 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),  # Ye line add karein
     path('contact-submit/', views.contact_view, name='contact_view'),
-    path('contact-submit/', views.contact_view, name='contact_view'),
 ]
 from django.urls import path
 from website import views
