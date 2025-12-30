@@ -75,7 +75,7 @@
             </div>
             <div class="glass p-10 rounded-[2.5rem] border border-white/10">
                 <form action="{% url 'contact_view' %}" method="POST" class="space-y-6">
-                    {% csrf_token %}
+    {% csrf_token %} ```
                     <div class="grid md:grid-cols-2 gap-6">
                         <input type="text" name="name" placeholder="Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:border-blue-500 outline-none">
                         <input type="email" name="email" placeholder="Email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:border-blue-500 outline-none">
