@@ -18,7 +18,7 @@ class Blog(models.Model):
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.CharField(max_length=20, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
     service = models.CharField(max_length=100, blank=True)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
