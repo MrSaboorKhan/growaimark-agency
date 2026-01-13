@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('blog/', views.blog_list, name='blog_list'),
     path('contact-submit/', views.contact_view, name='contact_view'),
+    path('tools/meta-generator/', views.meta_generator, name='meta_generator'),
 ]

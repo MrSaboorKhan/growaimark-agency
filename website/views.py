@@ -18,3 +18,13 @@ def contact_view(request):
             message=request.POST.get('message')
         )
     return redirect('home')
+
+
+def meta_generator(request):
+    description = ""
+    if request.method == 'POST':
+        keyword = request.POST.get('keyword')
+        # Yeh logic keyword ko utha kar description banayegi
+        description = f"Looking for the best {keyword}? GrowAIMark provides expert solutions to help you dominate the market with {keyword}. Contact us today to learn more!"
+
+    return render(request, 'website/meta_tool.html', {'description': description})
