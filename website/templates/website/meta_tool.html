@@ -14,18 +14,17 @@
             <p class="text-gray-400 mb-8 text-sm">Enter your keyword to generate an SEO-optimized description.</p>
 
             <form method="POST" class="space-y-6">
-                {% csrf_token %}
-                <input type="text" name="keyword" placeholder="e.g. Digital Marketing Agency" required
-                       class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:border-blue-500 outline-none transition">
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-black transition">GENERATE NOW</button>
-            </form>
+    {% csrf_token %}
+    <input type="text" name="keyword" placeholder="e.g. Digital Marketing Agency" required ...>
+    <button type="submit" ...>GENERATE NOW</button>
+</form>
 
-            {% if description %}
-            <div class="mt-10 p-6 bg-blue-500/10 border border-blue-500/30 rounded-2xl animate-pulse">
-                <h3 class="text-blue-400 font-bold mb-2 text-xs uppercase">Result:</h3>
-                <p class="text-gray-200 text-sm leading-relaxed">{{ description }}</p>
-            </div>
-            {% endif %}
+{% if description %}
+<div class="mt-10 p-6 ...">
+    <h3 class="text-blue-400 font-bold mb-2 text-xs uppercase">Result:</h3>
+    <p class="text-gray-200 text-sm leading-relaxed">{{ description }}</p>
+</div>
+{% endif %}
 
             <div class="mt-8 text-center">
                 <a href="/" class="text-gray-500 text-xs hover:text-white transition">← Back to Home</a>

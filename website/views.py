@@ -21,10 +21,12 @@ def contact_view(request):
 
 
 def meta_generator(request):
-    description = ""
+    description = ""  # Shuru mein description khali hogi
     if request.method == 'POST':
-        keyword = request.POST.get('keyword')
-        # Yeh logic keyword ko utha kar description banayegi
-        description = f"Looking for the best {keyword}? GrowAIMark provides expert solutions to help you dominate the market with {keyword}. Contact us today to learn more!"
+        keyword = request.POST.get('keyword')  # User ka keyword uthaye ga
+        if keyword:
+            # Yeh asli result generate karne wali line hai
+            description = f"Looking for the best {keyword}? GrowAIMark provides expert solutions to help you dominate the market with {keyword}. Contact us today to learn more!"
 
+    # Yeh 'description' ko wapis HTML page par bheje ga
     return render(request, 'website/meta_tool.html', {'description': description})
