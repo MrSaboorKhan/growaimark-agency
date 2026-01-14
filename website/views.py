@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,
+from django.shortcuts import render, redirect
 from .models import Blog, ContactMessage # Check karein ke models sahi se import hain
 
 def home(request):
@@ -18,10 +18,6 @@ def contact_view(request):
             message=request.POST.get('message')
         )
     return redirect('home')
-
-
-import random
-
 
 def meta_generator(request):
     description = ""
