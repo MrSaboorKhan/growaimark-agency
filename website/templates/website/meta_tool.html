@@ -24,16 +24,21 @@
         </form>
 
         {% if description %}
-        <div class="mt-10 p-8 bg-blue-500/10 border border-blue-500/30 rounded-[2rem] animate-pulse">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest">SEO Meta Description:</h3>
-                <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-1 rounded">Latest Trend</span>
-            </div>
-            <p class="text-gray-200 text-sm leading-relaxed border-l-2 border-blue-500 pl-4 italic">
-                "{{ description }}"
-            </p>
-        </div>
-        {% endif %}
+<div class="mt-10 p-10 bg-blue-500/5 border border-blue-500/20 rounded-[3rem] shadow-2xl animate-fade-in">
+    <div class="flex justify-between items-center mb-6">
+        <span class="text-blue-400 font-black text-[10px] uppercase tracking-[0.3em]">AI Engine v4.0 Response</span>
+        <span class="text-green-500 font-bold text-[10px] uppercase">100% Unique</span>
+    </div>
+
+    <p class="text-white text-xl leading-relaxed font-medium italic border-l-4 border-blue-600 pl-6">
+        {{ description }}
+    </p>
+
+    <div class="mt-8 flex gap-4">
+        <button onclick="navigator.clipboard.writeText('{{ description }}')" class="bg-blue-600/20 hover:bg-blue-600 px-6 py-2 rounded-full text-[10px] font-bold transition">COPY RESULT</button>
+    </div>
+</div>
+{% endif %}
 
         <div class="mt-8 text-center">
             <a href="/" class="text-gray-500 text-xs hover:text-white transition uppercase tracking-widest font-bold">← Back to Home</a>

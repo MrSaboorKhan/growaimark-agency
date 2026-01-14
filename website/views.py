@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Blog, ContactMessage # Check karein ke models sahi se import hain
-import random
+import openai
 
 def home(request):
     blogs = Blog.objects.all().order_by('-date_posted')[:3]
@@ -20,35 +20,30 @@ def contact_view(request):
         )
     return redirect('home')
 
+
 def meta_generator(request):
     description = ""
     if request.method == 'POST':
-        keyword = request.POST.get('keyword', '').lower()
+        keyword = request.POST.get('keyword', '').strip()
 
-        # Latest Trending Templates based on Intent
-        templates = {
-            "marketing": [
-                f"Boost your brand with our data-driven {keyword} strategies. We combine AI insights with expert execution to scale your business. Get a free audit!",
-                f"Skyrocket your ROI with premium {keyword} solutions. GrowAIMark delivers trending marketing tactics tailored for 2026 growth. Start today!"
-            ],
-            "tech": [
-                f"Future-proof your business with cutting-edge {keyword} integration. Our AI-first approach ensures seamless performance and scalability. Discover more.",
-                f"Experience the next generation of {keyword}. GrowAIMark provides innovative tech solutions to keep you ahead of the digital curve."
-            ],
-            "default": [
-                f"Looking for professional {keyword}? Our expert team at GrowAIMark provides high-impact strategies to help you dominate your local and global market.",
-                f"Unlock the full potential of {keyword} with GrowAIMark's proven framework. Tailored solutions for businesses ready to lead in their industry."
-            ]
-        }
+        if keyword:
+            try:
+                # OpenAI API Key Setup
+                openai.api_key = 'YOUR_OPENAI_API_KEY'
 
-        # Select category based on keyword
-        if any(word in keyword for word in ["marketing", "ads", "seo", "social"]):
-            category = "marketing"
-        elif any(word in keyword for word in ["tech", "web", "app", "software", "ai"]):
-            category = "tech"
-        else:
-            category = "default"
-
-        description = random.choice(templates[category])
+                # AI ko Instruction dena (Prompt)
+                response = openai.chat.completions.create(
+                    model="gpt-3.5-turbo",  # Ya gpt-4 use karein behtar results ke liye
+                    messages=[
+                        {"role": "system",
+                         "content": "You are a professional SEO expert in 2026. Generate a highly detailed, trending, and click-worthy meta description."},
+                        {"role": "user",
+                         "content": f"Create a professional SEO meta description for the keyword: {keyword}. Keep it under 160 characters and make it sound like a top-tier digital agency."}
+                    ]
+                )
+                # AI ka jawab nikalna
+                description = response.choices[0].message.content
+            except Exception as e:
+                description = f"Error: API Key ki zaroorat hai ya limit khatam ho gayi hai."
 
     return render(request, 'website/meta_tool.html', {'description': description})
