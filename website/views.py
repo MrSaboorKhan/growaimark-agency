@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Blog, ContactMessage # Check karein ke models sahi se import hain
+import random
 
 def home(request):
     blogs = Blog.objects.all().order_by('-date_posted')[:3]
