@@ -28,22 +28,17 @@ def meta_generator(request):
 
         if keyword:
             try:
-                # OpenAI API Key Setup
-                openai.api_key = 'YOUR_OPENAI_API_KEY'
+                # Yahan apni Google Gemini API Key paste karein
+                genai.configure(api_key="AIzaSyDcL39FK4B_7V_W0aBop38tMa9ckJQ6Q0w")
 
-                # AI ko Instruction dena (Prompt)
-                response = openai.chat.completions.create(
-                    model="gpt-3.5-turbo",  # Ya gpt-4 use karein behtar results ke liye
-                    messages=[
-                        {"role": "system",
-                         "content": "You are a professional SEO expert in 2026. Generate a highly detailed, trending, and click-worthy meta description."},
-                        {"role": "user",
-                         "content": f"Create a professional SEO meta description for the keyword: {keyword}. Keep it under 160 characters and make it sound like a top-tier digital agency."}
-                    ]
-                )
-                # AI ka jawab nikalna
-                description = response.choices[0].message.content
+                model = genai.GenerativeModel('gemini-pro')
+
+                # AI ko detailed instruction dena
+                prompt = f"Generate a professional, trending 2026 SEO meta description for: {keyword}. Make it high-converting and under 160 characters. Provide only the description text."
+
+                response = model.generate_content(prompt)
+                description = response.text
             except Exception as e:
-                description = f"Error: API Key ki zaroorat hai ya limit khatam ho gayi hai."
+                description = "AI Engine is busy. Please check your API key or try again."
 
     return render(request, 'website/meta_tool.html', {'description': description})
