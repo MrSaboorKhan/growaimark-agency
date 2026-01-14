@@ -7,44 +7,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-[#0f172a] text-white font-sans">
-    <div class="min-h-screen flex items-center justify-center px-6">
-        <div class="max-w-xl w-full bg-white/5 border border-white/10 p-10 rounded-[2.5rem] backdrop-blur-xl">
-            <h1 class="text-3xl font-black mb-2">AI Meta <span class="text-blue-500">Generator</span></h1>
-            <p class="text-gray-400 mb-8 text-sm">Enter your keyword to generate an SEO-optimized description.</p>
+<body class="bg-[#0f172a] text-white font-sans min-h-screen flex items-center justify-center px-6">
 
-            {% if description %}
-<div class="mt-10 p-8 bg-blue-500/5 border border-blue-500/20 rounded-[2.5rem] shadow-2xl animate-fade-in">
-    <div class="flex justify-between items-center mb-6">
-        <span class="text-blue-400 font-black text-[10px] uppercase tracking-[0.2em]">Generated Description</span>
-        <button onclick="copyToClipboard()" class="text-xs font-bold text-gray-400 hover:text-white transition">
-            <i class="fas fa-copy mr-2"></i>COPY
-        </button>
-    </div>
+    <div class="max-w-xl w-full bg-white/5 border border-white/10 p-10 rounded-[2.5rem] backdrop-blur-xl shadow-2xl">
+        <h1 class="text-3xl font-black mb-2">AI Meta <span class="text-blue-500">Generator</span></h1>
+        <p class="text-gray-400 mb-10 text-sm">Enter your keyword for a 2026 trending SEO description.</p>
 
-    <p id="metaResult" class="text-gray-200 text-lg leading-relaxed font-medium italic">
-        "{{ description }}"
-    </p>
+        <form method="POST" class="space-y-6 flex flex-col">
+            {% csrf_token %}
+            <input type="text" name="keyword" placeholder="e.g. Digital Marketing Agency" required
+                   class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:border-blue-500 outline-none transition text-white">
 
-    <div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center text-[10px] text-gray-500 font-bold uppercase tracking-widest">
-        <span>SEO Optimized: 155 Characters</span>
-        <span class="text-green-500">Latest 2026 Trend</span>
-    </div>
-</div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-black transition text-white shadow-lg shadow-blue-500/20">
+                GENERATE NOW
+            </button>
+        </form>
 
-<script>
-function copyToClipboard() {
-    const text = document.getElementById('metaResult').innerText;
-    navigator.clipboard.writeText(text);
-    alert('Meta Description Copied!');
-}
-</script>
-{% endif %}
-
-            <div class="mt-8 text-center">
-                <a href="/" class="text-gray-500 text-xs hover:text-white transition">← Back to Home</a>
+        {% if description %}
+        <div class="mt-10 p-8 bg-blue-500/10 border border-blue-500/30 rounded-[2rem] animate-pulse">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest">SEO Meta Description:</h3>
+                <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-1 rounded">Latest Trend</span>
             </div>
+            <p class="text-gray-200 text-sm leading-relaxed border-l-2 border-blue-500 pl-4 italic">
+                "{{ description }}"
+            </p>
+        </div>
+        {% endif %}
+
+        <div class="mt-8 text-center">
+            <a href="/" class="text-gray-500 text-xs hover:text-white transition uppercase tracking-widest font-bold">← Back to Home</a>
         </div>
     </div>
+
 </body>
 </html>
