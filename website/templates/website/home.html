@@ -7,96 +7,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --primary: #2563eb; --secondary: #10b981; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hero-gradient { background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent), radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent); }
+        .hero-gradient { background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent), radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent); }
     </style>
 </head>
 <body class="bg-[#0f172a] text-white font-sans overflow-x-hidden">
 
     <nav class="fixed w-full z-50 glass py-4 px-6 md:px-12 flex justify-between items-center">
-        <div class="text-2xl font-black tracking-tighter">Grow<span class="text-blue-500">AI</span>Mark</div>
-        <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-widest text-gray-300">
+        <div class="text-2xl font-black tracking-tighter text-white">Grow<span class="text-blue-500">AI</span>Mark</div>
+        <div class="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-gray-300">
             <a href="#services" class="hover:text-blue-500">Services</a>
             <a href="#tools" class="hover:text-blue-500">AI Tools</a>
-            <a href="#portfolio" class="hover:text-blue-500">Portfolio</a>
-            <a href="{% url 'blog_list' %}" class="hover:text-blue-500">Insights</a>
+            <a href="{% url 'blog_list' %}" class="hover:text-blue-500">Blog</a>
         </div>
-        <a href="https://wa.me/923030001026" class="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm">WhatsApp Us</a>
+        <a href="https://wa.me/923030001026" class="bg-blue-600 px-8 py-2 rounded-full font-bold text-sm">WhatsApp</a>
     </nav>
 
     <header class="relative min-h-screen flex items-center pt-20 px-6 md:px-12 hero-gradient">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center text-left">
             <div class="space-y-8">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">Elevate with <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Intelligence</span></h1>
-                <p class="text-lg text-gray-400">Expert digital marketing and AI tools to scale your business faster.</p>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">Elevate with <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Intelligence</span></h1>
+                <p class="text-lg text-gray-400 max-w-lg">Expert digital marketing and AI tools to scale your business faster.</p>
                 <div class="flex gap-4">
-                    <a href="#contact" class="bg-blue-600 px-8 py-4 rounded-xl font-bold">Free Audit</a>
-                    <a href="#tools" class="glass px-8 py-4 rounded-xl font-bold">Try AI Tools</a>
+                    <a href="#contact" class="bg-blue-600 px-8 py-4 rounded-2xl font-bold">Free Audit</a>
+                    <a href="#tools" class="glass px-8 py-4 rounded-2xl font-bold">AI Tools</a>
                 </div>
             </div>
-            <img src="https://img.freepik.com/free-vector/digital-marketing-agency-abstract-concept-vector-illustration_335657-2917.jpg" class="rounded-3xl shadow-2xl opacity-80" alt="Agency">
+            <img src="https://img.freepik.com/free-vector/digital-marketing-agency-abstract-concept-vector-illustration_335657-2917.jpg" class="rounded-3xl opacity-80" alt="Hero">
         </div>
     </header>
 
-    <section id="tools" class="py-32 px-6 md:px-12 bg-white/5">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black">Free AI <span class="text-blue-500">Tools</span></h2>
-                <p class="text-gray-400 mt-4">Boost your marketing with our instant AI generators.</p>
+    <section id="tools" class="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-black mb-20 text-center uppercase tracking-tighter">Free AI <span class="text-blue-500">Tools</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass p-8 rounded-[2.5rem] group hover:border-blue-500 transition-all duration-500">
+                <i class="fas fa-pen-nib text-3xl text-blue-500 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3">Meta Description</h3>
+                <p class="text-gray-500 text-sm mb-6">AI-powered SEO meta descriptions that increase CTR.</p>
+                <a href="/tools/meta-generator/" class="inline-block w-full text-center bg-blue-600/20 hover:bg-blue-600 py-3 rounded-xl font-bold text-xs uppercase transition">Try It Free</a>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass p-8 rounded-[2rem] border border-white/10 hover:border-blue-500 transition">
-                    <div class="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-pen-nib text-blue-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Meta Description Gen</h3>
-                    <p class="text-gray-500 text-sm mb-6">AI-powered SEO meta descriptions that increase click-through rates.</p>
-                   <a href="/tools/meta-generator/" class="...">Try It Free</a>
-                </div>
-
-                <div class="glass p-8 rounded-[2rem] opacity-50">
-                    <div class="w-14 h-14 bg-gray-500/20 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-key"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Keyword Tool</h3>
-                    <p class="text-gray-500 text-sm mb-6">Coming Soon</p>
-                </div>
-                <div class="glass p-8 rounded-[2rem] opacity-50">
-                    <div class="w-14 h-14 bg-gray-500/20 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-hashtag"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Caption Gen</h3>
-                    <p class="text-gray-500 text-sm mb-6">Coming Soon</p>
-                </div>
-                <div class="glass p-8 rounded-[2rem] opacity-50">
-                    <div class="w-14 h-14 bg-gray-500/20 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-bolt"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Speed Test</h3>
-                    <p class="text-gray-500 text-sm mb-6">Coming Soon</p>
-                </div>
             </div>
-        </div>
     </section>
 
     <section id="contact" class="py-32 px-6 md:px-12">
         <div class="max-w-4xl mx-auto glass p-10 rounded-[3rem]">
-            <h2 class="text-4xl font-black mb-8 text-center">Get Your <span class="text-blue-500">Free Audit</span></h2>
             <form action="{% url 'contact_view' %}" method="POST" class="space-y-6">
                 {% csrf_token %}
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" name="name" placeholder="Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500">
-                    <input type="email" name="email" placeholder="Email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500">
+                    <input type="text" name="name" placeholder="Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none">
+                    <input type="email" name="email" placeholder="Email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none">
                 </div>
-                <input type="text" name="phone" placeholder="Phone (Optional)" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500">
-                <textarea name="message" rows="4" placeholder="Message" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-blue-500"></textarea>
-                <button type="submit" class="w-full bg-blue-600 py-5 rounded-xl font-black text-lg">SEND MESSAGE</button>
+                <input type="text" name="phone" placeholder="Phone" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none">
+                <textarea name="message" rows="4" placeholder="Message" required class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none"></textarea>
+                <button type="submit" class="w-full bg-blue-600 py-5 rounded-xl font-bold">SEND MESSAGE</button>
             </form>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-gray-500 border-t border-white/5">
+    <footer class="py-12 text-center text-gray-600 border-t border-white/5">
         &copy; 2026 GrowAIMark. Built with AI.
     </footer>
-
-    <a href="https://wa.me/923030001026" class="fixed bottom-10 right-10 bg-green-500 p-5 rounded-full shadow-2xl hover:scale-110 transition z-50">
-        <i class="fab fa-whatsapp text-3xl text-white"></i>
-    </a>
-
 </body>
 </html>
