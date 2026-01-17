@@ -25,20 +25,20 @@ def meta_generator(request):
     description = ""
     if request.method == 'POST':
         keyword = request.POST.get('keyword', '').strip()
-
         if keyword:
             try:
-                # Yahan apni Google Gemini API Key paste karein
+                # Key check karein: Quotes ke andar space na ho
                 genai.configure(api_key="AIzaSyDcL39FK4B_7V_W0aBop38tMa9ckJQ6Q0w")
 
-                model = genai.GenerativeModel('gemini-pro')
+                # Naya Fast Model
+                model = genai.GenerativeModel('gemini-1.5-flash')
 
-                # AI ko detailed instruction dena
-                prompt = f"Generate a professional, trending 2026 SEO meta description for: {keyword}. Make it high-converting and under 160 characters. Provide only the description text."
-
+                prompt = f"Write a professional SEO meta description for {keyword}. Max 155 characters."
                 response = model.generate_content(prompt)
+
                 description = response.text
             except Exception as e:
-                description = "AI Engine is busy. Please check your API key or try again."
+                # Ye line aapko bataye gi ke masla Key ka hai ya Library ka
+                description = f"Technical Detail: {str(e)}"
 
     return render(request, 'website/meta_tool.html', {'description': description})
