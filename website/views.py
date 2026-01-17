@@ -27,18 +27,17 @@ def meta_generator(request):
         keyword = request.POST.get('keyword', '').strip()
         if keyword:
             try:
-                # Key check karein: Quotes ke andar space na ho
-                genai.configure(api_key="AIzaSyDcL39FK4B_7V_W0aBop38tMa9ckJQ6Q0w")
+                # API Key
+                genai.configure(api_key="AIzaSyDcL39FK4B_7V_WOaBop38tMa9ckJQ6QOw")
 
-                # Naya Fast Model
+                # FIXED MODEL NAME
                 model = genai.GenerativeModel('gemini-1.5-flash')
 
-                prompt = f"Write a professional SEO meta description for {keyword}. Max 155 characters."
+                prompt = f"Generate a detailed SEO meta description for: {keyword}. High-converting and max 155 chars."
                 response = model.generate_content(prompt)
 
                 description = response.text
             except Exception as e:
-                # Ye line aapko bataye gi ke masla Key ka hai ya Library ka
-                description = f"Technical Detail: {str(e)}"
+                description = f"AI Detail: {str(e)}"
 
     return render(request, 'website/meta_tool.html', {'description': description})
