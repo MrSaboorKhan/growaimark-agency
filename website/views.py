@@ -31,7 +31,7 @@ def meta_generator(request):
                 genai.configure(api_key="AIzaSyCkNT5xHO_NgPSkcQR96mOc46bPctJGYu8")
 
                 # FIXED MODEL NAME
-                model = genai.GenerativeModel('gemini-1.5-flash')
+                model = genai.GenerativeModel('gemini-1.5-flash-8b')
 
                 prompt = f"Generate a detailed SEO meta description for: {keyword}. High-converting and max 155 chars."
                 response = model.generate_content(prompt)
