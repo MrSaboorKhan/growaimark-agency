@@ -28,7 +28,7 @@ def meta_generator(request):
         if keyword:
             try:
                 # API Key
-                genai.configure(api_key="AIzaSyDcL39FK4B_7V_WOaBop38tMa9ckJQ6QOw")
+                genai.configure(api_key="AIzaSyCkNT5xHO_NgPSkcQR96mOc46bPctJGYu8")
 
                 # FIXED MODEL NAME
                 model = genai.GenerativeModel('gemini-1.5-flash')
