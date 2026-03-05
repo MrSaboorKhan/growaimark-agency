@@ -4,46 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45dec8a4-c5c3-4d67-a585-a1ab0e2b7c56" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tools/keyword_research.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tools/seo_analyzer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tools/social_media.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/growaimark_agency.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tools/keyword_tool.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tools/seo_tool.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tools/social_tool.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/migrations/0002_contactmessage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/migrations/0003_alter_contactmessage_phone.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/website/CSS/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/website/blog_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/website/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/website/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/website/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/website/meta_tool.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" />
-    </list>
+    <list default="true" id="45dec8a4-c5c3-4d67-a585-a1ab0e2b7c56" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
