@@ -1,20 +1,11 @@
-from flask import Flask, send_from_directory
+from flask import Flask, render_template
 import os
 
-# Pehle app create karo
-app = Flask(__name__,
-            template_folder='templates',
-            static_folder='static')
+app = Flask(__name__)
 
-# Phir routes define karo
 @app.route('/')
 def home():
-    return "<h1>GrowAIMark</h1><p>Flask App Running Successfully!</p>"
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory('static/images', 'favicon.ico',
-                              mimetype='image/vnd.microsoft.icon')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
