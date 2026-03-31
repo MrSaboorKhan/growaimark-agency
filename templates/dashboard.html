@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - GrowAIMark</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7ff;
+            margin: 0;
+            padding: 0;
+        }
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .stat-card h3 {
+            font-size: 32px;
+            color: #667eea;
+            margin: 0 0 5px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .tool-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .tool-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome back, Marketer! 👋</h1>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="searches-today">0</h3>
+                <p>Searches Today</p>
+            </div>
+            <div class="stat-card">
+                <h3>Basic</h3>
+                <p>Current Plan</p>
+            </div>
+            <div class="stat-card">
+                <h3>Free</h3>
+                <p>Remaining Credits</p>
+            </div>
+            <div class="stat-card">
+                <h3>85</h3>
+                <p>SEO Score Avg</p>
+            </div>
+        </div>
+
+        <div class="tools-grid">
+            <!-- SEO Analyzer Tool -->
+            <div class="tool-box">
+                <h2><i class="fas fa-search"></i> SEO Analyzer</h2>
+                <input type="url" id="seo-url" placeholder="Enter website URL (e.g., example.com)">
+                <button class="btn" onclick="analyzeSEO()">Analyze Website</button>
+                <div id="seo-result" class="result"></div>
+            </div>
+
+            <!-- Keyword Research Tool -->
+            <div class="tool-box">
+                <h2><i class="fas fa-key"></i> Keyword Research</h2>
+                <input type="text" id="keyword-input" placeholder="Enter seed keyword">
+                <button class="btn" onclick="researchKeywords()">Find Keywords</button>
+                <div id="keyword-result" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function analyzeSEO() {
+            const url = document.getElementById('seo-url').value;
+            const resultDiv = document.getElementById('seo-result');
+
+            if (!url) {
+                alert('Please enter a URL');
+                return;
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>Analyzing...</p>';
+
+            try {
+                const response = await fetch('/api/seo/analyze', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({url: url})
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <h3>SEO Score: ${data.score}/100</h3>
+                        <div style="background:#e0e0e0; height:10px; border-radius:5px; margin:10px 0;">
+                            <div style="width:${data.score}%; background:#667eea; height:10px; border-radius:5px;"></div>
+                        </div>
+                        <p><strong>Title:</strong> ${data.title}</p>
+                        <p><strong>Meta Description:</strong> ${data.meta_description}</p>
+                        <p><strong>Word Count:</strong> ${data.word_count}</p>
+                        ${data.issues.length ? `<p><strong>Issues Found:</strong><br>${data.issues.join('<br>')}</p>` : ''}
+                        <button onclick="downloadReport()" class="btn" style="margin-top:10px;">Download Report</button>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+
+        async function researchKeywords() {
+            const keyword = document.getElementById('keyword-input').value;
+            const resultDiv = document.getElementById('keyword-result');
+
+            if (!keyword) {
+                alert('Please enter a keyword');
+                return;
+            }
+
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>Finding keywords...</p>';
+
+            try {
+                const response = await fetch('/api/keywords/suggest', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({keyword: keyword})
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    let html = '<h3>Keyword Suggestions</h3><table style="width:100%; border-collapse:collapse;">';
+                    html += '<tr><th>Keyword</th><th>Volume</th><th>Competition</th><th>CPC</th></tr>';
+                    data.keywords.forEach(kw => {
+                        html += `<tr style="border-bottom:1px solid #ddd;">
+                            <td style="padding:8px;">${kw.keyword}</td>
+                            <td style="padding:8px;">${kw.volume}</td>
+                            <td style="padding:8px;">${kw.competition}</td>
+                            <td style="padding:8px;">$${kw.cpc}</td>
+                        </tr>`;
+                    });
+                    html += '</table>';
+                    resultDiv.innerHTML = html;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+
+        function downloadReport() {
+            alert('Report download feature coming soon!');
+        }
+    </script>
+</body>
+</html>
