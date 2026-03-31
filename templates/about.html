@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GrowAIMark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9ff; }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        .logo span { background: none; -webkit-text-fill-color: #333; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: #667eea; }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .about-hero {
+            padding: 150px 5% 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+        .about-hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .about-hero p { font-size: 18px; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+
+        .mission-section {
+            padding: 80px 5%;
+            text-align: center;
+            background: white;
+        }
+        .mission-section h2 { font-size: 36px; color: #1a1a2e; margin-bottom: 20px; }
+        .mission-section p { max-width: 800px; margin: 0 auto; color: #666; line-height: 1.8; }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+        .value-card {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .value-card i { font-size: 50px; color: #667eea; margin-bottom: 20px; }
+        .value-card h3 { font-size: 24px; margin-bottom: 15px; }
+        .value-card p { color: #666; }
+
+        .team-section {
+            padding: 80px 5%;
+            background: #f8f9ff;
+            text-align: center;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+        .team-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .team-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .team-card h3 { font-size: 20px; margin-bottom: 5px; }
+        .team-card p { color: #667eea; font-weight: 500; }
+
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 5% 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-col h4 { margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #aaa; text-decoration: none; line-height: 2; display: block; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        @media (max-width: 768px) {
+            .values-grid, .team-grid, .footer-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .about-hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo"><span>Grow</span>AI<span>Mark</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about" class="active">About</a></li>
+            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <a href="/#contact" class="btn-primary">Get Started</a>
+    </nav>
+
+    <section class="about-hero">
+        <h1>About GrowAIMark</h1>
+        <p>We're on a mission to democratize digital marketing with AI-powered tools that deliver real results.</p>
+    </section>
+
+    <section class="mission-section">
+        <h2>Our Mission</h2>
+        <p>To empower businesses of all sizes with professional-grade digital marketing tools that are accessible, affordable, and effective. We believe that every business deserves the opportunity to grow online, regardless of budget or technical expertise.</p>
+    </section>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <i class="fas fa-bullseye"></i>
+            <h3>Innovation</h3>
+            <p>Constantly evolving our tools with the latest AI and marketing trends.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Results-Driven</h3>
+            <p>We measure success by the growth and ROI we deliver to our clients.</p>
+        </div>
+        <div class="value-card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>Client First</h3>
+            <p>Your success is our success. We're committed to your growth.</p>
+        </div>
+    </div>
+
+    <section class="team-section">
+        <h2>Meet Our Leadership</h2>
+        <p>Experienced digital marketing experts dedicated to your success</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Founder">
+                <h3>Ahmed Raza</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-card">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Marketing Head">
+                <h3>Fatima Khan</h3>
+                <p>Head of Marketing</p>
+            </div>
+            <div class="team-card">
+                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Tech Lead">
+                <h3>Usman Ali</h3>
+                <p>Lead Developer</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>GrowAIMark</h4>
+                <p>AI-powered digital marketing tools for business growth.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/#tools">Tools</a>
+                <a href="/#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> hello@growaimark.com</p>
+                <p><i class="fas fa-phone"></i> +92 303 0001026</p>
+                <p><i class="fas fa-map-marker"></i> Pakistan</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GrowAIMark. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
