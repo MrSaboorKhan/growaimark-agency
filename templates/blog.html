@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Blog - H.M. Saboor Khan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9ff; }
+
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #667eea; }
+        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; }
+
+        .blog-hero {
+            padding: 140px 5% 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+        .blog-hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .blog-hero p { font-size: 18px; max-width: 700px; margin: 0 auto; }
+
+        .blog-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-image i { font-size: 50px; color: white; }
+        .blog-content { padding: 25px; }
+        .blog-category { color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
+        .blog-content h3 { font-size: 20px; margin-bottom: 10px; }
+        .blog-content p { color: #666; margin-bottom: 15px; }
+        .blog-meta { font-size: 12px; color: #999; margin-bottom: 15px; }
+        .blog-link { color: #667eea; text-decoration: none; font-weight: 600; }
+
+        .newsletter {
+            background: #f0f0f0;
+            padding: 60px 5%;
+            text-align: center;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .newsletter h3 { font-size: 28px; margin-bottom: 15px; }
+        .newsletter-form { display: flex; gap: 10px; max-width: 500px; margin: 20px auto; }
+        .newsletter-form input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; }
+        .newsletter-form button { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; }
+
+        .footer { background: #1a1a2e; color: white; padding: 60px 5% 30px; margin-top: 60px; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #aaa; text-decoration: none; line-height: 2; display: block; }
+        .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        @media (max-width: 968px) {
+            .blog-grid, .footer-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .newsletter-form { flex-direction: column; }
+        }
+        .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
+        @media (max-width: 768px) { .mobile-menu { display: block; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo"><span>Grow</span>AI<span>Mark</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/blog" class="active">Blog</a></li>
+            <li><a href="/dashboard">Tools</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+        <a href="/#contact" class="btn-primary">Get in Touch</a>
+        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <section class="blog-hero">
+        <h1>Digital Marketing Blog</h1>
+        <p>Actionable tips, strategies, and insights to grow your business online</p>
+    </section>
+
+    <section class="blog-section">
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-image"><i class="fas fa-chart-line"></i></div>
+                <div class="blog-content">
+                    <div class="blog-category">SEO</div>
+                    <h3>10 SEO Tips That Actually Work in 2024</h3>
+                    <p>Discover the latest SEO strategies that Google loves and competitors don't want you to know...</p>
+                    <div class="blog-meta">📅 April 2, 2024 | ⏱️ 5 min read</div>
+                    <a href="#" class="blog-link">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image"><i class="fab fa-instagram"></i></div>
+                <div class="blog-content">
+                    <div class="blog-category">Social Media</div>
+                    <h3>Instagram Growth Hacks: From 0 to 10K Followers</h3>
+                    <p>Proven strategies to grow your Instagram following organically...</p>
+                    <div class="blog-meta">📅 March 28, 2024 | ⏱️ 7 min read</div>
+                    <a href="#" class="blog-link">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image"><i class="fas fa-envelope"></i></div>
+                <div class="blog-content">
+                    <div class="blog-category">Email Marketing</div>
+                    <h3>How to Write Emails That Convert (With Templates)</h3>
+                    <p>Learn the art of crafting email sequences that actually sell...</p>
+                    <div class="blog-meta">📅 March 25, 2024 | ⏱️ 6 min read</div>
+                    <a href="#" class="blog-link">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image"><i class="fas fa-ad"></i></div>
+                <div class="blog-content">
+                    <div class="blog-category">PPC</div>
+                    <h3>Google Ads: How to Cut CPA by 50%</h3>
+                    <p>Advanced techniques to optimize your Google Ads campaigns...</p>
+                    <div class="blog-meta">📅 March 20, 2024 | ⏱️ 8 min read</div>
+                    <a href="#" class="blog-link">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image"><i class="fas fa-search"></i></div>
+                <div class="blog-content">
+                    <div class="blog-category">SEO</div>
+                    <h3>Keyword Research: Find Hidden Gems</h3>
+                    <p>How to find low-competition, high-volume keywords...</p>
+                    <div class="blog-meta">📅 March 15, 2024 | ⏱️ 5 min read</div>
+                    <a href="#" class="blog-link">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image"><i class="fas fa-chart-pie"></i></div>
+                <div class="blog-content">
+                    <div class="blog-category">Analytics</div>
+                    <h3>Google Analytics 4: Complete Guide</h3>
+                    <p>Master GA4 and make data-driven marketing decisions...</p>
+                    <div class="blog-meta">📅 March 10, 2024 | ⏱️ 10 min read</div>
+                    <a href="#" class="blog-link">Read More →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter">
+            <h3>📧 Get Marketing Tips Straight to Your Inbox</h3>
+            <p>Subscribe to my newsletter for weekly digital marketing insights</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe →</button>
+            </form>
+            <p style="font-size: 12px; margin-top: 15px;">No spam, unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col"><h4>GrowAIMark</h4><p>Digital marketing blog by H.M. Saboor Khan</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a></div>
+            <div class="footer-col"><h4>Contact</h4><p>saboor@growaimark.com</p><p>+92 303 0001026</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark</p></div>
+    </footer>
+
+    <script>
+        document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            alert(`✅ Thanks for subscribing! Marketing tips will be sent to ${email}`);
+            e.target.reset();
+        });
+        const mobileBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+    </script>
+</body>
+</html>

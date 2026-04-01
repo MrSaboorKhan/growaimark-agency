@@ -11,3 +11,11 @@ def sitemap():
         return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'sitemap.xml', mimetype='application/xml')
     except Exception as e:
         return f"Error: {e}", 404
+
+@app.route('/portfolio')
+def portfolio():
+    return render_template('portfolio.html')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - H.M. Saboor Khan | Digital Marketing Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9ff; }
+
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .logo span { background: none; -webkit-text-fill-color: #333; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #667eea; }
+        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,0.3); }
+        .btn-outline { background: transparent; border: 2px solid #667eea; color: #667eea; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; }
+
+        .portfolio-hero {
+            padding: 140px 5% 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+        .portfolio-hero h1 { font-size: 48px; margin-bottom: 20px; }
+        .portfolio-hero p { font-size: 18px; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+
+        .stats-section {
+            padding: 60px 5%;
+            background: white;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .stat-card {
+            padding: 30px;
+            background: #f8f9ff;
+            border-radius: 20px;
+        }
+        .stat-card h3 { font-size: 36px; color: #667eea; margin-bottom: 10px; }
+        .stat-card p { color: #666; }
+
+        .projects-section {
+            padding: 80px 5%;
+            background: #f8f9ff;
+        }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 36px; color: #1a1a2e; margin-bottom: 15px; }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-image i { font-size: 60px; color: white; }
+        .project-content { padding: 25px; }
+        .project-category { color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
+        .project-content h3 { font-size: 20px; margin-bottom: 10px; }
+        .project-content p { color: #666; margin-bottom: 15px; }
+        .project-results {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .project-results span { background: #f0f0f0; padding: 5px 10px; border-radius: 20px; }
+        .project-link { color: #667eea; text-decoration: none; font-weight: 600; }
+
+        .services-offer {
+            padding: 80px 5%;
+            background: white;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-offer-card {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9ff;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .service-offer-card:hover { transform: translateY(-5px); background: #667eea; color: white; }
+        .service-offer-card i { font-size: 40px; color: #667eea; margin-bottom: 20px; }
+        .service-offer-card:hover i { color: white; }
+        .service-offer-card h3 { font-size: 20px; margin-bottom: 10px; }
+
+        .cta-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 { font-size: 36px; margin-bottom: 20px; }
+        .cta-section .btn-white { background: white; color: #667eea; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 20px; }
+
+        .footer { background: #1a1a2e; color: white; padding: 60px 5% 30px; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #aaa; text-decoration: none; line-height: 2; display: block; }
+        .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        @media (max-width: 968px) {
+            .stats-grid, .projects-grid, .services-grid, .footer-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+        .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
+        @media (max-width: 768px) { .mobile-menu { display: block; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo"><span>Grow</span>AI<span>Mark</span></a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/portfolio" class="active">Portfolio</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/dashboard">Tools</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <a href="/#contact" class="btn-primary">Hire Me →</a>
+        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <section class="portfolio-hero">
+        <h1>My Digital Marketing Portfolio</h1>
+        <p>Helping businesses grow with data-driven marketing strategies</p>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card"><h3>50+</h3><p>Projects Completed</p></div>
+            <div class="stat-card"><h3>25+</h3><p>Happy Clients</p></div>
+            <div class="stat-card"><h3>300%</h3><p>Average Traffic Growth</p></div>
+            <div class="stat-card"><h3>₹2Cr+</h3><p>Revenue Generated</p></div>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="section-title">
+            <h2>Featured Projects</h2>
+            <p>Real results from real clients</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image"><i class="fas fa-store"></i></div>
+                <div class="project-content">
+                    <div class="project-category">E-Commerce SEO</div>
+                    <h3>Fashion Store Pakistan</h3>
+                    <p>Complete SEO overhaul for a leading fashion e-commerce store.</p>
+                    <div class="project-results"><span>📈 Traffic +320%</span><span>💰 Sales +180%</span></div>
+                    <a href="#" class="project-link">View Case Study →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"><i class="fas fa-bullhorn"></i></div>
+                <div class="project-content">
+                    <div class="project-category">Social Media</div>
+                    <h3>Tech Startup USA</h3>
+                    <p>Social media strategy that grew following from 0 to 50K.</p>
+                    <div class="project-results"><span>📱 Followers 50K+</span><span>📊 Engagement +450%</span></div>
+                    <a href="#" class="project-link">View Case Study →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"><i class="fas fa-ad"></i></div>
+                <div class="project-content">
+                    <div class="project-category">PPC Campaigns</div>
+                    <h3>UK Real Estate</h3>
+                    <p>Google Ads campaign optimization for maximum ROI.</p>
+                    <div class="project-results"><span>💰 ROI +280%</span><span>🎯 CPA -45%</span></div>
+                    <a href="#" class="project-link">View Case Study →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-offer">
+        <div class="section-title">
+            <h2>Services I Offer</h2>
+            <p>Let me help you grow your business</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-offer-card"><i class="fas fa-search"></i><h3>SEO Optimization</h3><p>Rank #1 on Google</p></div>
+            <div class="service-offer-card"><i class="fas fa-share-alt"></i><h3>Social Media</h3><p>Grow your audience</p></div>
+            <div class="service-offer-card"><i class="fas fa-ad"></i><h3>PPC Management</h3><p>Maximize ROI</p></div>
+            <div class="service-offer-card"><i class="fas fa-envelope"></i><h3>Email Marketing</h3><p>Convert leads</p></div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Grow Your Business?</h2>
+        <p>Let's work together to achieve your marketing goals</p>
+        <a href="/#contact" class="btn-white">Get a Free Consultation →</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col"><h4>GrowAIMark</h4><p>Digital marketing expert helping businesses grow.</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a></div>
+            <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> saboor@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        const mobileBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+    </script>
+</body>
+</html>
