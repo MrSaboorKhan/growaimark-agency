@@ -146,6 +146,183 @@
                 <div id="seo-result" class="result"></div>
             </div>
         </div>
+        <!-- International Tools Section -->
+<div style="margin: 40px 0 20px;">
+    <h2><i class="fas fa-globe"></i> International Marketing Tools 🌍</h2>
+    <p>Target USA, UK, Germany, France, Italy, Spain markets</p>
+</div>
+
+<div class="tools-grid">
+    <!-- International SEO -->
+    <div class="tool-card">
+        <h2><i class="fas fa-chart-line"></i> International SEO</h2>
+        <input type="url" id="intl-url" placeholder="Website URL">
+        <select id="intl-country">
+            <option value="us">🇺🇸 USA</option>
+            <option value="uk">🇬🇧 United Kingdom</option>
+            <option value="de">🇩🇪 Germany</option>
+            <option value="fr">🇫🇷 France</option>
+            <option value="it">🇮🇹 Italy</option>
+            <option value="es">🇪🇸 Spain</option>
+        </select>
+        <button class="btn-primary" onclick="analyzeInternationalSEO()">Analyze →</button>
+        <div id="intl-result" class="result"></div>
+    </div>
+
+    <!-- Currency Converter -->
+    <div class="tool-card">
+        <h2><i class="fas fa-dollar-sign"></i> Currency Converter</h2>
+        <input type="number" id="currency-amount" placeholder="Amount" value="100">
+        <select id="currency-from">
+            <option value="USD">🇺🇸 USD</option>
+            <option value="EUR">🇪🇺 EUR</option>
+            <option value="GBP">🇬🇧 GBP</option>
+            <option value="PKR">🇵🇰 PKR</option>
+        </select>
+        <select id="currency-to">
+            <option value="EUR">🇪🇺 EUR</option>
+            <option value="USD">🇺🇸 USD</option>
+            <option value="GBP">🇬🇧 GBP</option>
+            <option value="PKR">🇵🇰 PKR</option>
+        </select>
+        <button class="btn-primary" onclick="convertCurrency()">Convert →</button>
+        <div id="currency-result" class="result"></div>
+    </div>
+
+    <!-- Multi-Language Content -->
+    <div class="tool-card">
+        <h2><i class="fas fa-language"></i> Multi-Language Content</h2>
+        <input type="text" id="ml-topic" placeholder="Topic">
+        <select id="ml-language">
+            <option value="en">🇬🇧 English</option>
+            <option value="es">🇪🇸 Spanish</option>
+            <option value="fr">🇫🇷 French</option>
+            <option value="de">🇩🇪 German</option>
+            <option value="it">🇮🇹 Italian</option>
+        </select>
+        <button class="btn-primary" onclick="generateMultilanguage()">Generate →</button>
+        <div id="ml-result" class="result"></div>
+    </div>
+
+    <!-- Market Insights -->
+    <div class="tool-card">
+        <h2><i class="fas fa-chart-pie"></i> Market Insights</h2>
+        <select id="market-country">
+            <option value="us">🇺🇸 USA Market</option>
+            <option value="uk">🇬🇧 UK Market</option>
+            <option value="eu">🇪🇺 Europe Market</option>
+        </select>
+        <input type="text" id="market-industry" placeholder="Industry (e.g., marketing)">
+        <button class="btn-primary" onclick="getMarketInsights()">Get Insights →</button>
+        <div id="market-result" class="result"></div>
+    </div>
+</div>
+
+<script>
+// International SEO
+async function analyzeInternationalSEO() {
+    const url = document.getElementById('intl-url').value;
+    const country = document.getElementById('intl-country').value;
+    const resultDiv = document.getElementById('intl-result');
+    if (!url) { alert('Enter website URL'); return; }
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<p>🌍 Analyzing international SEO...</p>';
+
+    const response = await fetch('/api/international/seo', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({url: url, country: country})
+    });
+    const data = await response.json();
+
+    resultDiv.innerHTML = `
+        <h3>🌍 SEO Analysis for ${data.country}</h3>
+        <p><strong>SEO Score:</strong> ${data.score}/100</p>
+        <p><strong>Global Rank:</strong> #${data.global_rank.toLocaleString()}</p>
+        <p><strong>Country Rank:</strong> #${data.country_rank.toLocaleString()}</p>
+        <p><strong>USA Traffic:</strong> ${data.organic_traffic.us.toLocaleString()} visits/month</p>
+        <p><strong>UK Traffic:</strong> ${data.organic_traffic.uk.toLocaleString()} visits/month</p>
+        <p><strong>EU Traffic:</strong> ${data.organic_traffic.eu.toLocaleString()} visits/month</p>
+        <h4>💡 Recommendations:</h4>
+        <ul>${data.recommendations.map(r => `<li>${r}</li>`).join('')}</ul>
+        <p style="color:#10b981;">✨ ${data.message}</p>
+    `;
+}
+
+// Currency Converter
+async function convertCurrency() {
+    const amount = document.getElementById('currency-amount').value;
+    const from = document.getElementById('currency-from').value;
+    const to = document.getElementById('currency-to').value;
+    const resultDiv = document.getElementById('currency-result');
+
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<p>💱 Converting...</p>';
+
+    const response = await fetch('/api/currency/convert', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({amount: parseFloat(amount), from: from, to: to})
+    });
+    const data = await response.json();
+
+    resultDiv.innerHTML = `
+        <h3>💱 Conversion Result</h3>
+        <p><strong>${data.amount} ${data.from}</strong> = <strong style="color:#667eea;">${data.converted} ${data.to}</strong></p>
+        <p>Exchange Rate: 1 ${data.from} = ${data.rate} ${data.to}</p>
+        <p style="color:#10b981;">✨ ${data.message}</p>
+    `;
+}
+
+// Multi-Language Content
+async function generateMultilanguage() {
+    const topic = document.getElementById('ml-topic').value;
+    const language = document.getElementById('ml-language').value;
+    const resultDiv = document.getElementById('ml-result');
+    if (!topic) { alert('Enter topic'); return; }
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<p>🌍 Generating content...</p>';
+
+    const response = await fetch('/api/multilanguage/content', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({topic: topic, language: language})
+    });
+    const data = await response.json();
+
+    resultDiv.innerHTML = `
+        <h3>📝 Content in ${data.language}</h3>
+        <pre style="white-space:pre-wrap;">${data.content}</pre>
+        <p style="color:#10b981;">✨ ${data.message}</p>
+    `;
+}
+
+// Market Insights
+async function getMarketInsights() {
+    const market = document.getElementById('market-country').value;
+    const industry = document.getElementById('market-industry').value;
+    const resultDiv = document.getElementById('market-result');
+
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = '<p>📊 Fetching market insights...</p>';
+
+    const response = await fetch('/api/market/insights', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({market: market, industry: industry || 'marketing'})
+    });
+    const data = await response.json();
+
+    resultDiv.innerHTML = `
+        <h3>📊 ${data.market} Market Insights</h3>
+        <p><strong>Market Size:</strong> ${data.market_size}</p>
+        <p><strong>Growth Rate:</strong> ${data.growth_rate}</p>
+        <p><strong>Top Trends:</strong> ${data.top_trends.join(', ')}</p>
+        <p><strong>Consumer Behavior:</strong> ${data.consumer_behavior}</p>
+        <p style="color:#10b981;">✨ ${data.message}</p>
+    `;
+}
+    </script>
 
         <div class="affiliate-banner">
             <i class="fas fa-gem"></i> <strong>Need More Advanced Tools?</strong> Check out:
