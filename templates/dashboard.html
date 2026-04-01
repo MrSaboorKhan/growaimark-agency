@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Tools - GrowAIMark</title>
+    <title>Advanced Free Tools - GrowAIMark</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,7 +17,7 @@
         }
         .logo { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
 
-        .dashboard-container { max-width: 1200px; margin: 100px auto 40px; padding: 0 20px; }
+        .dashboard-container { max-width: 1400px; margin: 100px auto 40px; padding: 0 20px; }
 
         .free-badge {
             background: linear-gradient(135deg, #10b981, #059669);
@@ -26,27 +26,32 @@
             font-weight: 600;
         }
 
-        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 30px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 30px; }
         .tool-card {
             background: white; border-radius: 20px; padding: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
         }
         .tool-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .tool-card h2 { margin-bottom: 15px; color: #1a1a2e; font-size: 24px; }
+        .tool-card h2 { margin-bottom: 15px; color: #1a1a2e; font-size: 22px; }
         .tool-card h2 i { color: #667eea; margin-right: 10px; }
-        .tool-card input, .tool-card textarea {
+        .tool-card input, .tool-card select, .tool-card textarea {
             width: 100%; padding: 12px; margin: 10px 0;
             border: 1px solid #ddd; border-radius: 10px;
-            font-size: 16px;
+            font-size: 14px;
         }
+        .tool-card textarea { min-height: 80px; resize: vertical; }
         .btn-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white; padding: 12px 25px; border: none;
             border-radius: 10px; cursor: pointer; width: 100%;
-            font-weight: 600; font-size: 16px;
+            font-weight: 600; font-size: 14px;
         }
-        .result { margin-top: 20px; padding: 20px; background: #f8f9ff; border-radius: 10px; display: none; }
-        .result h3 { color: #667eea; margin-bottom: 15px; }
+        .result { margin-top: 20px; padding: 20px; background: #f8f9ff; border-radius: 10px; display: none; max-height: 400px; overflow-y: auto; }
+        .result h3 { color: #667eea; margin-bottom: 15px; font-size: 18px; }
+        .result pre { white-space: pre-wrap; font-family: inherit; line-height: 1.6; }
+
+        @media (max-width: 1024px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
 
         .affiliate-banner {
             background: linear-gradient(135deg, #f59e0b, #d97706);
@@ -55,7 +60,16 @@
         }
         .affiliate-banner a { color: white; font-weight: bold; margin: 0 10px; }
 
-        @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
+        .tool-tag {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            font-size: 10px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -66,58 +80,204 @@
 
     <div class="dashboard-container">
         <div class="free-badge">
-            🎉 100% FREE - Unlimited Usage! No Credit Card Required! 🎉
+            🚀 ALL TOOLS 100% FREE - AI-Powered! No Limits, No Credit Card! 🚀
         </div>
 
-        <h1>Free Marketing Tools 🚀</h1>
-        <p>All tools are completely free. Use them unlimited times!</p>
+        <h1>Advanced Free Marketing Tools 🚀</h1>
+        <p>AI-powered tools that others charge for - completely free!</p>
 
         <div class="tools-grid">
+            <!-- AI Content Generator -->
+            <div class="tool-card">
+                <h2><i class="fas fa-robot"></i> AI Content Generator <span class="tool-tag">ChatGPT Style</span></h2>
+                <input type="text" id="content-topic" placeholder="Enter topic (e.g., Digital Marketing)">
+                <select id="content-type">
+                    <option value="blog">📝 Blog Post</option>
+                    <option value="social">📱 Social Media Post</option>
+                    <option value="email">📧 Email Newsletter</option>
+                    <option value="ad">🎯 Ad Copy</option>
+                </select>
+                <button class="btn-primary" onclick="generateContent()">Generate Content →</button>
+                <div id="content-result" class="result"></div>
+            </div>
+
+            <!-- YouTube SEO Optimizer -->
+            <div class="tool-card">
+                <h2><i class="fab fa-youtube"></i> YouTube SEO <span class="tool-tag">Rank Higher</span></h2>
+                <input type="text" id="video-title" placeholder="Video Title">
+                <textarea id="video-desc" placeholder="Video Description (optional)"></textarea>
+                <button class="btn-primary" onclick="optimizeYoutube()">Optimize Video →</button>
+                <div id="youtube-result" class="result"></div>
+            </div>
+
+            <!-- Content Calendar -->
+            <div class="tool-card">
+                <h2><i class="fas fa-calendar"></i> Content Calendar <span class="tool-tag">30 Days</span></h2>
+                <select id="calendar-niche">
+                    <option value="marketing">📊 Marketing</option>
+                    <option value="seo">🔍 SEO</option>
+                    <option value="social">📱 Social Media</option>
+                </select>
+                <button class="btn-primary" onclick="generateCalendar()">Generate Calendar →</button>
+                <div id="calendar-result" class="result"></div>
+            </div>
+
+            <!-- Competitor Analysis -->
+            <div class="tool-card">
+                <h2><i class="fas fa-chart-line"></i> Competitor Analysis</h2>
+                <input type="text" id="competitor-url" placeholder="Competitor website URL">
+                <button class="btn-primary" onclick="analyzeCompetitor()">Analyze →</button>
+                <div id="competitor-result" class="result"></div>
+            </div>
+
+            <!-- Hashtag Generator -->
+            <div class="tool-card">
+                <h2><i class="fas fa-hashtag"></i> Hashtag Generator</h2>
+                <input type="text" id="hashtag-topic" placeholder="Topic (e.g., Marketing)">
+                <button class="btn-primary" onclick="generateHashtags()">Generate Hashtags →</button>
+                <div id="hashtag-result" class="result"></div>
+            </div>
+
+            <!-- SEO Analyzer (Existing) -->
             <div class="tool-card">
                 <h2><i class="fas fa-search"></i> SEO Analyzer</h2>
-                <input type="url" id="seo-url" placeholder="Enter website URL (e.g., example.com)">
-                <button class="btn-primary" onclick="analyzeSEO()">Analyze Website</button>
+                <input type="url" id="seo-url" placeholder="Website URL">
+                <button class="btn-primary" onclick="analyzeSEO()">Analyze →</button>
                 <div id="seo-result" class="result"></div>
-            </div>
-
-            <div class="tool-card">
-                <h2><i class="fas fa-key"></i> Keyword Research</h2>
-                <input type="text" id="keyword-input" placeholder="Enter seed keyword (e.g., digital marketing)">
-                <button class="btn-primary" onclick="researchKeywords()">Find Keywords</button>
-                <div id="keyword-result" class="result"></div>
-            </div>
-
-            <div class="tool-card">
-                <h2><i class="fas fa-link"></i> Backlink Checker</h2>
-                <input type="url" id="backlink-url" placeholder="Enter website URL">
-                <button class="btn-primary" onclick="checkBacklinks()">Check Backlinks</button>
-                <div id="backlink-result" class="result"></div>
-            </div>
-
-            <div class="tool-card">
-                <h2><i class="fas fa-chart-line"></i> Rank Tracker</h2>
-                <input type="text" id="rank-keyword" placeholder="Enter keyword to track">
-                <button class="btn-primary" onclick="trackRank()">Track Ranking</button>
-                <div id="rank-result" class="result"></div>
             </div>
         </div>
 
         <div class="affiliate-banner">
-            <i class="fas fa-gem"></i> <strong>Need Advanced Tools?</strong> Check out these premium tools:
+            <i class="fas fa-gem"></i> <strong>Need More Advanced Tools?</strong> Check out:
             <a href="https://semrush.com" target="_blank">SEMrush</a> |
-            <a href="https://ahrefs.com" target="_blank">Ahrefs</a> |
+            <a href="https://chat.openai.com" target="_blank">ChatGPT Plus</a> |
             <a href="https://canva.com" target="_blank">Canva Pro</a>
             <p style="font-size:12px; margin-top:10px;">We earn a commission if you purchase (at no extra cost).</p>
         </div>
     </div>
 
     <script>
+        // AI Content Generator
+        async function generateContent() {
+            const topic = document.getElementById('content-topic').value;
+            const type = document.getElementById('content-type').value;
+            const resultDiv = document.getElementById('content-result');
+            if (!topic) { alert('Please enter a topic'); return; }
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>🤖 AI is thinking...</p>';
+
+            const response = await fetch('/api/content/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({topic: topic, type: type})
+            });
+            const data = await response.json();
+
+            resultDiv.innerHTML = `<h3>📝 Generated ${type.toUpperCase()} Content</h3><pre>${data.content}</pre><p style="color:#10b981;">✨ ${data.message}</p>`;
+        }
+
+        // YouTube SEO
+        async function optimizeYoutube() {
+            const title = document.getElementById('video-title').value;
+            const desc = document.getElementById('video-desc').value;
+            const resultDiv = document.getElementById('youtube-result');
+            if (!title) { alert('Please enter video title'); return; }
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>🎬 Optimizing...</p>';
+
+            const response = await fetch('/api/youtube/seo', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({title: title, description: desc})
+            });
+            const data = await response.json();
+
+            let html = `<h3>🎯 Optimized Titles</h3><ul>`;
+            data.optimized_titles.forEach(t => { html += `<li>${t}</li>`; });
+            html += `</ul><h3>📝 Optimized Description</h3><pre>${data.optimized_description}</pre><h3>🏷️ Tags</h3><p>${data.tags.join(', ')}</p><p style="color:#10b981;">✨ ${data.message}</p>`;
+            resultDiv.innerHTML = html;
+        }
+
+        // Content Calendar
+        async function generateCalendar() {
+            const niche = document.getElementById('calendar-niche').value;
+            const resultDiv = document.getElementById('calendar-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>📅 Generating calendar...</p>';
+
+            const response = await fetch('/api/calendar/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({niche: niche, days: 7})
+            });
+            const data = await response.json();
+
+            let html = `<h3>📅 7-Day Content Calendar for ${niche.toUpperCase()}</h3><table style="width:100%; border-collapse:collapse;">`;
+            html += `<tr style="background:#667eea; color:white;"><th>Day</th><th>Content Idea</th><th>Platform</th><th>Best Time</th></tr>`;
+            data.calendar.forEach(day => {
+                html += `<tr style="border-bottom:1px solid #ddd;"><td style="padding:10px;">Day ${day.day}</td><td>${day.idea}</td><td>${day.platform}</td><td>${day.best_time}</td></tr>`;
+            });
+            html += `</table><p style="color:#10b981;">✨ ${data.message}</p>`;
+            resultDiv.innerHTML = html;
+        }
+
+        // Competitor Analysis
+        async function analyzeCompetitor() {
+            const url = document.getElementById('competitor-url').value;
+            const resultDiv = document.getElementById('competitor-result');
+            if (!url) { alert('Please enter competitor URL'); return; }
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>🔍 Analyzing competitor...</p>';
+
+            const response = await fetch('/api/competitor/analyze', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({url: url})
+            });
+            const data = await response.json();
+
+            let html = `<h3>📊 Competitor Analysis: ${data.url}</h3>
+                <p><strong>Domain Authority:</strong> ${data.metrics.domain_authority}</p>
+                <p><strong>Monthly Traffic:</strong> ${data.metrics.monthly_traffic.toLocaleString()}</p>
+                <p><strong>Backlinks:</strong> ${data.metrics.backlinks.toLocaleString()}</p>
+                <p><strong>Top Keywords:</strong> ${data.metrics.top_keywords.join(', ')}</p>
+                <h4>✅ Strengths</h4><ul>${data.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+                <h4>⚠️ Weaknesses</h4><ul>${data.weaknesses.map(w => `<li>${w}</li>`).join('')}</ul>
+                <h4>🚀 Opportunities</h4><ul>${data.opportunities.map(o => `<li>${o}</li>`).join('')}</ul>
+                <p style="color:#10b981;">✨ ${data.message}</p>`;
+            resultDiv.innerHTML = html;
+        }
+
+        // Hashtag Generator
+        async function generateHashtags() {
+            const topic = document.getElementById('hashtag-topic').value;
+            const resultDiv = document.getElementById('hashtag-result');
+            if (!topic) { alert('Please enter a topic'); return; }
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>#️⃣ Generating hashtags...</p>';
+
+            const response = await fetch('/api/hashtags/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({topic: topic})
+            });
+            const data = await response.json();
+
+            let html = `<h3>#️⃣ Hashtags for ${data.topic}</h3>
+                <h4>🔥 Popular Hashtags</h4><p>${data.popular_hashtags.join(' ')}</p>
+                <h4>🎯 Niche Hashtags</h4><p>${data.niche_hashtags.join(' ')}</p>
+                <h4>📋 All Hashtags</h4><p>${data.hashtags.join(' ')}</p>
+                <p style="color:#10b981;">✨ ${data.message}</p>`;
+            resultDiv.innerHTML = html;
+        }
+
+        // Existing SEO Analyzer
         async function analyzeSEO() {
             const url = document.getElementById('seo-url').value;
             const resultDiv = document.getElementById('seo-result');
-            if (!url) { alert('Please enter a website URL'); return; }
+            if (!url) { alert('Please enter URL'); return; }
             resultDiv.style.display = 'block';
-            resultDiv.innerHTML = '<p>🔍 Analyzing website...</p>';
+            resultDiv.innerHTML = '<p>🔍 Analyzing...</p>';
 
             const response = await fetch('/api/seo/analyze', {
                 method: 'POST',
@@ -126,92 +286,12 @@
             });
             const data = await response.json();
 
-            resultDiv.innerHTML = `
-                <h3>📊 SEO Score: ${data.score}/100</h3>
-                <div style="background:#e0e0e0; height:10px; border-radius:10px; margin:15px 0;">
-                    <div style="width:${data.score}%; background:#667eea; height:10px; border-radius:10px;"></div>
-                </div>
-                <p><strong>🌐 URL:</strong> ${data.url}</p>
-                <p><strong>📝 Title:</strong> ${data.title}</p>
-                <p><strong>📄 Meta Description:</strong> ${data.meta_description}</p>
-                <p><strong>📖 Word Count:</strong> ${data.word_count}</p>
-                <p><strong>⚠️ Issues Found:</strong> ${data.issues.join(', ')}</p>
-                <p><strong>💡 Recommendations:</strong> ${data.recommendations.join(', ')}</p>
-                <p style="color:#10b981; margin-top:15px;">✨ ${data.message}</p>
-                <button onclick="alert('PDF Report Coming Soon!')" style="margin-top:15px; background:#667eea; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer;">📄 Download Report</button>
-            `;
-        }
-
-        async function researchKeywords() {
-            const keyword = document.getElementById('keyword-input').value;
-            const resultDiv = document.getElementById('keyword-result');
-            if (!keyword) { alert('Please enter a keyword'); return; }
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = '<p>🔍 Finding keywords...</p>';
-
-            const response = await fetch('/api/keywords/suggest', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({keyword: keyword})
-            });
-            const data = await response.json();
-
-            let html = `<h3>🔑 Keyword Suggestions for "${data.keyword}"</h3><p style="color:#10b981;">${data.message}</p><table style="width:100%; border-collapse:collapse;">`;
-            html += `<tr style="background:#667eea; color:white;"><th style="padding:12px;">Keyword</th><th>Search Volume</th><th>Competition</th><th>CPC</th></tr>`;
-            data.keywords.forEach(k => {
-                html += `<tr style="border-bottom:1px solid #ddd;"><td style="padding:12px;"><strong>${k.keyword}</strong></td><td>${k.volume}</td><td>${k.competition}</td><td>$${k.cpc}</td></tr>`;
-            });
-            html += '</table>';
-            resultDiv.innerHTML = html;
-        }
-
-        async function checkBacklinks() {
-            const url = document.getElementById('backlink-url').value;
-            const resultDiv = document.getElementById('backlink-result');
-            if (!url) { alert('Please enter a website URL'); return; }
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = '<p>🔍 Analyzing backlinks...</p>';
-
-            const response = await fetch('/api/backlink/analyze', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({url: url})
-            });
-            const data = await response.json();
-
-            resultDiv.innerHTML = `
-                <h3>🔗 Backlink Analysis for ${data.url}</h3>
-                <p><strong>Total Backlinks:</strong> ${data.total_backlinks}</p>
-                <p><strong>Referring Domains:</strong> ${data.referring_domains}</p>
-                <p><strong>Dofollow Links:</strong> ${data.dofollow_links}</p>
-                <p><strong>Top Referring Domains:</strong> ${data.top_backlinks.map(b => b.domain).join(', ')}</p>
-                <p style="color:#10b981;">🔗 ${data.message}</p>
-            `;
-        }
-
-        async function trackRank() {
-            const keyword = document.getElementById('rank-keyword').value;
-            const resultDiv = document.getElementById('rank-result');
-            if (!keyword) { alert('Please enter a keyword'); return; }
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = '<p>🔍 Tracking ranking...</p>';
-
-            const response = await fetch('/api/rank/track', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({keyword: keyword})
-            });
-            const data = await response.json();
-
-            resultDiv.innerHTML = `
-                <h3>📈 Rank Tracking for "${data.keyword}"</h3>
-                <p><strong>Trend:</strong> ${data.trend === 'improving' ? '📈 Improving' : '📉 Declining'}</p>
-                <p><strong>Current Position:</strong> ${data.rankings[data.rankings.length-1].position}</p>
-                <p><strong>30-Day Improvement:</strong> ${data.rankings[0].position - data.rankings[data.rankings.length-1].position} positions up!</p>
-                <p><strong>Ranking History:</strong></p>
-                <ul>${data.rankings.map(r => `<li>${r.date}: Position ${r.position}</li>`).join('')}</ul>
-                <p style="color:#10b981;">📈 ${data.message}</p>
-            `;
+            resultDiv.innerHTML = `<h3>📊 SEO Score: ${data.score}/100</h3>
+                <div style="background:#e0e0e0; height:10px; border-radius:10px;"><div style="width:${data.score}%; background:#667eea; height:10px; border-radius:10px;"></div></div>
+                <p><strong>Title:</strong> ${data.title}</p>
+                <p><strong>Issues:</strong> ${data.issues.join(', ')}</p>
+                <p><strong>Recommendations:</strong> ${data.recommendations.join(', ')}</p>
+                <p style="color:#10b981;">✨ ${data.message}</p>`;
         }
     </script>
 </body>
