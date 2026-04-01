@@ -3,714 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowAIMark - AI-Powered Digital Marketing Agency</title>
-    <meta name="description" content="Grow your business with AI-powered digital marketing tools and services. SEO, Social Media, PPC, Email Marketing & more.">
-    <meta name="keywords" content="digital marketing, SEO, social media marketing, PPC, email marketing, AI marketing">
+    <title>GrowAIMark - Free AI-Powered Digital Marketing Tools</title>
+    <meta name="description" content="Free digital marketing tools: SEO Analyzer, Keyword Research, Backlink Checker, Rank Tracker. 100% free, no limits!">
+    <meta name="keywords" content="digital marketing, SEO tools, keyword research, backlink checker, rank tracker, free marketing tools">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9ff; overflow-x: hidden; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            background: #fff;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 5px;
-        }
-
-        /* Navigation */
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
+        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .logo span { background: none; -webkit-text-fill-color: #333; }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #667eea; }
+        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,0.3); }
+        .btn-outline { background: transparent; border: 2px solid #667eea; color: #667eea; padding: 10px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; }
+        .btn-outline:hover { background: #667eea; color: white; }
 
-        .navbar.scrolled {
-            padding: 15px 5%;
-            background: white;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-        }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 120px 5% 80px; background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%); position: relative; overflow: hidden; }
+        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
+        .hero-badge { display: inline-block; background: rgba(102,126,234,0.1); padding: 8px 20px; border-radius: 50px; color: #667eea; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-size: 56px; line-height: 1.2; margin-bottom: 20px; color: #1a1a2e; }
+        .hero h1 .gradient { background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 18px; color: #666; line-height: 1.6; margin-bottom: 30px; }
+        .hero-buttons { display: flex; gap: 15px; margin-bottom: 40px; }
+        .hero-stats { display: flex; gap: 40px; }
+        .stat h3 { font-size: 32px; color: #667eea; margin-bottom: 5px; }
+        .stat p { font-size: 14px; margin: 0; color: #666; }
+        .hero-image { flex: 1; text-align: center; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .hero-image img { width: 100%; max-width: 500px; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
+        .free-banner { background: linear-gradient(135deg, #10b981, #059669); color: white; text-align: center; padding: 15px; font-weight: 600; }
 
-        .logo span {
-            background: none;
-            -webkit-text-fill-color: #333;
-        }
+        .services, .tools, .affiliate { padding: 80px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 42px; color: #1a1a2e; margin-bottom: 15px; }
+        .section-title p { color: #666; font-size: 18px; }
+        .services-grid, .tools-grid, .affiliate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .service-card, .tool-card, .affiliate-card { background: white; padding: 40px 30px; border-radius: 20px; text-align: center; transition: 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .service-card:hover, .tool-card:hover, .affiliate-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(102,126,234,0.15); border-color: #667eea; }
+        .service-icon, .tool-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; }
+        .service-icon i, .tool-icon i { font-size: 40px; color: white; }
+        .service-card h3, .tool-card h3, .affiliate-card h3 { font-size: 24px; margin-bottom: 15px; color: #1a1a2e; }
+        .service-card p, .tool-card p, .affiliate-card p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .tool-badge { background: #10b981; color: white; padding: 5px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; display: inline-block; margin-bottom: 15px; }
+        .affiliate-card img { width: 80px; margin-bottom: 20px; }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
+        .cta { padding: 80px 5%; background: linear-gradient(135deg, #667eea, #764ba2); text-align: center; color: white; }
+        .cta h2 { font-size: 42px; margin-bottom: 20px; }
+        .cta p { margin-bottom: 30px; font-size: 18px; }
+        .cta .btn-white { background: white; color: #667eea; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+        .footer { background: #1a1a2e; color: white; padding: 60px 5% 30px; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-col h4 { margin-bottom: 20px; }
+        .footer-col p, .footer-col a { color: #aaa; text-decoration: none; line-height: 2; display: block; }
+        .footer-col a:hover { color: #667eea; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .social-links a:hover { background: #667eea; transform: translateY(-3px); }
+        .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
 
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102,126,234,0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #667eea;
-            color: #667eea;
-            padding: 10px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .btn-outline:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 120px 5% 80px;
-            background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(102,126,234,0.1);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: #1a1a2e;
-        }
-
-        .hero h1 .gradient {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-        }
-
-        .stat h3 {
-            font-size: 32px;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-
-        .stat p {
-            font-size: 14px;
-            margin: 0;
-            color: #666;
-        }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-            text-align: center;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 550px;
-            border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 5%;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 42px;
-            color: #1a1a2e;
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: #666;
-            font-size: 18px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102,126,234,0.15);
-            border-color: #667eea;
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-        }
-
-        .service-icon i {
-            font-size: 40px;
-            color: white;
-        }
-
-        .service-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #1a1a2e;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Tools Section */
-        .tools {
-            padding: 100px 5%;
-            background: #f8f9ff;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tool-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .tool-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .tool-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .tool-header i {
-            font-size: 45px;
-            color: #667eea;
-        }
-
-        .tool-badge {
-            background: #667eea;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .tool-badge.free {
-            background: #10b981;
-        }
-
-        .tool-badge.pro {
-            background: #667eea;
-        }
-
-        .tool-card h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .tool-card p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 80px 5%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            text-align: center;
-            color: white;
-        }
-
-        .cta h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .cta .btn-primary {
-            background: white;
-            color: #667eea;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 60px 5% 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-
-        .footer-col p, .footer-col a {
-            color: #aaa;
-            text-decoration: none;
-            line-height: 2;
-            display: block;
-        }
-
-        .footer-col a:hover {
-            color: #667eea;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            background: #667eea;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #aaa;
-        }
-
-        .footer-bottom a {
-            color: #aaa;
-            text-decoration: none;
-        }
-
-        .footer-bottom a:hover {
-            color: #667eea;
-        }
-
-        /* Responsive */
         @media (max-width: 968px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 100px;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section-title h2 {
-                font-size: 32px;
-            }
-
-            .hero-image img {
-                margin-top: 40px;
-            }
+            .hero { flex-direction: column; text-align: center; padding-top: 100px; }
+            .hero h1 { font-size: 40px; }
+            .hero-buttons, .hero-stats { justify-content: center; }
+            .nav-links { display: none; }
+            .footer-content { grid-template-columns: 1fr; }
         }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu {
-                display: block;
-            }
-        }
+        .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
+        @media (max-width: 768px) { .mobile-menu { display: block; } }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <div class="free-banner">
+        🎉 ALL TOOLS ARE 100% FREE - No Limits, No Credit Card Required! 🎉
+    </div>
+
+    <nav class="navbar">
         <a href="/" class="logo"><span>Grow</span>AI<span>Mark</span></a>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#tools">Tools</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/dashboard">Tools</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn-primary">Get Started</a>
-        <div class="mobile-menu">
-            <i class="fas fa-bars"></i>
-        </div>
+        <a href="/dashboard" class="btn-primary">Try Free Tools →</a>
+        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <!-- Hero Section with Image -->
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="hero-content" data-aos="fade-up">
-            <span class="hero-badge">🚀 AI-Powered Marketing</span>
-            <h1>Grow Your Business With <span class="gradient">Data-Driven</span> Marketing</h1>
-            <p>All-in-one platform for SEO, Social Media, Email Marketing, and PPC campaigns. Used by 10,000+ businesses worldwide.</p>
+            <span class="hero-badge">🚀 100% FREE Marketing Tools</span>
+            <h1>Grow Your Business With <span class="gradient">Free AI-Powered</span> Marketing Tools</h1>
+            <p>SEO Analyzer, Keyword Research, Backlink Checker, Rank Tracker - All completely free. Used by 10,000+ marketers worldwide.</p>
             <div class="hero-buttons">
-                <a href="#tools" class="btn-primary">Explore Tools</a>
-                <a href="#contact" class="btn-outline">Contact Sales</a>
+                <a href="/dashboard" class="btn-primary">Start Using Free Tools →</a>
+                <a href="/#services" class="btn-outline">Learn More</a>
             </div>
             <div class="hero-stats">
-                <div class="stat">
-                    <h3>10K+</h3>
-                    <p>Active Users</p>
-                </div>
-                <div class="stat">
-                    <h3>50M+</h3>
-                    <p>Data Points</p>
-                </div>
-                <div class="stat">
-                    <h3>99.9%</h3>
-                    <p>Uptime</p>
-                </div>
+                <div class="stat"><h3>10K+</h3><p>Active Users</p></div>
+                <div class="stat"><h3>50M+</h3><p>Data Points</p></div>
+                <div class="stat"><h3>100%</h3><p>Free Forever</p></div>
             </div>
         </div>
         <div class="hero-image" data-aos="fade-left">
-            <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Digital Marketing Dashboard" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); width: 100%; max-width: 550px;">
+            <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Digital Marketing Tools Dashboard">
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="services">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Our <span style="color:#667eea">Services</span></h2>
-            <p>Comprehensive digital marketing solutions tailored for your business</p>
-        </div>
+        <div class="section-title"><h2>Free <span style="color:#667eea">Marketing Tools</span></h2><p>Professional-grade tools - absolutely free</p></div>
         <div class="services-grid">
-            <div class="service-card" data-aos="fade-up" data-aos-delay="0">
-                <div class="service-icon"><i class="fas fa-search"></i></div>
-                <h3>SEO Optimization</h3>
-                <p>Boost your search rankings with advanced SEO strategies and tools.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-icon"><i class="fas fa-share-alt"></i></div>
-                <h3>Social Media Marketing</h3>
-                <p>Grow your audience and engagement across all social platforms.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-icon"><i class="fas fa-envelope"></i></div>
-                <h3>Email Marketing</h3>
-                <p>Create and optimize email campaigns that convert.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-icon"><i class="fas fa-ad"></i></div>
-                <h3>PPC Management</h3>
-                <p>Maximize ROI with AI-powered ad campaign optimization.</p>
-            </div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-search"></i></div><h3>SEO Analyzer</h3><p>Check any website's SEO health with detailed insights</p><span class="tool-badge">Free</span></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-key"></i></div><h3>Keyword Research</h3><p>Find profitable keywords with volume & competition data</p><span class="tool-badge">Free</span></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-link"></i></div><h3>Backlink Checker</h3><p>Analyze backlink profiles of any website</p><span class="tool-badge">Free</span></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-chart-line"></i></div><h3>Rank Tracker</h3><p>Track keyword rankings on Google</p><span class="tool-badge">Free</span></div>
         </div>
     </section>
 
-    <!-- Tools Section -->
-    <section id="tools" class="tools">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Powerful <span style="color:#667eea">Marketing Tools</span></h2>
-            <p>Professional-grade tools to simplify your digital marketing</p>
-        </div>
-        <div class="tools-grid">
-            <div class="tool-card" data-aos="zoom-in" data-aos-delay="0">
-                <div class="tool-header">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="tool-badge free">Free</span>
-                </div>
-                <h3>SEO Analyzer</h3>
-                <p>Get instant SEO analysis for any website with actionable insights.</p>
-                <a href="#" class="btn-outline" style="display: inline-block; font-size: 14px; padding: 8px 20px;">Try Now →</a>
-            </div>
-            <div class="tool-card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="tool-header">
-                    <i class="fas fa-key"></i>
-                    <span class="tool-badge pro">Pro</span>
-                </div>
-                <h3>Keyword Research</h3>
-                <p>Find profitable keywords with search volume and competition data.</p>
-                <a href="#" class="btn-outline" style="display: inline-block; font-size: 14px; padding: 8px 20px;">Try Now →</a>
-            </div>
-            <div class="tool-card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="tool-header">
-                    <i class="fas fa-link"></i>
-                    <span class="tool-badge pro">Pro</span>
-                </div>
-                <h3>Backlink Analyzer</h3>
-                <p>Analyze backlink profiles and find link building opportunities.</p>
-                <a href="#" class="btn-outline" style="display: inline-block; font-size: 14px; padding: 8px 20px;">Try Now →</a>
-            </div>
-            <div class="tool-card" data-aos="zoom-in" data-aos-delay="300">
-                <div class="tool-header">
-                    <i class="fas fa-clock"></i>
-                    <span class="tool-badge free">Free</span>
-                </div>
-                <h3>Social Calendar</h3>
-                <p>Plan and schedule your social media content effectively.</p>
-                <a href="#" class="btn-outline" style="display: inline-block; font-size: 14px; padding: 8px 20px;">Try Now →</a>
-            </div>
+    <section class="affiliate">
+        <div class="section-title"><h2>Recommended <span style="color:#667eea">Tools</span></h2><p>We earn a commission if you purchase (at no extra cost)</p></div>
+        <div class="affiliate-grid">
+            <div class="affiliate-card"><i class="fas fa-chart-line" style="font-size: 50px; color: #667eea;"></i><h3>SEMrush</h3><p>All-in-one SEO toolkit</p><a href="https://semrush.com" target="_blank" class="btn-outline" style="display: inline-block;">Try SEMrush →</a></div>
+            <div class="affiliate-card"><i class="fas fa-server" style="font-size: 50px; color: #667eea;"></i><h3>Bluehost</h3><p>Best web hosting for WordPress</p><a href="https://bluehost.com" target="_blank" class="btn-outline" style="display: inline-block;">Get Bluehost →</a></div>
+            <div class="affiliate-card"><i class="fas fa-palette" style="font-size: 50px; color: #667eea;"></i><h3>Canva Pro</h3><p>Design stunning graphics easily</p><a href="https://canva.com" target="_blank" class="btn-outline" style="display: inline-block;">Try Canva →</a></div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta">
-        <div class="section-title" style="color: white;">
-            <h2>Ready to Grow Your Business?</h2>
-            <p>Join 10,000+ marketers who trust GrowAIMark</p>
-        </div>
-        <a href="#contact" class="btn-primary" style="background: white; color: #667eea;">Start Free Trial</a>
-        <p style="margin-top: 20px; font-size: 14px;">No credit card required. 14-day free trial.</p>
+        <h2>Ready to Grow Your Business?</h2>
+        <p>Join 10,000+ marketers using our free tools daily</p>
+        <a href="/dashboard" class="btn-white">Start Using Free Tools →</a>
     </section>
 
-    <!-- Footer with Updated Phone Number -->
     <footer id="contact" class="footer">
         <div class="footer-content">
-            <div class="footer-col">
-                <h4>GrowAIMark</h4>
-                <p>AI-powered digital marketing tools and services to grow your business online.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#tools">Tools</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-col">
-                <h4>Tools</h4>
-                <a href="#">SEO Analyzer</a>
-                <a href="#">Keyword Research</a>
-                <a href="#">Social Media Analytics</a>
-                <a href="#">PPC Manager</a>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p><i class="fas fa-envelope"></i> hello@growaimark.com</p>
-                <p><i class="fas fa-phone"></i> +92 303 0001026</p>
-                <p><i class="fas fa-map-marker"></i> Pakistan</p>
-            </div>
+            <div class="footer-col"><h4>GrowAIMark</h4><p>Free AI-powered digital marketing tools for everyone.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/dashboard">Free Tools</a><a href="/about">About</a><a href="#contact">Contact</a></div>
+            <div class="footer-col"><h4>Free Tools</h4><a href="/dashboard">SEO Analyzer</a><a href="/dashboard">Keyword Research</a><a href="/dashboard">Backlink Checker</a><a href="/dashboard">Rank Tracker</a></div>
+            <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> hello@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p><p><i class="fas fa-map-marker"></i> Pakistan</p></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 GrowAIMark. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2024 GrowAIMark. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p></div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scroll for anchor links
+        AOS.init({ duration: 800, once: true });
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const mobileBtn = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-            });
-        }
+        if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
     </script>
 </body>
 </html>

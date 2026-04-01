@@ -3,354 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About H.M. Saboor Khan - GrowAIMark | Digital Marketing Expert</title>
-    <meta name="description" content="H.M. Saboor Khan - Digital Marketing Expert & Founder of GrowAIMark. Helping businesses grow with AI-powered marketing strategies.">
-
+    <title>About H.M. Saboor Khan - GrowAIMark</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #f8f9ff; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9ff; }
 
-        /* Navigation */
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
+        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         .logo span { background: none; -webkit-text-fill-color: #333; }
         .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: #667eea; }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,0.3); }
+        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; }
 
-        /* Hero Section with Founder */
-        .founder-hero {
-            padding: 140px 5% 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            position: relative;
-            overflow: hidden;
-        }
-        .founder-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 1%);
-            background-size: 50px 50px;
-            animation: moveBg 30s linear infinite;
-        }
-        @keyframes moveBg {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        .founder-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        .founder-info {
-            flex: 1;
-            color: white;
-        }
-        .founder-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .founder-info h1 {
-            font-size: 56px;
-            margin-bottom: 15px;
-        }
-        .founder-info h2 {
-            font-size: 28px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-        .founder-info p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        .founder-stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .founder-stats .stat h3 {
-            font-size: 32px;
-            margin-bottom: 5px;
-        }
-        .founder-stats .stat p {
-            font-size: 14px;
-            margin: 0;
-        }
-        .founder-image {
-            flex: 1;
-            text-align: center;
-        }
-        .founder-image img {
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-        .founder-image img:hover {
-            transform: scale(1.02);
-        }
+        .founder-hero { padding: 140px 5% 80px; background: linear-gradient(135deg, #667eea, #764ba2); position: relative; overflow: hidden; }
+        .founder-container { display: flex; align-items: center; justify-content: space-between; gap: 60px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .founder-info { flex: 1; color: white; }
+        .founder-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 50px; margin-bottom: 20px; }
+        .founder-info h1 { font-size: 56px; margin-bottom: 15px; }
+        .founder-info h2 { font-size: 28px; font-weight: 500; margin-bottom: 20px; opacity: 0.9; }
+        .founder-info p { font-size: 18px; line-height: 1.6; margin-bottom: 30px; }
+        .founder-stats { display: flex; gap: 30px; margin-top: 30px; }
+        .founder-stats .stat h3 { font-size: 32px; margin-bottom: 5px; }
+        .founder-image { flex: 1; text-align: center; }
+        .founder-image img { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
 
-        /* Expertise Section */
-        .expertise {
-            padding: 80px 5%;
-            background: white;
-            text-align: center;
-        }
-        .expertise h2 {
-            font-size: 42px;
-            color: #1a1a2e;
-            margin-bottom: 15px;
-        }
-        .expertise > p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto 50px;
-        }
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .expertise-card {
-            background: #f8f9ff;
-            padding: 30px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-        .expertise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(102,126,234,0.1);
-        }
-        .expertise-card i {
-            font-size: 45px;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        .expertise-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .expertise-card p {
-            color: #666;
-            font-size: 14px;
-        }
+        .expertise, .team-section { padding: 80px 5%; text-align: center; }
+        .expertise h2, .team-section h2 { font-size: 42px; color: #1a1a2e; margin-bottom: 15px; }
+        .expertise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 50px auto 0; }
+        .expertise-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .expertise-card i { font-size: 45px; color: #667eea; margin-bottom: 20px; }
+        .expertise-card h3 { font-size: 20px; margin-bottom: 10px; }
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1000px; margin: 50px auto 0; }
+        .team-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .team-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
+        .team-card h3 { font-size: 22px; margin-bottom: 5px; }
+        .team-card p { color: #667eea; font-weight: 500; margin-bottom: 10px; }
 
-        /* Journey Section */
-        .journey {
-            padding: 80px 5%;
-            background: linear-gradient(135deg, #f8f9ff, #fff);
-        }
-        .journey h2 {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 50px;
-        }
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .timeline-item {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-        .timeline-year {
-            font-size: 28px;
-            font-weight: 800;
-            color: #667eea;
-            min-width: 100px;
-        }
-        .timeline-content h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .timeline-content p {
-            color: #666;
-        }
+        .mission-vision { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1000px; margin: 60px auto; padding: 0 5%; }
+        .mv-card { background: white; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .mv-card i { font-size: 50px; color: #667eea; margin-bottom: 20px; }
+        .mv-card h3 { font-size: 28px; margin-bottom: 15px; }
 
-        /* Mission & Vision */
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 0 5%;
-        }
-        .mv-card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-        .mv-card i {
-            font-size: 50px;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        .mv-card h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        .mv-card p {
-            color: #666;
-            line-height: 1.6;
-        }
+        .cta-section { padding: 80px 5%; background: linear-gradient(135deg, #667eea, #764ba2); text-align: center; color: white; }
+        .cta-section h2 { font-size: 42px; margin-bottom: 20px; }
+        .cta-section .btn-white { background: white; color: #667eea; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; }
 
-        /* Team Section */
-        .team-section {
-            padding: 80px 5%;
-            background: #f8f9ff;
-            text-align: center;
-        }
-        .team-section h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-        .team-section > p {
-            color: #666;
-            margin-bottom: 50px;
-        }
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .team-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        .team-card img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid #667eea;
-        }
-        .team-card h3 {
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-        .team-card p {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-        .team-card .bio {
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* CTA */
-        .cta-section {
-            padding: 80px 5%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            text-align: center;
-            color: white;
-        }
-        .cta-section h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
-        .cta-section p {
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-        .cta-section .btn-white {
-            background: white;
-            color: #667eea;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 60px 5% 30px;
-        }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .footer { background: #1a1a2e; color: white; padding: 60px 5% 30px; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
         .footer-col h4 { margin-bottom: 20px; }
         .footer-col p, .footer-col a { color: #aaa; text-decoration: none; line-height: 2; display: block; }
-        .footer-col a:hover { color: #667eea; }
         .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .social-links a:hover { background: #667eea; transform: translateY(-3px); }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
 
         @media (max-width: 968px) {
@@ -358,8 +69,6 @@
             .founder-stats { justify-content: center; }
             .expertise-grid, .team-grid, .mission-vision, .footer-content { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            .founder-info h1 { font-size: 40px; }
-            .timeline-item { flex-direction: column; text-align: center; }
         }
         .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
         @media (max-width: 768px) { .mobile-menu { display: block; } }
@@ -370,16 +79,14 @@
         <a href="/" class="logo"><span>Grow</span>AI<span>Mark</span></a>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
-            <li><a href="/#services">Services</a></li>
-            <li><a href="/#tools">Tools</a></li>
+            <li><a href="/dashboard">Tools</a></li>
             <li><a href="/about" class="active">About</a></li>
             <li><a href="/#contact">Contact</a></li>
         </ul>
-        <a href="/#contact" class="btn-primary">Get Started</a>
+        <a href="/dashboard" class="btn-primary">Free Tools →</a>
         <div class="mobile-menu"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <!-- Founder Hero Section -->
     <section class="founder-hero">
         <div class="founder-container">
             <div class="founder-info">
@@ -394,64 +101,48 @@
                 </div>
             </div>
             <div class="founder-image">
-                <img src="https://ui-avatars.com/api/?background=667eea&color=fff&bold=true&size=320&name=H.M.+Saboor+Khan" alt="H.M. Saboor Khan - Founder GrowAIMark">
+                <img src="https://ui-avatars.com/api/?background=667eea&color=fff&bold=true&size=300&name=H.M.+Saboor+Khan" alt="H.M. Saboor Khan">
             </div>
         </div>
     </section>
 
-    <!-- Expertise Section -->
     <section class="expertise">
         <h2>Core Expertise</h2>
-        <p>Specialized in modern marketing strategies that drive real business growth</p>
+        <p>Specialized in modern marketing strategies</p>
         <div class="expertise-grid">
-            <div class="expertise-card"><i class="fas fa-chart-line"></i><h3>SEO Strategy</h3><p>Advanced SEO techniques for top rankings</p></div>
+            <div class="expertise-card"><i class="fas fa-chart-line"></i><h3>SEO Strategy</h3><p>Advanced SEO techniques</p></div>
             <div class="expertise-card"><i class="fas fa-ad"></i><h3>PPC Campaigns</h3><p>ROI-focused ad management</p></div>
             <div class="expertise-card"><i class="fas fa-share-alt"></i><h3>Social Media</h3><p>Organic & paid social growth</p></div>
-            <div class="expertise-card"><i class="fas fa-robot"></i><h3>AI Marketing</h3><p>AI-powered automation & insights</p></div>
+            <div class="expertise-card"><i class="fas fa-robot"></i><h3>AI Marketing</h3><p>AI-powered automation</p></div>
         </div>
     </section>
 
-    <!-- Journey Section -->
-    <section class="journey">
-        <h2>My Journey</h2>
-        <div class="timeline">
-            <div class="timeline-item"><div class="timeline-year">2016</div><div class="timeline-content"><h3>Started Digital Marketing</h3><p>Began journey as SEO specialist</p></div></div>
-            <div class="timeline-item"><div class="timeline-year">2019</div><div class="timeline-content"><h3>Founded First Agency</h3><p>Launched marketing agency serving local businesses</p></div></div>
-            <div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-content"><h3>AI Integration Expert</h3><p>Mastered AI-powered marketing tools</p></div></div>
-            <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-content"><h3>GrowAIMark Launch</h3><p>Launched AI-powered marketing platform</p></div></div>
-        </div>
-    </section>
-
-    <!-- Mission & Vision -->
     <div class="mission-vision">
-        <div class="mv-card"><i class="fas fa-bullseye"></i><h3>My Mission</h3><p>To democratize digital marketing by making professional-grade AI tools accessible to every business, regardless of size or budget.</p></div>
-        <div class="mv-card"><i class="fas fa-eye"></i><h3>My Vision</h3><p>To become Pakistan's leading AI-powered marketing platform, empowering 100,000+ businesses to grow online.</p></div>
+        <div class="mv-card"><i class="fas fa-bullseye"></i><h3>My Mission</h3><p>To democratize digital marketing by making professional-grade AI tools accessible to every business.</p></div>
+        <div class="mv-card"><i class="fas fa-eye"></i><h3>My Vision</h3><p>To become Pakistan's leading AI-powered marketing platform, empowering 100,000+ businesses.</p></div>
     </div>
 
-    <!-- Team Section -->
     <section class="team-section">
         <h2>Leadership Team</h2>
         <p>Meet the experts behind GrowAIMark's success</p>
         <div class="team-grid">
-            <div class="team-card"><img src="https://ui-avatars.com/api/?background=667eea&color=fff&bold=true&size=150&name=H.M.+Saboor+Khan" alt="H.M. Saboor Khan"><h3>H.M. Saboor Khan</h3><p>Founder & CEO</p><p class="bio">Digital marketing expert with 8+ years experience. AI strategist and business growth specialist.</p></div>
-            <div class="team-card"><img src="https://ui-avatars.com/api/?background=764ba2&color=fff&bold=true&size=150&name=Ali+Raza" alt="Ali Raza"><h3>Ali Raza</h3><p>Head of Marketing</p><p class="bio">Content strategist & social media expert. Helps brands build authentic connections.</p></div>
-            <div class="team-card"><img src="https://ui-avatars.com/api/?background=667eea&color=fff&bold=true&size=150&name=Fatima+Zahra" alt="Fatima Zahra"><h3>Fatima Zahra</h3><p>Lead SEO Specialist</p><p class="bio">Technical SEO expert with 5+ years of experience driving organic growth.</p></div>
+            <div class="team-card"><img src="https://ui-avatars.com/api/?background=667eea&color=fff&bold=true&size=150&name=H.M.+Saboor+Khan"><h3>H.M. Saboor Khan</h3><p>Founder & CEO</p><p style="color:#666; font-size:14px;">Digital marketing expert with 8+ years experience.</p></div>
+            <div class="team-card"><img src="https://ui-avatars.com/api/?background=764ba2&color=fff&bold=true&size=150&name=Ali+Raza"><h3>Ali Raza</h3><p>Head of Marketing</p><p style="color:#666; font-size:14px;">Content strategist & social media expert.</p></div>
+            <div class="team-card"><img src="https://ui-avatars.com/api/?background=667eea&color=fff&bold=true&size=150&name=Fatima+Zahra"><h3>Fatima Zahra</h3><p>Lead SEO Specialist</p><p style="color:#666; font-size:14px;">Technical SEO expert with 5+ years experience.</p></div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section">
         <h2>Ready to Grow Your Business?</h2>
-        <p>Let's work together to achieve your marketing goals</p>
-        <a href="/#contact" class="btn-white">Get in Touch →</a>
+        <p>Start using our free marketing tools today</p>
+        <a href="/dashboard" class="btn-white">Start Free →</a>
     </section>
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col"><h4>GrowAIMark</h4><p>AI-powered digital marketing tools by H.M. Saboor Khan.</p><div class="social-links"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
-            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/about">About</a><a href="/#tools">Tools</a><a href="/#contact">Contact</a></div>
-            <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> saboor@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p><p><i class="fas fa-map-marker"></i> Pakistan</p></div>
-            <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+            <div class="footer-col"><h4>GrowAIMark</h4><p>Free AI-powered digital marketing tools.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/dashboard">Free Tools</a><a href="/about">About</a></div>
+            <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> hello@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2024 GrowAIMark by H.M. Saboor Khan. All rights reserved.</p></div>
     </footer>
@@ -459,7 +150,7 @@
     <script>
         const mobileBtn = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        if(mobileBtn){ mobileBtn.addEventListener('click', () => { navLinks.classList.toggle('show'); }); }
+        if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
     </script>
 </body>
 </html>
