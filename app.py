@@ -1,5 +1,4 @@
-from flask import send_from_directory
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 import random
 import requests
