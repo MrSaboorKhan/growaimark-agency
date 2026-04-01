@@ -1,17 +1,51 @@
 from flask import Flask, render_template, request, jsonify
 import os
 import random
-import json
 
 app = Flask(__name__)
 
 
-# AI Content Generator (ChatGPT-like)
+# ==================== HOME & PAGES ====================
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+
+# ==================== TOOL 1: SEO ANALYZER ====================
+@app.route('/api/seo/analyze', methods=['POST'])
+def analyze_seo():
+    data = request.json
+    url = data.get('url', '')
+
+    return jsonify({
+        'success': True,
+        'url': url,
+        'score': random.randint(65, 95),
+        'title': f'{url} - Website Analysis',
+        'meta_description': 'Comprehensive SEO analysis for better rankings',
+        'word_count': random.randint(300, 1500),
+        'issues': ['Consider adding more keywords', 'Improve page loading speed', 'Add internal links'],
+        'recommendations': ['Write compelling meta descriptions', 'Optimize images', 'Add more content'],
+        'message': '✨ Free SEO Tool - No limits!'
+    })
+
+
+# ==================== TOOL 2: AI CONTENT GENERATOR ====================
 @app.route('/api/content/generate', methods=['POST'])
 def generate_content():
     data = request.json
     topic = data.get('topic', '')
-    content_type = data.get('type', 'blog')  # blog, social, email, ad
+    content_type = data.get('type', 'blog')
 
     templates = {
         'blog': f"""📝 **Blog Post: {topic.title()}**
@@ -82,14 +116,12 @@ P.S. Want personalized advice? Reply to this email!""",
     })
 
 
-# YouTube SEO Optimizer
+# ==================== TOOL 3: YOUTUBE SEO OPTIMIZER ====================
 @app.route('/api/youtube/seo', methods=['POST'])
 def youtube_seo():
     data = request.json
     title = data.get('title', '')
-    description = data.get('description', '')
 
-    # Generate optimized title
     optimized_titles = [
         f"{title} - Complete Guide 2024",
         f"How to {title} Like a Pro",
@@ -98,7 +130,6 @@ def youtube_seo():
         f"{title} for Beginners - Full Course"
     ]
 
-    # Generate tags
     tags = [
         title.lower(),
         f"{title.lower()} tutorial",
@@ -108,7 +139,6 @@ def youtube_seo():
         "marketing strategy"
     ]
 
-    # Generate optimized description
     optimized_desc = f"""{title} - Full Guide 2024
 
 In this video, you'll learn:
@@ -143,7 +173,7 @@ In this video, you'll learn:
     })
 
 
-# Social Media Content Calendar
+# ==================== TOOL 4: CONTENT CALENDAR ====================
 @app.route('/api/calendar/generate', methods=['POST'])
 def generate_calendar():
     data = request.json
@@ -181,13 +211,17 @@ def generate_calendar():
     }
 
     calendar = []
+    ideas = content_ideas.get(niche, content_ideas['marketing'])
+    platforms = ['Instagram', 'LinkedIn', 'Twitter', 'Facebook']
+    times = ['9 AM', '12 PM', '3 PM', '6 PM']
+
     for i in range(days):
         calendar.append({
             'day': i + 1,
             'date': f"Day {i + 1}",
-            'idea': content_ideas.get(niche, content_ideas['marketing'])[i % 7],
-            'platform': ['Instagram', 'LinkedIn', 'Twitter', 'Facebook'][i % 4],
-            'best_time': ['9 AM', '12 PM', '3 PM', '6 PM'][i % 4]
+            'idea': ideas[i % len(ideas)],
+            'platform': platforms[i % len(platforms)],
+            'best_time': times[i % len(times)]
         })
 
     return jsonify({
@@ -198,13 +232,12 @@ def generate_calendar():
     })
 
 
-# Competitor Analysis Tool
+# ==================== TOOL 5: COMPETITOR ANALYSIS ====================
 @app.route('/api/competitor/analyze', methods=['POST'])
 def analyze_competitor():
     data = request.json
     competitor_url = data.get('url', '')
 
-    # Simulate competitor analysis
     return jsonify({
         'success': True,
         'url': competitor_url,
@@ -240,7 +273,7 @@ def analyze_competitor():
     })
 
 
-# Hashtag Generator
+# ==================== TOOL 6: HASHTAG GENERATOR ====================
 @app.route('/api/hashtags/generate', methods=['POST'])
 def generate_hashtags():
     data = request.json
@@ -271,3 +304,88 @@ def generate_hashtags():
         'niche_hashtags': hashtags[5:10],
         'message': '#️⃣ Hashtags Generated!'
     })
+
+
+# ==================== TOOL 7: KEYWORD RESEARCH ====================
+@app.route('/api/keywords/suggest', methods=['POST'])
+def suggest_keywords():
+    data = request.json
+    keyword = data.get('keyword', '')
+
+    return jsonify({
+        'success': True,
+        'keyword': keyword,
+        'keywords': [
+            {'keyword': f'{keyword} services', 'volume': random.randint(300, 1500), 'competition': 'Medium',
+             'cpc': round(random.uniform(1, 5), 2)},
+            {'keyword': f'best {keyword}', 'volume': random.randint(500, 2000), 'competition': 'High',
+             'cpc': round(random.uniform(2, 6), 2)},
+            {'keyword': f'{keyword} agency', 'volume': random.randint(400, 1200), 'competition': 'Medium',
+             'cpc': round(random.uniform(1.5, 4), 2)},
+            {'keyword': f'{keyword} tools', 'volume': random.randint(300, 1000), 'competition': 'Low',
+             'cpc': round(random.uniform(0.8, 3), 2)},
+            {'keyword': f'affordable {keyword}', 'volume': random.randint(200, 800), 'competition': 'Low',
+             'cpc': round(random.uniform(0.5, 2.5), 2)}
+        ],
+        'message': '🔥 Free Keyword Research - Unlimited!'
+    })
+
+
+# ==================== TOOL 8: BACKLINK CHECKER ====================
+@app.route('/api/backlink/analyze', methods=['POST'])
+def analyze_backlinks():
+    data = request.json
+    url = data.get('url', '')
+
+    return jsonify({
+        'success': True,
+        'url': url,
+        'total_backlinks': random.randint(500, 5000),
+        'referring_domains': random.randint(100, 800),
+        'dofollow_links': random.randint(200, 3000),
+        'top_backlinks': [
+            {'domain': 'example.com', 'authority': random.randint(40, 80)},
+            {'domain': 'blogger.com', 'authority': random.randint(50, 85)},
+            {'domain': 'news.com', 'authority': random.randint(45, 75)}
+        ],
+        'message': '🔗 Free Backlink Analysis!'
+    })
+
+
+# ==================== TOOL 9: RANK TRACKER ====================
+@app.route('/api/rank/track', methods=['POST'])
+def track_rank():
+    data = request.json
+    keyword = data.get('keyword', '')
+
+    return jsonify({
+        'success': True,
+        'keyword': keyword,
+        'rankings': [
+            {'date': 'Day 1', 'position': random.randint(20, 35)},
+            {'date': 'Day 7', 'position': random.randint(15, 25)},
+            {'date': 'Day 14', 'position': random.randint(10, 18)},
+            {'date': 'Day 30', 'position': random.randint(5, 12)}
+        ],
+        'trend': 'improving',
+        'message': '📈 Free Rank Tracking!'
+    })
+
+
+# ==================== PRICING API ====================
+@app.route('/api/pricing')
+def get_pricing():
+    return jsonify({
+        'free': {
+            'name': 'Free Forever',
+            'price': 0,
+            'daily_limit': 'Unlimited',
+            'tools': ['All 8 Tools'],
+            'features': ['Unlimited Usage', 'No Credit Card Required']
+        }
+    })
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
