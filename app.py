@@ -1,3 +1,4 @@
+from flask import send_from_directory
 from flask import Flask, render_template, request, jsonify
 import os
 import random
@@ -329,3 +330,7 @@ def dashboard():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
+
+@app.route('/sitemap.xml')
+def serve_sitemap():
+    return send_from_directory('.', 'sitemap.xml', mimetype='application/xml')
