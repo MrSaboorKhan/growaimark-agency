@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "10 SEO Tips That Actually Work in 2024",
+    "slug": "10-seo-tips-2024",
+    "category": "SEO",
+    "date": "April 2, 2024",
+    "read_time": "5 min read",
+    "image": "seo-tips",
+    "excerpt": "Discover the latest SEO strategies that Google loves and competitors don't want you to know. Learn how to rank #1 in 2024.",
+    "content": "<h2>Introduction</h2><p>SEO is constantly evolving. What worked last year may not work today. Here are 10 proven SEO tips for 2024...</p><h2>1. Focus on User Intent</h2><p>Google's algorithm prioritizes content that matches user intent. Create content that answers specific questions...</p><h2>2. Optimize for Featured Snippets</h2><p>Featured snippets appear at the top of search results. Structure your content with clear headings and bullet points...</p><h2>3. Improve Core Web Vitals</h2><p>Page speed matters. Use tools like Google PageSpeed Insights to optimize loading time...</p><h2>4. Build Quality Backlinks</h2><p>Guest posting, broken link building, and digital PR are effective strategies...</p><h2>5. Use Long-Tail Keywords</h2><p>Target specific, low-competition keywords to rank faster...</p><h2>Conclusion</h2><p>SEO is a long-term game. Stay consistent and keep learning. For personalized SEO help, <a href='/contact'>contact me</a>.</p>",
+    "author": "H.M. Saboor Khan",
+    "author_image": "saboor",
+    "comments": []
+  },
+  {
+    "id": 2,
+    "title": "Instagram Growth Hacks: From 0 to 10K Followers",
+    "slug": "instagram-growth-hacks",
+    "category": "Social Media",
+    "date": "March 28, 2024",
+    "read_time": "7 min read",
+    "image": "instagram-growth",
+    "excerpt": "Proven strategies to grow your Instagram following organically without spending money on ads.",
+    "content": "<h2>Introduction</h2><p>Instagram is one of the most powerful platforms for brand building. Here's how to grow from 0 to 10K followers...</p><h2>1. Optimize Your Profile</h2><p>Use a clear profile picture, write a compelling bio, and add a link to your website...</p><h2>2. Post Consistently</h2><p>Post at least once a day. Use a content calendar to plan ahead...</p><h2>3. Use Relevant Hashtags</h2><p>Mix popular and niche hashtags. Use 10-15 per post...</p><h2>4. Engage With Your Audience</h2><p>Reply to comments, DM followers, and engage with other accounts in your niche...</p><h2>5. Create Reels</h2><p>Reels get the most reach. Post educational and entertaining content...</p><h2>Conclusion</h2><p>Consistency is key. Start implementing these strategies today!</p>",
+    "author": "H.M. Saboor Khan",
+    "author_image": "saboor",
+    "comments": []
+  },
+  {
+    "id": 3,
+    "title": "How to Write Emails That Convert (With Templates)",
+    "slug": "email-marketing-templates",
+    "category": "Email Marketing",
+    "date": "March 25, 2024",
+    "read_time": "6 min read",
+    "image": "email-marketing",
+    "excerpt": "Learn the art of crafting email sequences that actually sell. Includes ready-to-use templates.",
+    "content": "<h2>Introduction</h2><p>Email marketing has the highest ROI of any channel. Here's how to write emails that convert...</p><h2>1. Craft Compelling Subject Lines</h2><p>Your subject line determines open rates. Use curiosity, urgency, and personalization...</p><h2>2. Personalize Your Emails</h2><p>Use the recipient's name and segment your audience for better results...</p><h2>3. Write Scannable Content</h2><p>Use short paragraphs, bullet points, and clear CTAs...</p><h2>4. Include a Single CTA</h2><p>One clear call-to-action per email. Don't confuse your readers...</p><h2>5. Test and Optimize</h2><p>A/B test subject lines, content, and send times...</p><h2>Email Templates</h2><p><strong>Welcome Email:</strong> 'Hi [Name], Welcome to [Brand]! Here's a special gift for you...'</p><p><strong>Promotional Email:</strong> 'Last Chance: 50% Off Ends Tonight!'</p><p><strong>Newsletter:</strong> 'Your Weekly Marketing Roundup: Top 5 Stories...'</p>",
+    "author": "H.M. Saboor Khan",
+    "author_image": "saboor",
+    "comments": []
+  }
+]

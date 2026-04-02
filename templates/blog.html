@@ -47,6 +47,7 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             transition: 0.3s;
+            cursor: pointer;
         }
         .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .blog-image {
@@ -58,10 +59,19 @@
         }
         .blog-image i { font-size: 50px; color: white; }
         .blog-content { padding: 25px; }
-        .blog-category { color: #667eea; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
-        .blog-content h3 { font-size: 20px; margin-bottom: 10px; }
-        .blog-content p { color: #666; margin-bottom: 15px; }
-        .blog-meta { font-size: 12px; color: #999; margin-bottom: 15px; }
+        .blog-category {
+            display: inline-block;
+            background: #667eea10;
+            color: #667eea;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .blog-content h3 { font-size: 20px; margin-bottom: 10px; line-height: 1.4; }
+        .blog-content p { color: #666; margin-bottom: 15px; line-height: 1.6; }
+        .blog-meta { font-size: 12px; color: #999; margin-bottom: 15px; display: flex; gap: 15px; }
         .blog-link { color: #667eea; text-decoration: none; font-weight: 600; }
 
         .newsletter {
@@ -90,6 +100,12 @@
         }
         .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
         @media (max-width: 768px) { .mobile-menu { display: block; } }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #667eea;
+        }
     </style>
 </head>
 <body>
@@ -101,6 +117,7 @@
             <li><a href="/blog" class="active">Blog</a></li>
             <li><a href="/dashboard">Tools</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="/#contact" class="btn-primary">Get in Touch</a>
         <div class="mobile-menu"><i class="fas fa-bars"></i></div>
@@ -112,67 +129,8 @@
     </section>
 
     <section class="blog-section">
-        <div class="blog-grid">
-            <div class="blog-card">
-                <div class="blog-image"><i class="fas fa-chart-line"></i></div>
-                <div class="blog-content">
-                    <div class="blog-category">SEO</div>
-                    <h3>10 SEO Tips That Actually Work in 2024</h3>
-                    <p>Discover the latest SEO strategies that Google loves and competitors don't want you to know...</p>
-                    <div class="blog-meta">📅 April 2, 2024 | ⏱️ 5 min read</div>
-                    <a href="#" class="blog-link">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image"><i class="fab fa-instagram"></i></div>
-                <div class="blog-content">
-                    <div class="blog-category">Social Media</div>
-                    <h3>Instagram Growth Hacks: From 0 to 10K Followers</h3>
-                    <p>Proven strategies to grow your Instagram following organically...</p>
-                    <div class="blog-meta">📅 March 28, 2024 | ⏱️ 7 min read</div>
-                    <a href="#" class="blog-link">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image"><i class="fas fa-envelope"></i></div>
-                <div class="blog-content">
-                    <div class="blog-category">Email Marketing</div>
-                    <h3>How to Write Emails That Convert (With Templates)</h3>
-                    <p>Learn the art of crafting email sequences that actually sell...</p>
-                    <div class="blog-meta">📅 March 25, 2024 | ⏱️ 6 min read</div>
-                    <a href="#" class="blog-link">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image"><i class="fas fa-ad"></i></div>
-                <div class="blog-content">
-                    <div class="blog-category">PPC</div>
-                    <h3>Google Ads: How to Cut CPA by 50%</h3>
-                    <p>Advanced techniques to optimize your Google Ads campaigns...</p>
-                    <div class="blog-meta">📅 March 20, 2024 | ⏱️ 8 min read</div>
-                    <a href="#" class="blog-link">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image"><i class="fas fa-search"></i></div>
-                <div class="blog-content">
-                    <div class="blog-category">SEO</div>
-                    <h3>Keyword Research: Find Hidden Gems</h3>
-                    <p>How to find low-competition, high-volume keywords...</p>
-                    <div class="blog-meta">📅 March 15, 2024 | ⏱️ 5 min read</div>
-                    <a href="#" class="blog-link">Read More →</a>
-                </div>
-            </div>
-            <div class="blog-card">
-                <div class="blog-image"><i class="fas fa-chart-pie"></i></div>
-                <div class="blog-content">
-                    <div class="blog-category">Analytics</div>
-                    <h3>Google Analytics 4: Complete Guide</h3>
-                    <p>Master GA4 and make data-driven marketing decisions...</p>
-                    <div class="blog-meta">📅 March 10, 2024 | ⏱️ 10 min read</div>
-                    <a href="#" class="blog-link">Read More →</a>
-                </div>
-            </div>
+        <div class="blog-grid" id="blog-grid">
+            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading posts...</div>
         </div>
 
         <div class="newsletter">
@@ -186,25 +144,66 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="footer-content">
             <div class="footer-col"><h4>GrowAIMark</h4><p>Digital marketing blog by H.M. Saboor Khan</p></div>
-            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a><a href="/dashboard">Tools</a></div>
             <div class="footer-col"><h4>Contact</h4><p>saboor@growaimark.com</p><p>+92 303 0001026</p></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark</p></div>
     </footer>
 
     <script>
+        // Load blog posts from API
+        async function loadPosts() {
+            try {
+                const response = await fetch('/api/blog/posts');
+                const posts = await response.json();
+
+                const grid = document.getElementById('blog-grid');
+                if (posts.length === 0) {
+                    grid.innerHTML = '<p>No posts yet. Check back soon!</p>';
+                    return;
+                }
+
+                grid.innerHTML = posts.map(post => `
+                    <div class="blog-card" onclick="location.href='/blog/${post.slug}'">
+                        <div class="blog-image">
+                            <i class="fas fa-${post.image || 'newspaper'}"></i>
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">${post.category}</span>
+                            <h3>${post.title}</h3>
+                            <p>${post.excerpt.substring(0, 100)}...</p>
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> ${post.date}</span>
+                                <span><i class="far fa-clock"></i> ${post.read_time}</span>
+                            </div>
+                            <a href="/blog/${post.slug}" class="blog-link">Read More →</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                document.getElementById('blog-grid').innerHTML = '<p>Error loading posts. Please try again.</p>';
+            }
+        }
+
+        // Newsletter subscription
         document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = e.target.querySelector('input').value;
             alert(`✅ Thanks for subscribing! Marketing tips will be sent to ${email}`);
             e.target.reset();
         });
+
+        // Mobile menu
         const mobileBtn = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+        // Load posts on page load
+        loadPosts();
     </script>
 </body>
 </html>
