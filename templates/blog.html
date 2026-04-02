@@ -31,8 +31,40 @@
         .blog-hero h1 { font-size: 48px; margin-bottom: 20px; }
         .blog-hero p { font-size: 18px; max-width: 700px; margin: 0 auto; }
 
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px auto;
+            flex-wrap: wrap;
+            max-width: 800px;
+        }
+        .category-btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
         .blog-section {
-            padding: 60px 5%;
+            padding: 0 5% 60px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -56,6 +88,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .blog-image i { font-size: 50px; color: white; }
         .blog-content { padding: 25px; }
@@ -70,22 +108,23 @@
             margin-bottom: 12px;
         }
         .blog-content h3 { font-size: 20px; margin-bottom: 10px; line-height: 1.4; }
-        .blog-content p { color: #666; margin-bottom: 15px; line-height: 1.6; }
+        .blog-content p { color: #666; margin-bottom: 15px; line-height: 1.6; font-size: 14px; }
         .blog-meta { font-size: 12px; color: #999; margin-bottom: 15px; display: flex; gap: 15px; }
-        .blog-link { color: #667eea; text-decoration: none; font-weight: 600; }
+        .blog-link { color: #667eea; text-decoration: none; font-weight: 600; font-size: 14px; }
 
         .newsletter {
-            background: #f0f0f0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             padding: 60px 5%;
             text-align: center;
             border-radius: 20px;
-            margin: 40px auto;
+            margin: 60px auto;
             max-width: 800px;
+            color: white;
         }
         .newsletter h3 { font-size: 28px; margin-bottom: 15px; }
         .newsletter-form { display: flex; gap: 10px; max-width: 500px; margin: 20px auto; }
-        .newsletter-form input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; }
-        .newsletter-form button { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; }
+        .newsletter-form input { flex: 1; padding: 12px; border: none; border-radius: 10px; }
+        .newsletter-form button { background: white; color: #667eea; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: 600; }
 
         .footer { background: #1a1a2e; color: white; padding: 60px 5% 30px; margin-top: 60px; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
@@ -94,18 +133,15 @@
         .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
 
         @media (max-width: 968px) {
-            .blog-grid, .footer-content { grid-template-columns: 1fr; }
+            .blog-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .newsletter-form { flex-direction: column; }
         }
         .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
         @media (max-width: 768px) { .mobile-menu { display: block; } }
 
-        .loading {
-            text-align: center;
-            padding: 50px;
-            color: #667eea;
-        }
+        .loading { text-align: center; padding: 50px; color: #667eea; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -128,19 +164,30 @@
         <p>Actionable tips, strategies, and insights to grow your business online</p>
     </section>
 
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+        <button class="category-btn active" data-category="all">📌 All Posts</button>
+        <button class="category-btn" data-category="SEO">🔍 SEO</button>
+        <button class="category-btn" data-category="Social Media">📱 Social Media</button>
+        <button class="category-btn" data-category="PPC">💰 PPC</button>
+        <button class="category-btn" data-category="Email Marketing">✉️ Email Marketing</button>
+        <button class="category-btn" data-category="Analytics">📊 Analytics</button>
+        <button class="category-btn" data-category="Content Marketing">📝 Content Marketing</button>
+    </div>
+
     <section class="blog-section">
-        <div class="blog-grid" id="blog-grid">
+        <div id="blog-grid" class="blog-grid">
             <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading posts...</div>
         </div>
 
         <div class="newsletter">
             <h3>📧 Get Marketing Tips Straight to Your Inbox</h3>
-            <p>Subscribe to my newsletter for weekly digital marketing insights</p>
+            <p>Subscribe for weekly digital marketing insights</p>
             <form class="newsletter-form" id="newsletterForm">
                 <input type="email" placeholder="Enter your email" required>
                 <button type="submit">Subscribe →</button>
             </form>
-            <p style="font-size: 12px; margin-top: 15px;">No spam, unsubscribe anytime.</p>
+            <p style="font-size: 12px; margin-top: 15px; opacity: 0.8;">No spam, unsubscribe anytime.</p>
         </div>
     </section>
 
@@ -148,48 +195,80 @@
         <div class="footer-content">
             <div class="footer-col"><h4>GrowAIMark</h4><p>Digital marketing blog by H.M. Saboor Khan</p></div>
             <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a><a href="/dashboard">Tools</a></div>
-            <div class="footer-col"><h4>Contact</h4><p>saboor@growaimark.com</p><p>+92 303 0001026</p></div>
+            <div class="footer-col"><h4>Categories</h4><a href="#" onclick="filterCategory('SEO')">SEO</a><a href="#" onclick="filterCategory('Social Media')">Social Media</a><a href="#" onclick="filterCategory('PPC')">PPC</a><a href="#" onclick="filterCategory('Email Marketing')">Email Marketing</a></div>
+            <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> saboor@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark</p></div>
     </footer>
 
     <script>
-        // Load blog posts from API
+        let allPosts = [];
+
         async function loadPosts() {
             try {
                 const response = await fetch('/api/blog/posts');
-                const posts = await response.json();
-
-                const grid = document.getElementById('blog-grid');
-                if (posts.length === 0) {
-                    grid.innerHTML = '<p>No posts yet. Check back soon!</p>';
-                    return;
-                }
-
-                grid.innerHTML = posts.map(post => `
-                    <div class="blog-card" onclick="location.href='/blog/${post.slug}'">
-                        <div class="blog-image">
-                            <i class="fas fa-${post.image || 'newspaper'}"></i>
-                        </div>
-                        <div class="blog-content">
-                            <span class="blog-category">${post.category}</span>
-                            <h3>${post.title}</h3>
-                            <p>${post.excerpt.substring(0, 100)}...</p>
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> ${post.date}</span>
-                                <span><i class="far fa-clock"></i> ${post.read_time}</span>
-                            </div>
-                            <a href="/blog/${post.slug}" class="blog-link">Read More →</a>
-                        </div>
-                    </div>
-                `).join('');
+                allPosts = await response.json();
+                displayPosts('all');
             } catch (error) {
                 console.error('Error loading posts:', error);
                 document.getElementById('blog-grid').innerHTML = '<p>Error loading posts. Please try again.</p>';
             }
         }
 
-        // Newsletter subscription
+        function displayPosts(category) {
+            const grid = document.getElementById('blog-grid');
+            let filteredPosts = allPosts;
+
+            if (category !== 'all') {
+                filteredPosts = allPosts.filter(post => post.category === category);
+            }
+
+            if (filteredPosts.length === 0) {
+                grid.innerHTML = '<div style="text-align:center; padding:50px; width:100%;"><p>No posts found in this category. Check back soon!</p></div>';
+                return;
+            }
+
+            grid.innerHTML = filteredPosts.map(post => `
+                <div class="blog-card" onclick="location.href='/blog/${post.slug}'">
+                    <div class="blog-image">
+                        ${post.image_url ?
+                            `<img src="${post.image_url}" alt="${post.title}">` :
+                            `<i class="fas fa-${post.image || 'newspaper'}"></i>`
+                        }
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">${post.category}</span>
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt ? post.excerpt.substring(0, 120) + '...' : ''}</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ${post.date}</span>
+                            <span><i class="far fa-clock"></i> ${post.read_time || '5 min read'}</span>
+                        </div>
+                        <a href="/blog/${post.slug}" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(category) {
+            displayPosts(category);
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                filterCategory(category);
+            });
+        });
+
         document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = e.target.querySelector('input').value;
@@ -197,12 +276,10 @@
             e.target.reset();
         });
 
-        // Mobile menu
         const mobileBtn = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         if(mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
 
-        // Load posts on page load
         loadPosts();
     </script>
 </body>
