@@ -19,3 +19,7 @@ def portfolio():
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
+
+@app.route('/')
+def home():
+    return render_template('index.html')
