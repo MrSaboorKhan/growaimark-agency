@@ -40,5 +40,18 @@
     "author": "H.M. Saboor Khan",
     "author_image": "saboor",
     "comments": []
+  },
+  {
+  "id": 4,
+  "title": "Your New Post Title",
+  "slug": "your-post-slug",
+  "category": "SEO",
+  "date": "April 3, 2024",
+  "read_time": "5 min read",
+  "image": "newspaper",
+  "excerpt": "Short description of your post...",
+  "content": "<h2>Heading</h2><p>Your content here...</p>",
+  "author": "H.M. Saboor Khan",
+  "comments": []
   }
 ]

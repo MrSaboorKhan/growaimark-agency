@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Manage Blog</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9ff; }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background: #f59e0b;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .posts-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9ff;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .modal-content input,
+        .modal-content textarea,
+        .modal-content select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+        }
+
+        .modal-content textarea {
+            min-height: 200px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .success-msg {
+            background: #10b981;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 200px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            th, td { padding: 10px; font-size: 14px; }
+            .admin-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div id="loginScreen" class="login-container" style="display: none;">
+        <h2>Admin Login</h2>
+        <input type="password" id="adminPassword" placeholder="Enter password">
+        <button class="btn-primary" onclick="login()">Login</button>
+        <p style="margin-top: 15px; color: #666;">Default password: admin123</p>
+    </div>
+
+    <div id="adminPanel" style="display: none;">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1><i class="fas fa-newspaper"></i> Blog Admin Panel</h1>
+                <div>
+                    <button class="btn-primary" onclick="openNewPostModal()">
+                        <i class="fas fa-plus"></i> New Post
+                    </button>
+                    <a href="/blog" class="btn-primary" style="margin-left: 10px; background: #666;">
+                        <i class="fas fa-eye"></i> View Blog
+                    </a>
+                </div>
+            </div>
+
+            <div id="successMsg" class="success-msg"></div>
+
+            <div class="posts-table">
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Title</th><th>Category</th><th>Date</th><th>Actions</th</tr>
+                    </thead>
+                    <tbody id="postsList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- New/Edit Post Modal -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Create New Post</h2>
+            <form id="postForm">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" id="postTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Slug (URL) *</label>
+                    <input type="text" id="postSlug" required placeholder="your-post-title">
+                </div>
+                <div class="form-group">
+                    <label>Category *</label>
+                    <select id="postCategory">
+                        <option value="SEO">SEO</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Email Marketing">Email Marketing</option>
+                        <option value="PPC">PPC</option>
+                        <option value="Analytics">Analytics</option>
+                        <option value="Content Marketing">Content Marketing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Excerpt (Short Description) *</label>
+                    <textarea id="postExcerpt" rows="3" required placeholder="Brief summary of your post..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Content (HTML Format) *</label>
+                    <textarea id="postContent" rows="10" required placeholder="<h2>Heading</h2><p>Your content here...</p>"></textarea>
+                    <small style="color:#666;">Use HTML tags: &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, etc.</small>
+                </div>
+                <div class="form-group">
+                    <label>Read Time</label>
+                    <input type="text" id="postReadTime" placeholder="5 min read">
+                </div>
+                <div class="form-group">
+                    <label>Image Icon (FontAwesome class)</label>
+                    <input type="text" id="postImage" placeholder="newspaper, chart-line, search, etc.">
+                </div>
+                <input type="hidden" id="postId">
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" class="btn-primary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let isLoggedIn = false;
+
+        function login() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === 'admin123') {
+                isLoggedIn = true;
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                loadPosts();
+            } else {
+                alert('Wrong password!');
+            }
+        }
+
+        async function loadPosts() {
+            const response = await fetch('/api/blog/posts');
+            const posts = await response.json();
+
+            const tbody = document.getElementById('postsList');
+            tbody.innerHTML = posts.map(post => `
+                <tr>
+                    <td>${post.id}</td>
+                    <td><strong>${post.title}</strong></td>
+                    <td><span style="background:#667eea10; padding:4px 12px; border-radius:20px;">${post.category}</span></td>
+                    <td>${post.date}</td>
+                    <td>
+                        <button class="btn-edit" onclick="editPost(${post.id})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn-danger" onclick="deletePost(${post.id})"><i class="fas fa-trash"></i> Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function editPost(id) {
+            const response = await fetch(`/api/blog/post/${id}`);
+            const post = await response.json();
+
+            document.getElementById('modalTitle').innerText = 'Edit Post';
+            document.getElementById('postId').value = post.id;
+            document.getElementById('postTitle').value = post.title;
+            document.getElementById('postSlug').value = post.slug;
+            document.getElementById('postCategory').value = post.category;
+            document.getElementById('postExcerpt').value = post.excerpt;
+            document.getElementById('postContent').value = post.content;
+            document.getElementById('postReadTime').value = post.read_time;
+            document.getElementById('postImage').value = post.image || 'newspaper';
+
+            document.getElementById('postModal').style.display = 'flex';
+        }
+
+        async function deletePost(id) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                const response = await fetch(`/api/blog/post/${id}/delete`, { method: 'DELETE' });
+                if (response.ok) {
+                    showMessage('Post deleted successfully!');
+                    loadPosts();
+                }
+            }
+        }
+
+        function openNewPostModal() {
+            document.getElementById('modalTitle').innerText = 'Create New Post';
+            document.getElementById('postForm').reset();
+            document.getElementById('postId').value = '';
+            document.getElementById('postReadTime').value = '5 min read';
+            document.getElementById('postImage').value = 'newspaper';
+            document.getElementById('postModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('postModal').style.display = 'none';
+        }
+
+        function showMessage(msg) {
+            const msgDiv = document.getElementById('successMsg');
+            msgDiv.innerText = msg;
+            msgDiv.style.display = 'block';
+            setTimeout(() => { msgDiv.style.display = 'none'; }, 3000);
+        }
+
+        document.getElementById('postForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const post = {
+                id: parseInt(document.getElementById('postId').value) || null,
+                title: document.getElementById('postTitle').value,
+                slug: document.getElementById('postSlug').value,
+                category: document.getElementById('postCategory').value,
+                excerpt: document.getElementById('postExcerpt').value,
+                content: document.getElementById('postContent').value,
+                read_time: document.getElementById('postReadTime').value,
+                image: document.getElementById('postImage').value,
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+            };
+
+            const response = await fetch('/api/blog/post/save', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(post)
+            });
+
+            if (response.ok) {
+                showMessage('Post saved successfully!');
+                closeModal();
+                loadPosts();
+            } else {
+                alert('Error saving post');
+            }
+        });
+
+        // Check if already logged in (for demo, always show login)
+        document.getElementById('loginScreen').style.display = 'block';
+
+        // Auto-generate slug from title
+        document.getElementById('postTitle').addEventListener('input', function() {
+            if (!document.getElementById('postId').value) {
+                const slug = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                document.getElementById('postSlug').value = slug;
+            }
+        });
+    </script>
+</body>
+</html>

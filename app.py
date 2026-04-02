@@ -35,7 +35,6 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
 
-# Load blog posts from JSON file
 BLOG_FILE = 'blog_posts.json'
 
 
@@ -52,25 +51,74 @@ def save_blog_posts(posts):
         json.dump(posts, f, ensure_ascii=False, indent=2)
 
 
-# Blog API Routes
+# Admin Routes
+@app.route('/admin')
+def admin_panel():
+    return render_template('admin.html')
+
+
+# Get single post by ID (for editing)
+@app.route('/api/blog/post/<int:post_id>')
+def get_blog_post_by_id(post_id):
+    posts = load_blog_posts()
+    for post in posts:
+        if post['id'] == post_id:
+            return jsonify(post)
+    return jsonify({'error': 'Post not found'}), 404
+
+
+# Save post (create or update)
+@app.route('/api/blog/post/save', methods=['POST'])
+def save_blog_post():
+    data = request.json
+    posts = load_blog_posts()
+
+    if data.get('id'):
+        # Update existing post
+        for i, post in enumerate(posts):
+            if post['id'] == data['id']:
+                data['comments'] = post.get('comments', [])
+                posts[i] = data
+                break
+    else:
+        # Create new post
+        new_id = max([p['id'] for p in posts], default=0) + 1
+        data['id'] = new_id
+        data['comments'] = []
+        posts.append(data)
+
+    save_blog_posts(posts)
+    return jsonify({'success': True, 'id': data['id']})
+
+
+# Delete post
+@app.route('/api/blog/post/<int:post_id>/delete', methods=['DELETE'])
+def delete_blog_post(post_id):
+    posts = load_blog_posts()
+    posts = [p for p in posts if p['id'] != post_id]
+    save_blog_posts(posts)
+    return jsonify({'success': True})
+
+
+# Get all posts (for listing)
 @app.route('/api/blog/posts')
 def get_blog_posts():
     posts = load_blog_posts()
-    # Return only necessary fields for listing
     return jsonify([{
         'id': p['id'],
         'title': p['title'],
         'slug': p['slug'],
         'category': p['category'],
         'date': p['date'],
-        'read_time': p['read_time'],
-        'image': p['image'],
+        'read_time': p.get('read_time', '5 min read'),
+        'image': p.get('image', 'newspaper'),
         'excerpt': p['excerpt']
     } for p in posts])
 
 
+# Get single post by slug (for public view)
 @app.route('/api/blog/post/<slug>')
-def get_blog_post(slug):
+def get_blog_post_by_slug(slug):
     posts = load_blog_posts()
     for post in posts:
         if post['slug'] == slug:
@@ -78,6 +126,7 @@ def get_blog_post(slug):
     return jsonify({'error': 'Post not found'}), 404
 
 
+# Add comment
 @app.route('/api/blog/post/<slug>/comment', methods=['POST'])
 def add_comment(slug):
     data = request.json
@@ -86,13 +135,13 @@ def add_comment(slug):
     for post in posts:
         if post['slug'] == slug:
             comment = {
-                'name': data.get('name', 'Anonymous'),
+                'name': data.get('name', 'Reader'),
                 'text': data.get('text', ''),
                 'date': datetime.now().strftime('%B %d, %Y')
             }
             post.setdefault('comments', []).append(comment)
             save_blog_posts(posts)
-            return jsonify({'success': True, 'comment': comment})
+            return jsonify({'success': True})
 
     return jsonify({'error': 'Post not found'}), 404
 
