@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Blog Post - GrowAIMark</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,10 +17,11 @@
             z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
         .logo { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .logo span { background: none; -webkit-text-fill-color: #333; }
         .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: #667eea; }
-        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; }
+        .nav-links a:hover, .nav-links a.active { color: #667eea; }
+        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; }
 
         .blog-post-container {
             max-width: 800px;
@@ -52,6 +53,7 @@
             gap: 20px;
             color: #666;
             font-size: 14px;
+            flex-wrap: wrap;
         }
         .post-image {
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -61,6 +63,12 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .post-image i { font-size: 80px; color: white; }
         .post-content {
@@ -104,15 +112,16 @@
             border-radius: 20px;
             margin-top: 40px;
         }
-        .post-author img {
+        .author-image {
             width: 80px;
             height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
-            background: #667eea;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 32px;
         }
         .author-info h4 { font-size: 18px; margin-bottom: 5px; }
         .author-info p { color: #666; margin: 0; }
@@ -154,7 +163,7 @@
         }
         .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
         @media (max-width: 768px) { .mobile-menu { display: block; } }
-        .loading { text-align: center; padding: 50px; }
+        .loading { text-align: center; padding: 50px; color: #667eea; }
     </style>
 </head>
 <body>
@@ -166,6 +175,7 @@
             <li><a href="/blog">Blog</a></li>
             <li><a href="/dashboard">Tools</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="/#contact" class="btn-primary">Get in Touch</a>
         <div class="mobile-menu"><i class="fas fa-bars"></i></div>
@@ -175,11 +185,11 @@
         <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading post...</div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="footer-content">
             <div class="footer-col"><h4>GrowAIMark</h4><p>Digital marketing blog by H.M. Saboor Khan</p></div>
-            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a></div>
-            <div class="footer-col"><h4>Contact</h4><p>saboor@growaimark.com</p><p>+92 303 0001026</p></div>
+            <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a><a href="/dashboard">Tools</a></div>
+            <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> saboor@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark</p></div>
     </footer>
@@ -199,27 +209,32 @@
 
                 document.title = `${post.title} - GrowAIMark Blog`;
 
+                // Display image properly
+                const imageHtml = post.image_url ?
+                    `<img src="${post.image_url}" alt="${post.title}">` :
+                    `<i class="fas fa-newspaper"></i>`;
+
                 document.getElementById('post-container').innerHTML = `
                     <div class="post-header">
                         <span class="post-category">${post.category}</span>
                         <h1>${post.title}</h1>
                         <div class="post-meta">
                             <span><i class="far fa-calendar"></i> ${post.date}</span>
-                            <span><i class="far fa-clock"></i> ${post.read_time}</span>
+                            <span><i class="far fa-clock"></i> ${post.read_time || '5 min read'}</span>
                         </div>
                     </div>
                     <div class="post-image">
-                        <i class="fas fa-${post.image || 'newspaper'}"></i>
+                        ${imageHtml}
                     </div>
                     <div class="post-content">
                         ${post.content}
                     </div>
                     <div class="post-author">
-                        <div class="author-image" style="width:80px;height:80px;background:#667eea;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">
+                        <div class="author-image">
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="author-info">
-                            <h4>${post.author}</h4>
+                            <h4>${post.author || 'H.M. Saboor Khan'}</h4>
                             <p>Digital Marketing Expert & AI Strategist. Helping businesses grow with data-driven marketing.</p>
                         </div>
                     </div>
@@ -232,7 +247,7 @@
                         <div id="commentsList" style="margin-top: 30px;">
                             ${post.comments && post.comments.length > 0 ?
                                 `<h4>Comments (${post.comments.length})</h4>` +
-                                post.comments.map(c => `<div style="padding:15px;border-bottom:1px solid #eee;"><strong>${c.name}</strong><p style="margin-top:5px;color:#666;">${c.text}</p></div>`).join('')
+                                post.comments.map(c => `<div style="padding:15px;border-bottom:1px solid #eee;"><strong>${c.name || 'Reader'}</strong><p style="margin-top:5px;color:#666;">${c.text}</p></div>`).join('')
                                 : '<p>No comments yet. Be the first!</p>'}
                         </div>
                     </div>
@@ -251,7 +266,7 @@
 
                     if (response.ok) {
                         document.getElementById('commentText').value = '';
-                        loadPost(); // Reload to show new comment
+                        loadPost();
                     }
                 });
 

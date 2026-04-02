@@ -62,22 +62,9 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background: #f8f9ff;
-            color: #667eea;
-            font-weight: 600;
-        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9ff; color: #667eea; font-weight: 600; }
 
         .modal {
             display: none;
@@ -102,13 +89,8 @@
             overflow-y: auto;
         }
 
-        .modal-content h2 {
-            margin-bottom: 20px;
-        }
-
-        .modal-content input,
-        .modal-content textarea,
-        .modal-content select {
+        .modal-content h2 { margin-bottom: 20px; }
+        .modal-content input, .modal-content textarea, .modal-content select {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
@@ -116,19 +98,22 @@
             border-radius: 10px;
             font-family: inherit;
         }
+        .modal-content textarea { min-height: 200px; }
 
-        .modal-content textarea {
-            min-height: 200px;
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+
+        .image-preview {
+            margin-top: 10px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            text-align: center;
         }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
+        .image-preview img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 10px;
         }
 
         .success-msg {
@@ -148,13 +133,21 @@
             border-radius: 20px;
             text-align: center;
         }
-
         .login-container input {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 10px;
+        }
+
+        .read-time-info {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
         }
 
         @media (max-width: 768px) {
@@ -202,7 +195,7 @@
     <div id="postModal" class="modal">
         <div class="modal-content">
             <h2 id="modalTitle">Create New Post</h2>
-            <form id="postForm">
+            <form id="postForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Title *</label>
                     <input type="text" id="postTitle" required>
@@ -223,6 +216,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label>Featured Image *</label>
+                    <input type="file" id="postImageFile" accept="image/*">
+                    <div id="imagePreview" class="image-preview" style="display: none;">
+                        <img id="previewImg" src="">
+                    </div>
+                    <input type="hidden" id="postImageUrl">
+                </div>
+                <div class="form-group">
                     <label>Excerpt (Short Description) *</label>
                     <textarea id="postExcerpt" rows="3" required placeholder="Brief summary of your post..."></textarea>
                 </div>
@@ -232,12 +233,14 @@
                     <small style="color:#666;">Use HTML tags: &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, etc.</small>
                 </div>
                 <div class="form-group">
-                    <label>Read Time</label>
+                    <label>Read Time (Auto-calculated or Manual)</label>
                     <input type="text" id="postReadTime" placeholder="5 min read">
-                </div>
-                <div class="form-group">
-                    <label>Image Icon (FontAwesome class)</label>
-                    <input type="text" id="postImage" placeholder="newspaper, chart-line, search, etc.">
+                    <div class="read-time-info">
+                        <i class="fas fa-clock"></i> <span id="wordCountInfo">0 words</span> |
+                        <button type="button" class="btn-primary" style="padding: 5px 10px; font-size: 12px;" onclick="calculateReadTime()">
+                            Calculate from Content
+                        </button>
+                    </div>
                 </div>
                 <input type="hidden" id="postId">
                 <div style="display: flex; gap: 10px; justify-content: flex-end;">
@@ -262,6 +265,35 @@
                 alert('Wrong password!');
             }
         }
+
+        // Image preview
+        document.getElementById('postImageFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('previewImg').src = event.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Calculate read time from content
+        function calculateReadTime() {
+            const content = document.getElementById('postContent').value;
+            const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+            const readTime = Math.max(1, Math.ceil(wordCount / 200));
+            document.getElementById('postReadTime').value = `${readTime} min read`;
+            document.getElementById('wordCountInfo').innerText = `${wordCount} words`;
+        }
+
+        // Update word count on content change
+        document.getElementById('postContent').addEventListener('input', function() {
+            const content = this.value;
+            const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+            document.getElementById('wordCountInfo').innerText = `${wordCount} words`;
+        });
 
         async function loadPosts() {
             const response = await fetch('/api/blog/posts');
@@ -293,8 +325,13 @@
             document.getElementById('postCategory').value = post.category;
             document.getElementById('postExcerpt').value = post.excerpt;
             document.getElementById('postContent').value = post.content;
-            document.getElementById('postReadTime').value = post.read_time;
-            document.getElementById('postImage').value = post.image || 'newspaper';
+            document.getElementById('postReadTime').value = post.read_time || '5 min read';
+            document.getElementById('postImageUrl').value = post.image_url || '';
+
+            if (post.image_url) {
+                document.getElementById('previewImg').src = post.image_url;
+                document.getElementById('imagePreview').style.display = 'block';
+            }
 
             document.getElementById('postModal').style.display = 'flex';
         }
@@ -314,7 +351,7 @@
             document.getElementById('postForm').reset();
             document.getElementById('postId').value = '';
             document.getElementById('postReadTime').value = '5 min read';
-            document.getElementById('postImage').value = 'newspaper';
+            document.getElementById('imagePreview').style.display = 'none';
             document.getElementById('postModal').style.display = 'flex';
         }
 
@@ -332,6 +369,20 @@
         document.getElementById('postForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Upload image if selected
+            let imageUrl = document.getElementById('postImageUrl').value;
+            const imageFile = document.getElementById('postImageFile').files[0];
+
+            if (imageFile) {
+                const formData = new FormData();
+                formData.append('image', imageFile);
+                const uploadRes = await fetch('/api/blog/upload-image', { method: 'POST', body: formData });
+                const uploadData = await uploadRes.json();
+                if (uploadData.success) {
+                    imageUrl = uploadData.url;
+                }
+            }
+
             const post = {
                 id: parseInt(document.getElementById('postId').value) || null,
                 title: document.getElementById('postTitle').value,
@@ -340,7 +391,7 @@
                 excerpt: document.getElementById('postExcerpt').value,
                 content: document.getElementById('postContent').value,
                 read_time: document.getElementById('postReadTime').value,
-                image: document.getElementById('postImage').value,
+                image_url: imageUrl,
                 date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
             };
 
@@ -359,10 +410,8 @@
             }
         });
 
-        // Check if already logged in (for demo, always show login)
         document.getElementById('loginScreen').style.display = 'block';
 
-        // Auto-generate slug from title
         document.getElementById('postTitle').addEventListener('input', function() {
             if (!document.getElementById('postId').value) {
                 const slug = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

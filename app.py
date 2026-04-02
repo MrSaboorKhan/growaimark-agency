@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import json
 import os
+from werkzeug.utils import secure_filename
 import random
 from datetime import datetime
 
@@ -155,3 +156,37 @@ def blog_list():
 @app.route('/blog/<slug>')
 def blog_post(slug):
     return render_template('blog_post.html')
+
+
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
+# Ensure upload folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/api/blog/upload-image', methods=['POST'])
+def upload_blog_image():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image file'}), 400
+
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        # Add timestamp to filename to avoid duplicates
+        name, ext = os.path.splitext(filename)
+        filename = f"{int(datetime.now().timestamp())}_{name}{ext}"
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+
+        image_url = f"/static/uploads/{filename}"
+        return jsonify({'success': True, 'url': image_url})
+
+    return jsonify({'error': 'Invalid file type'}), 400
