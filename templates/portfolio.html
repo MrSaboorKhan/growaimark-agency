@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H.M. Saboor Khan | Digital Marketing Portfolio - Global Case Studies</title>
-    <meta name="description" content="Professional digital marketing case studies: SEO, PPC, Social Media results for global clients. 300%+ average growth delivered.">
+    <title>H.M. Saboor Khan | Freelance Social Media Manager & Paid Ads Specialist</title>
+    <meta name="description" content="Expert freelance social media manager and paid ads specialist. Meta Ads, Google Ads, PPC, TikTok, LinkedIn. Helping brands scale from $0 to 6-figures. Clients in USA, UK, UAE, Pakistan.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -80,8 +80,9 @@
             .mobile-menu { display: block; }
         }
 
+        /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
+            padding: 160px 0 100px;
             background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
         }
         .hero-grid {
@@ -91,295 +92,370 @@
             align-items: center;
         }
         .hero-content h1 {
-            font-size: 56px;
+            font-size: 52px;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .hero-content .highlight {
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(102,126,234,0.1);
+        .hero-subheadline {
+            font-size: 18px;
             color: #667eea;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 15px;
         }
-        .hero-stats {
+        .hero-description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .hero-buttons {
             display: flex;
-            gap: 40px;
-            margin: 32px 0;
+            gap: 15px;
+            margin: 25px 0 20px;
+            flex-wrap: wrap;
         }
-        .stat h3 { font-size: 32px; color: #667eea; margin-bottom: 5px; }
-        .stat p { color: #666; font-size: 14px; }
-        .hero-buttons { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .trust-line {
+            background: #f0f0f0;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
+        }
+        .trust-line i {
+            color: #10b981;
+            margin-right: 8px;
+        }
         .hero-image {
             position: relative;
             text-align: center;
         }
         .hero-image img {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 30px;
             box-shadow: 0 30px 40px rgba(0,0,0,0.1);
         }
 
-        .case-studies {
+        /* Section Styles */
+        .section {
             padding: 80px 0;
-            background: white;
         }
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
         .section-title h2 {
             font-size: 42px;
             margin-bottom: 16px;
         }
-        .section-title p { color: #666; font-size: 18px; }
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
+        /* My Story */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .story-content p {
+            margin-bottom: 20px;
+            color: #444;
+            line-height: 1.8;
+        }
+        .story-quote {
+            font-size: 20px;
+            font-weight: 600;
+            color: #667eea;
+            margin: 25px 0;
+            padding-left: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .timeline-year {
+            font-size: 20px;
+            font-weight: 800;
+            color: #667eea;
+        }
+        .story-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102,126,234,0.1);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .service-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .service-card ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+        .service-card li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+        .service-card li i {
+            color: #10b981;
+            margin-right: 8px;
+        }
+        .result-badge {
+            display: inline-block;
+            background: #667eea10;
+            color: #667eea;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* Case Studies */
         .case-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            gap: 30px;
         }
         .case-card {
             background: white;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             transition: 0.3s;
         }
         .case-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(102,126,234,0.15);
         }
         .case-image {
-            height: 280px;
-            overflow: hidden;
-            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .case-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.3s;
-        }
-        .case-card:hover .case-image img {
-            transform: scale(1.05);
-        }
-        .case-category {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: #667eea;
+        .case-image i {
+            font-size: 60px;
             color: white;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
         }
         .case-content {
-            padding: 30px;
+            padding: 25px;
+        }
+        .case-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            margin-bottom: 12px;
         }
         .case-content h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
         .case-stats {
             display: flex;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 15px;
+            margin: 15px 0;
             flex-wrap: wrap;
         }
         .case-stat {
             background: #f8f9ff;
-            padding: 10px 15px;
-            border-radius: 12px;
-            text-align: center;
-            flex: 1;
-        }
-        .case-stat .number {
-            font-size: 24px;
-            font-weight: 800;
-            color: #667eea;
-        }
-        .case-stat .label {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .problem-box, .solution-box, .result-box {
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 16px;
-        }
-        .problem-box { background: #fff5f5; border-left: 4px solid #ef4444; }
-        .solution-box { background: #f0f9ff; border-left: 4px solid #667eea; }
-        .result-box { background: #f0fdf4; border-left: 4px solid #10b981; }
-        .problem-box h4, .solution-box h4, .result-box h4 {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .case-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #667eea;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
+            color: #667eea;
+        }
+        .testimonial-sm {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .skill-category i {
+            font-size: 40px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .skill-category h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             justify-content: center;
+        }
+        .skill-tags span {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testimonial-text {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: #667eea;
+        }
+        .testimonial-title {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* Why Choose Me */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .why-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+        }
+        .why-card i {
+            font-size: 45px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .why-card h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Form */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
             align-items: center;
         }
-        .modal-content {
+        .contact-form {
             background: white;
             padding: 40px;
             border-radius: 24px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 28px;
-            cursor: pointer;
-            color: #666;
-        }
-        .modal-close:hover { color: #ef4444; }
-        .modal h3 { margin-bottom: 20px; color: #667eea; }
-
-        .services {
-            padding: 80px 0;
-            background: #f8f9ff;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .service-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: white;
-            border-radius: 24px;
-            transition: 0.3s;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.05);
-        }
-        .service-card i {
-            font-size: 45px;
-            color: #667eea;
+        .form-group {
             margin-bottom: 20px;
         }
-        .service-card h3 { font-size: 22px; margin-bottom: 12px; }
-        .service-card p { color: #666; font-size: 14px; }
-
-        .gallery {
-            padding: 80px 0;
-            background: white;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .gallery-item {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            cursor: pointer;
-        }
-        .gallery-item img {
+        .form-group input, .form-group select {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.3s;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: white;
-            padding: 20px;
-            opacity: 0;
-            transition: 0.3s;
-        }
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .brands-section {
-            padding: 60px 0;
-            background: #f8f9ff;
-            text-align: center;
-        }
-        .brands-carousel {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-        .brand-item {
-            text-align: center;
-            padding: 15px 25px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            min-width: 100px;
-        }
-        .brand-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        .brand-item i {
-            font-size: 40px;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        .brand-item span {
-            display: block;
-            font-weight: 600;
-            color: #1a1a2e;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
             font-size: 14px;
         }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .contact-info h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .contact-highlight {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
 
+        /* CTA */
         .cta {
             padding: 80px 0;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -398,6 +474,7 @@
             margin-top: 20px;
         }
 
+        /* Footer */
         .footer {
             background: #1a1a2e;
             color: white;
@@ -425,12 +502,11 @@
         .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
 
         @media (max-width: 968px) {
-            .hero-grid, .case-grid, .services-grid, .gallery-grid, .footer-content {
+            .hero-grid, .story-grid, .services-grid, .case-grid, .skills-grid, .testimonials-grid, .why-grid, .contact-grid, .footer-content {
                 grid-template-columns: 1fr;
             }
-            .hero-content h1 { font-size: 40px; }
-            .hero-image img { width: 250px; height: 250px; }
-            .brands-carousel { gap: 15px; }
+            .hero-content h1 { font-size: 36px; }
+            .section-title h2 { font-size: 32px; }
         }
     </style>
 </head>
@@ -445,7 +521,7 @@
             <li><a href="/about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn-primary">Hire Me →</a>
+        <a href="#contact" class="btn-primary">Get Free Audit →</a>
         <div class="mobile-menu"><i class="fas fa-bars"></i></div>
     </nav>
 
@@ -454,244 +530,299 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <span class="hero-badge">🚀 Digital Marketing Expert</span>
-                    <h1>I'm <span class="highlight">H.M. Saboor Khan</span> – helping businesses grow globally from Pakistan.</h1>
-                    <p>8+ years of experience. 100+ projects across USA, UK, UAE & Pakistan. Specialized in SEO, PPC, and Social Media strategies that deliver measurable ROI.</p>
-                    <div class="hero-stats">
-                        <div class="stat"><h3>100+</h3><p>Projects</p></div>
-                        <div class="stat"><h3>50+</h3><p>Happy Clients</p></div>
-                        <div class="stat"><h3>300%</h3><p>Avg. Growth</p></div>
-                        <div class="stat"><h3>$5M+</h3><p>Revenue Generated</p></div>
-                    </div>
+                    <h1>I Turn <span class="highlight">Clicks into Cash</span> – Expert Freelance Social Media Manager & Paid Ads Specialist</h1>
+                    <div class="hero-subheadline">Meta Ads | Google Ads | PPC | TikTok | LinkedIn | Full-Funnel Strategy</div>
+                    <p class="hero-description">Helping brands scale from $0 to 6-figures in revenue with data-driven campaigns.</p>
                     <div class="hero-buttons">
-                        <a href="https://wa.me/923030001026" target="_blank" class="btn-primary">
-                            <i class="fab fa-whatsapp"></i> WhatsApp Me →
-                        </a>
-                        <a href="mailto:saboor@growaimark.com" class="btn-outline">
-                            <i class="far fa-envelope"></i> Email Me
-                        </a>
+                        <a href="#contact" class="btn-primary">📊 Get Your Free Audit</a>
+                        <a href="#case-studies" class="btn-outline">📁 See My Case Studies ↓</a>
+                    </div>
+                    <div class="trust-line">
+                        <i class="fas fa-check-circle"></i> ✅ 4+ Years | 50+ Campaigns Managed | $2.8M+ Ad Spend Optimized | Clients in USA, UK, UAE, Pakistan & Europe
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="/static/images/GrowAiMark-Generated-1766840207696.png" alt="H.M. Saboor Khan - Digital Marketing Expert">
+                    <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400" alt="H.M. Saboor Khan working on multiple screens">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Brands Section -->
-    <section class="brands-section">
+    <!-- My Story Section -->
+    <section class="section">
         <div class="container">
-            <h2>Trusted By <span style="color:#667eea">Global Brands</span></h2>
-            <p>I've worked with these industry leaders</p>
-            <div class="brands-carousel">
-                <div class="brand-item"><i class="fab fa-amazon"></i><span>Amazon</span></div>
-                <div class="brand-item"><i class="fab fa-nike"></i><span>Nike</span></div>
-                <div class="brand-item"><i class="fab fa-adidas"></i><span>Adidas</span></div>
-                <div class="brand-item"><i class="fab fa-google"></i><span>Google</span></div>
-                <div class="brand-item"><i class="fab fa-netflix"></i><span>Netflix</span></div>
-                <div class="brand-item"><i class="fab fa-samsung"></i><span>Samsung</span></div>
-                <div class="brand-item"><i class="fab fa-microsoft"></i><span>Microsoft</span></div>
+            <div class="section-title">
+                <h2>From <span class="highlight">Lahore to Global Campaigns</span> – My Story</h2>
+                <p>My journey from a local e-commerce store to managing $2.8M+ ad spend</p>
+            </div>
+            <div class="story-grid">
+                <div class="story-content">
+                    <p>I didn't start as a "freelancer who runs ads." I started as a digital marketing intern in 2021 managing a local e-commerce store's Facebook page with a ₹15,000 monthly budget. Within 3 months I scaled their revenue by 340% using only Meta Ads. That was my first "aha" moment.</p>
+                    <p>Since then I have personally managed <strong>$2.8 million+ in ad spend</strong> across Meta (Facebook & Instagram), Google Ads, YouTube, Microsoft Ads, TikTok, and LinkedIn. I have worked with startups that went from 0 to 6-figure monthly revenue and with established brands that wanted to cut their cost-per-acquisition in half.</p>
+                    <p class="story-quote">"Great ads don't just get clicks — they build businesses."</p>
+                    <p>Today I work remotely with clients in the United States, United Kingdom, United Arab Emirates, and Pakistan. I have helped a US-based skincare brand hit $87K in sales in 45 days, a Pakistani fashion label grow their Instagram from 8K to 87K engaged followers, and a B2B SaaS company reduce their lead cost by 62%.</p>
+                    <div class="timeline">
+                        <div class="timeline-item"><div class="timeline-year">2021</div><div>First Campaign</div></div>
+                        <div class="timeline-item"><div class="timeline-year">2022</div><div>First International Client</div></div>
+                        <div class="timeline-item"><div class="timeline-year">2023-2026</div><div>$2.8M+ Managed</div></div>
+                    </div>
+                </div>
+                <div class="story-image">
+                    <img src="/static/images/GrowAiMark-Generated-1766840207696.png" alt="H.M. Saboor Khan - Professional Photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" style="background: #f8f9ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>What I Deliver – <span class="highlight">Your Complete Digital Growth Engine</span></h2>
+                <p>Services that deliver real results for global clients</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>📱 Social Media Management (Organic + Community)</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Full account takeover (Instagram, Facebook, TikTok, LinkedIn, Pinterest)</li>
+                        <li><i class="fas fa-check"></i> Content strategy + calendar</li>
+                        <li><i class="fas fa-check"></i> Reel / Short-form video production & editing</li>
+                        <li><i class="fas fa-check"></i> Community management & engagement</li>
+                        <li><i class="fas fa-check"></i> Monthly performance reports with actionable insights</li>
+                    </ul>
+                    <div class="result-badge">📈 Result: Consistent brand voice, loyal community, and organic reach that actually converts</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fab fa-facebook"></i></div>
+                    <h3>💰 Meta Ads Mastery (Facebook + Instagram)</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Campaign strategy from scratch (TOF, MOF, BOF)</li>
+                        <li><i class="fas fa-check"></i> Creative testing at scale (15–30 ads per campaign)</li>
+                        <li><i class="fas fa-check"></i> Audience research & custom/lookalike audiences</li>
+                        <li><i class="fas fa-check"></i> Conversion tracking & pixel optimization</li>
+                        <li><i class="fas fa-check"></i> A/B testing that saves you money every single day</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fab fa-google"></i></div>
+                    <h3>🎯 Google Ads & PPC Campaigns</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Search Ads, Display Ads, Performance Max, YouTube Ads, Shopping Ads</li>
+                        <li><i class="fas fa-check"></i> Keyword research & negative keyword strategy</li>
+                        <li><i class="fas fa-check"></i> Landing page conversion rate optimization</li>
+                        <li><i class="fas fa-check"></i> Remarketing & customer match campaigns</li>
+                        <li><i class="fas fa-check"></i> ROAS-focused bidding strategies</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-funnel-dollar"></i></div>
+                    <h3>🔄 Full-Funnel Paid Advertising</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Complete customer journey (Awareness → Consideration → Conversion → Retention)</li>
+                        <li><i class="fas fa-check"></i> Cross-platform campaigns (Meta + Google + TikTok)</li>
+                        <li><i class="fas fa-check"></i> Lead generation & e-commerce funnels</li>
+                        <li><i class="fas fa-check"></i> WhatsApp & email/SMS integration</li>
+                    </ul>
+                    <div class="result-badge">✨ Bonus: Monthly strategy calls + unlimited revisions until 100% happy</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Case Studies Section -->
-    <section class="case-studies">
+    <section id="case-studies" class="section">
         <div class="container">
             <div class="section-title">
-                <h2>Case Studies</h2>
-                <p>Real problems. Real solutions. Real results.</p>
+                <h2>Real Results. <span class="highlight">Real Clients. Real Money Made.</span></h2>
+                <p>Selected case studies from my portfolio</p>
             </div>
-
             <div class="case-grid">
+                <!-- Case Study 1 -->
                 <div class="case-card">
-                    <div class="case-image">
-                        <img src="https://images.pexels.com/photos/6214472/pexels-photo-6214472.jpeg?auto=compress&cs=tinysrgb&w=600" alt="SEO Case Study">
-                        <span class="case-category">SEO</span>
-                    </div>
+                    <div class="case-image"><i class="fas fa-spa"></i></div>
                     <div class="case-content">
-                        <h3>🇺🇸 USA Fashion E-Commerce - SEO Turnaround</h3>
+                        <span class="case-badge">🇺🇸 E-Commerce | Meta + Google</span>
+                        <h3>US Skincare Brand - GlowSkin Co.</h3>
                         <div class="case-stats">
-                            <div class="case-stat"><span class="number">+320%</span><span class="label">Traffic</span></div>
-                            <div class="case-stat"><span class="number">+180%</span><span class="label">Revenue</span></div>
-                            <div class="case-stat"><span class="number">#1</span><span class="label">For 50+ Keywords</span></div>
+                            <span class="case-stat">💰 $87,400 Revenue</span>
+                            <span class="case-stat">📊 8.4x ROAS</span>
+                            <span class="case-stat">📦 1,240 Orders</span>
                         </div>
-                        <div class="problem-box"><h4><i class="fas fa-exclamation-triangle"></i> The Problem</h4><p>Client's e-commerce store was getting only 500 monthly visitors with no rankings.</p></div>
-                        <div class="solution-box"><h4><i class="fas fa-lightbulb"></i> The Solution</h4><p>Technical SEO fixes, keyword research, quality backlinks, content optimization.</p></div>
-                        <div class="result-box"><h4><i class="fas fa-chart-line"></i> The Results</h4><p><strong>📈 Traffic: 500 → 2,100+ | 💰 Revenue +180% | 🏆 Ranked #1 for 50+ keywords</strong></p></div>
-                        <a class="case-link" onclick="showCaseStudy('USA Fashion E-Commerce', 'The client was struggling with low organic traffic and poor search rankings.', 'We implemented a comprehensive SEO strategy including technical fixes, keyword research, and quality backlinks.', 'Organic traffic increased by 320%, revenue grew by 180%, and the site ranks #1 for over 50 keywords.')">View Full Case Study →</a>
+                        <p><strong>Challenge:</strong> Brand new store with $0 social proof.<br>
+                        <strong>Solution:</strong> Built cold-to-warm funnel + UGC creatives + dynamic product ads.<br>
+                        <strong>Result:</strong> Cost per purchase dropped to $11.80 in 45 days.</p>
+                        <div class="testimonial-sm">"Saboor single-handedly took us from launch to profitable in under two months." – Founder, GlowSkin Co.</div>
                     </div>
                 </div>
-
+                <!-- Case Study 2 -->
                 <div class="case-card">
-                    <div class="case-image">
-                        <img src="https://images.pexels.com/photos/5380656/pexels-photo-5380656.jpeg?auto=compress&cs=tinysrgb&w=600" alt="PPC Case Study">
-                        <span class="case-category">PPC</span>
-                    </div>
+                    <div class="case-image"><i class="fas fa-tshirt"></i></div>
                     <div class="case-content">
-                        <h3>🇬🇧 UK Real Estate - PPC Optimization</h3>
+                        <span class="case-badge">🇵🇰 Fashion | Instagram + Meta</span>
+                        <h3>Pakistani Fashion Label - ThreadVibe (Lahore)</h3>
                         <div class="case-stats">
-                            <div class="case-stat"><span class="number">+280%</span><span class="label">ROI</span></div>
-                            <div class="case-stat"><span class="number">-45%</span><span class="label">CPA</span></div>
-                            <div class="case-stat"><span class="number">4.5x</span><span class="label">ROAS</span></div>
+                            <span class="case-stat">📱 8K → 87K Followers</span>
+                            <span class="case-stat">💰 4.2M → 18.7M PKR Revenue</span>
+                            <span class="case-stat">📹 4.2M Viral Reach</span>
                         </div>
-                        <div class="problem-box"><h4><i class="fas fa-exclamation-triangle"></i> The Problem</h4><p>Client was spending £10,000/month on Google Ads with negative ROI.</p></div>
-                        <div class="solution-box"><h4><i class="fas fa-lightbulb"></i> The Solution</h4><p>Account restructure, negative keywords, A/B testing, landing page optimization.</p></div>
-                        <div class="result-box"><h4><i class="fas fa-chart-line"></i> The Results</h4><p><strong>💰 ROI +280% | 🎯 CPA: £150 → £82 | 📊 Conversion: 2.1% → 5.8%</strong></p></div>
-                        <a class="case-link" onclick="showCaseStudy('UK Real Estate', 'The client was losing money on Google Ads with high cost per acquisition.', 'We restructured the account, optimized keywords, and improved landing pages.', 'ROI increased by 280%, CPA dropped by 45%, and conversion rate tripled.')">View Full Case Study →</a>
+                        <p><strong>Results in 6 months:</strong> Instagram followers grew from 8K to 87K real engaged audience. Monthly revenue increased from 4.2M PKR to 18.7M PKR. One viral Reel reached 4.2 million views.</p>
+                        <div class="testimonial-sm">"Hands down the most professional freelancer I've ever worked with. Delivers every single time." – Founder, ThreadVibe</div>
                     </div>
                 </div>
-
+                <!-- Case Study 3 -->
                 <div class="case-card">
-                    <div class="case-image">
-                        <img src="https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Social Media Case Study">
-                        <span class="case-category">Social Media</span>
-                    </div>
+                    <div class="case-image"><i class="fas fa-chart-line"></i></div>
                     <div class="case-content">
-                        <h3>🇦🇪 UAE Luxury Brand - Social Media Growth</h3>
+                        <span class="case-badge">🇬🇧 B2B SaaS | LinkedIn + Google</span>
+                        <h3>B2B SaaS Company - LeadFlow AI (UK)</h3>
                         <div class="case-stats">
-                            <div class="case-stat"><span class="number">50K+</span><span class="label">Followers</span></div>
-                            <div class="case-stat"><span class="number">+450%</span><span class="label">Engagement</span></div>
-                            <div class="case-stat"><span class="number">$0</span><span class="label">Ad Spend</span></div>
+                            <span class="case-stat">📉 Lead Cost -62%</span>
+                            <span class="case-stat">👥 187 Qualified Leads</span>
+                            <span class="case-stat">💰 $214K Closed</span>
                         </div>
-                        <div class="problem-box"><h4><i class="fas fa-exclamation-triangle"></i> The Problem</h4><p>Brand had only 500 followers with 0.5% engagement and no ad budget.</p></div>
-                        <div class="solution-box"><h4><i class="fas fa-lightbulb"></i> The Solution</h4><p>Content calendar, hashtag optimization, influencer collaboration, community engagement.</p></div>
-                        <div class="result-box"><h4><i class="fas fa-chart-line"></i> The Results</h4><p><strong>📱 Followers: 500 → 50,500+ | 📊 Engagement: 0.5% → 4.2% | 💰 $50K+ sales</strong></p></div>
-                        <a class="case-link" onclick="showCaseStudy('UAE Luxury Brand', 'The brand had minimal social media presence with no ad budget.', 'We created a content strategy, optimized hashtags, and built community engagement.', 'Gained 50,000+ organic followers with 450% increase in engagement and $50K+ in sales.')">View Full Case Study →</a>
+                        <p><strong>Results in 90 days:</strong> Lead cost reduced by 62%. 187 qualified leads generated. Closed $214K in new contracts from campaign-driven leads.</p>
                     </div>
                 </div>
-
+                <!-- Case Study 4 -->
                 <div class="case-card">
-                    <div class="case-image">
-                        <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Email Marketing Case Study">
-                        <span class="case-category">Email Marketing</span>
-                    </div>
+                    <div class="case-image"><i class="fas fa-utensils"></i></div>
                     <div class="case-content">
-                        <h3>🇨🇦 Canada E-Commerce - Email Automation</h3>
+                        <span class="case-badge">🇵🇰 Local Business | Meta + Google Maps</span>
+                        <h3>Local Restaurant Chain - SpiceRoute</h3>
                         <div class="case-stats">
-                            <div class="case-stat"><span class="number">+300%</span><span class="label">Revenue</span></div>
-                            <div class="case-stat"><span class="number">40%</span><span class="label">Cart Recovery</span></div>
-                            <div class="case-stat"><span class="number">35%</span><span class="label">Open Rate</span></div>
+                            <span class="case-stat">📈 +340% Bookings</span>
+                            <span class="case-stat">📍 30 Days Results</span>
                         </div>
-                        <div class="problem-box"><h4><i class="fas fa-exclamation-triangle"></i> The Problem</h4><p>Client had 50K+ subscribers but 8% open rate, no cart recovery.</p></div>
-                        <div class="solution-box"><h4><i class="fas fa-lightbulb"></i> The Solution</h4><p>List segmentation, abandoned cart automation, A/B testing, personalization.</p></div>
-                        <div class="result-box"><h4><i class="fas fa-chart-line"></i> The Results</h4><p><strong>📧 Open rate: 8% → 35% | 💰 Revenue +300% | 🛒 Cart recovery: 40%</strong></p></div>
-                        <a class="case-link" onclick="showCaseStudy('Canada E-Commerce', 'The client had a large email list but very low engagement and sales.', 'We implemented list segmentation, automated cart recovery, and A/B testing.', 'Email revenue increased by 300%, open rates quadrupled, and cart recovery reached 40%.')">View Full Case Study →</a>
+                        <p><strong>Results in first 30 days:</strong> 340% increase in table bookings through Meta Ads + Google Maps Ads optimization.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal -->
-    <div id="caseModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle">Case Study</h3>
-            <div class="problem-box" style="margin-top:20px;"><h4><i class="fas fa-exclamation-triangle"></i> The Problem</h4><p id="modalProblem"></p></div>
-            <div class="solution-box"><h4><i class="fas fa-lightbulb"></i> The Solution</h4><p id="modalSolution"></p></div>
-            <div class="result-box"><h4><i class="fas fa-chart-line"></i> The Results</h4><p id="modalResult"></p></div>
-        </div>
-    </div>
-
-    <!-- Services Section -->
-    <section class="services">
+    <!-- Skills Section -->
+    <section class="section" style="background: #f8f9ff;">
         <div class="container">
             <div class="section-title">
-                <h2>What I Do</h2>
-                <p>Services that deliver real results for global clients</p>
+                <h2>The Tech Stack Behind <span class="highlight">Every Winning Campaign</span></h2>
+                <p>Tools & platforms I master</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card"><i class="fas fa-search"></i><h3>SEO Strategy</h3><p>Rank #1 on Google</p></div>
-                <div class="service-card"><i class="fas fa-ad"></i><h3>PPC Management</h3><p>Maximize ROI</p></div>
-                <div class="service-card"><i class="fas fa-share-alt"></i><h3>Social Media</h3><p>Grow your brand</p></div>
-                <div class="service-card"><i class="fas fa-envelope"></i><h3>Email Marketing</h3><p>Convert leads</p></div>
+            <div class="skills-grid">
+                <div class="skill-category"><i class="fas fa-chart-simple"></i><h4>Advertising Platforms</h4><div class="skill-tags"><span>Meta Business Suite</span><span>Google Ads</span><span>Microsoft Advertising</span><span>TikTok Ads</span><span>LinkedIn Campaign Manager</span></div></div>
+                <div class="skill-category"><i class="fas fa-chart-line"></i><h4>Analytics</h4><div class="skill-tags"><span>Google Analytics 4</span><span>Meta Ads Manager</span><span>Looker Studio</span></div></div>
+                <div class="skill-category"><i class="fas fa-palette"></i><h4>Creative Tools</h4><div class="skill-tags"><span>Canva Pro</span><span>CapCut</span><span>Adobe Premiere</span><span>Photoshop</span></div></div>
+                <div class="skill-category"><i class="fas fa-robot"></i><h4>Automation & Tracking</h4><div class="skill-tags"><span>Zapier</span><span>ManyChat</span><span>Google Tag Manager</span><span>Conversions API</span><span>Python Scripts</span></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section - Working in Pakistan -->
-    <section class="gallery">
+    <!-- Testimonials -->
+    <section class="section">
         <div class="container">
             <div class="section-title">
-                <h2>Work Gallery</h2>
-                <p>Behind the scenes - Working from Pakistan for global clients</p>
+                <h2>What <span class="highlight">Clients Say</span></h2>
+                <p>Real feedback from real clients</p>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Working on SEO strategy in Pakistan">
-                    <div class="gallery-overlay"><p>SEO Strategy Session</p><small>Karachi, Pakistan</small></div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Saboor increased our ROAS from 2.1x to 9.8x in just 21 days. Best decision we made."</p>
+                    <div class="testimonial-author">— CEO, GlowSkin Co.</div>
+                    <div class="testimonial-title">USA</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=300" alt="PPC campaign management in Lahore">
-                    <div class="gallery-overlay"><p>PPC Campaign Management</p><small>Lahore, Pakistan</small></div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Hands down the most professional freelancer I've ever worked with. Delivers every single time."</p>
+                    <div class="testimonial-author">— Founder, ThreadVibe</div>
+                    <div class="testimonial-title">Pakistan</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Team meeting in Islamabad">
-                    <div class="gallery-overlay"><p>Team Meeting</p><small>Islamabad, Pakistan</small></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me -->
+    <section class="section" style="background: #f8f9ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why <span class="highlight">Clients Choose Me</span></h2>
+                <p>What makes me different</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card"><i class="fas fa-eye"></i><h4>100% Transparency</h4><p>You get login access to all ad accounts</p></div>
+                <div class="why-card"><i class="fas fa-chart-line"></i><h4>Weekly Reports</h4><p>Not just monthly — real-time insights</p></div>
+                <div class="why-card"><i class="fas fa-language"></i><h4>I Speak Your Language</h4><p>English + Urdu / Hindi</p></div>
+                <div class="why-card"><i class="fas fa-file-signature"></i><h4>No Long-Term Contracts</h4><p>Month-to-month flexibility</p></div>
+                <div class="why-card"><i class="fas fa-trophy"></i><h4>Results Guaranteed</h4><p>I work for free until we hit target</p></div>
+                <div class="why-card"><i class="fas fa-headset"></i><h4>24/7 Availability</h4><p>Always available for urgent needs</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ready to <span class="highlight">Scale Your Business?</span></h2>
+                <p>Book a 15-minute free strategy call (no sales pitch – just pure value)</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="text" placeholder="Business Name" required></div>
+                        <div class="form-group"><input type="email" placeholder="Email Address" required></div>
+                        <div class="form-group"><input type="tel" placeholder="WhatsApp Number" required></div>
+                        <div class="form-group">
+                            <select>
+                                <option>Current Monthly Ad Spend</option>
+                                <option>$0 - $1,000</option>
+                                <option>$1,000 - $5,000</option>
+                                <option>$5,000 - $10,000</option>
+                                <option>$10,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><input type="text" placeholder="Your Goal"></div>
+                        <button type="submit" class="btn-primary" style="width:100%;">Send Message →</button>
+                    </form>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/4427818/pexels-photo-4427818.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Digital marketing workshop in Rawalpindi">
-                    <div class="gallery-overlay"><p>Digital Marketing Workshop</p><small>Rawalpindi, Pakistan</small></div>
+                <div class="contact-info">
+                    <h3>Let's Build Your Next Success Story</h3>
+                    <p>Whether you're in Lahore, London, or Los Angeles — if you want expert-level social media management and paid ads that actually make you money, I'm your guy.</p>
+                    <a href="https://wa.me/923030001026" target="_blank" class="btn-primary" style="margin-top: 20px;"><i class="fab fa-whatsapp"></i> WhatsApp Me Instantly →</a>
+                    <div class="contact-highlight">📞 Free consultation • Response within 24 hours</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="cta" id="contact">
+    <section class="cta">
         <div class="container">
-            <h2>Ready to Get Results Like These?</h2>
-            <p>Let's discuss your project and create a custom strategy for your business</p>
-            <a href="https://wa.me/923030001026" target="_blank" class="btn-white">
-                <i class="fab fa-whatsapp"></i> Start WhatsApp Chat →
-            </a>
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">Free consultation • Response within 24 hours • Serving USA, UK, UAE, Canada & Global</p>
+            <h2>Ready to Write Your Next Success Story?</h2>
+            <p>Let's talk — no pressure, just pure value</p>
+            <a href="https://wa.me/923030001026" target="_blank" class="btn-white"><i class="fab fa-whatsapp"></i> Start WhatsApp Chat →</a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-col"><h4>GrowAIMark</h4><p>Global digital marketing expert from Pakistan.</p><div class="social-links"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div></div>
+            <div class="footer-col"><h4>GrowAIMark</h4><p>Expert freelance social media manager & paid ads specialist</p><div class="social-links"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div></div>
             <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/portfolio">Portfolio</a><a href="/blog">Blog</a><a href="/dashboard">Tools</a></div>
-            <div class="footer-col"><h4>Services</h4><a href="#">SEO</a><a href="#">PPC</a><a href="#">Social Media</a><a href="#">Email Marketing</a></div>
+            <div class="footer-col"><h4>Services</h4><a href="#">Social Media</a><a href="#">Meta Ads</a><a href="#">Google Ads</a><a href="#">PPC</a></div>
             <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-envelope"></i> saboor@growaimark.com</p><p><i class="fas fa-phone"></i> +92 303 0001026</p></div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark. Serving clients worldwide from Pakistan.</p></div>
+        <div class="footer-bottom"><p>&copy; 2024 H.M. Saboor Khan - GrowAIMark. Clients in USA, UK, UAE, Pakistan & Europe.</p></div>
     </footer>
 
     <script>
-        function showCaseStudy(title, problem, solution, result) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalProblem').innerText = problem;
-            document.getElementById('modalSolution').innerText = solution;
-            document.getElementById('modalResult').innerText = result;
-            document.getElementById('caseModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('caseModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('caseModal')) {
-                closeModal();
-            }
-        }
-
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('show');
         });
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if(target) target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! I will contact you within 24 hours on WhatsApp.');
+            this.reset();
         });
     </script>
 </body>
