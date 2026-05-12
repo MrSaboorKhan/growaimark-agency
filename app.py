@@ -865,3 +865,73 @@ def check_usage():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
+
+# Add these imports at the top
+from tools.video_translator import VideoTranslator
+
+# Initialize translator
+translator = VideoTranslator()
+
+
+@app.route('/translator')
+def translator_page():
+    """Translator tool page"""
+    return render_template('translator.html')
+
+
+@app.route('/api/translate/video', methods=['POST'])
+def translate_video():
+    """API endpoint for video translation"""
+    try:
+        data = request.json
+        url = data.get('url', '')
+        target_lang = data.get('language', 'urdu')
+
+        if not url:
+            return jsonify({'success': False, 'error': 'URL is required'}), 400
+
+        result = translator.process_video(url, target_lang)
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/translate/text', methods=['POST'])
+def translate_text():
+    """API endpoint for direct text translation"""
+    try:
+        data = request.json
+        text = data.get('text', '')
+        target_lang = data.get('language', 'urdu')
+
+        if not text:
+            return jsonify({'success': False, 'error': 'Text is required'}), 400
+
+        result = translator.translate_direct_text(text, target_lang)
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/translate/languages')
+def get_languages():
+    """Get supported languages"""
+    languages = {
+        'urdu': '🇵🇰 Urdu (Easy to understand)',
+        'english': '🇬🇧 English',
+        'hindi': '🇮🇳 Hindi',
+        'arabic': '🇸🇦 Arabic',
+        'french': '🇫🇷 French',
+        'german': '🇩🇪 German',
+        'spanish': '🇪🇸 Spanish',
+        'turkish': '🇹🇷 Turkish',
+        'bangla': '🇧🇩 Bangla',
+        'pashto': '🇦🇫 Pashto'
+    }
+    return jsonify(languages)
+
+@app.route('/translator')
+def translator_page():
+    return render_template('translator.html')

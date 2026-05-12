@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Translator - Translate Any Video to Any Language</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9ff;
+            margin: 0;
+            padding: 0;
+        }
+        .translator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px 60px;
+        }
+        .hero-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .hero-section h1 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero-section p {
+            color: #666;
+            font-size: 18px;
+        }
+        .input-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        .input-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .mode-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .mode-tab {
+            padding: 10px 25px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        .mode-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+        }
+        .result-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: none;
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .result-box {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+        .result-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .result-box p {
+            line-height: 1.6;
+            color: #444;
+        }
+        .copy-btn {
+            background: #10b981;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .loading {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        .loading i {
+            font-size: 40px;
+            color: #667eea;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .language-select {
+            background: #f0f0f0;
+            border-radius: 12px;
+        }
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 32px; }
+            .mode-tab { padding: 8px 16px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="translator-container">
+        <div class="hero-section">
+            <h1><i class="fas fa-language"></i> AI Video Translator</h1>
+            <p>Paste any video link or text - Get natural, easy-to-understand translation in any language</p>
+        </div>
+
+        <div class="input-card">
+            <div class="mode-tabs">
+                <div class="mode-tab active" data-mode="video">🎬 Video Link</div>
+                <div class="mode-tab" data-mode="text">📝 Text Translation</div>
+            </div>
+
+            <div id="video-mode">
+                <div class="input-group">
+                    <label><i class="fab fa-youtube"></i> Video URL</label>
+                    <input type="text" id="videoUrl" placeholder="YouTube, Instagram Reel, Facebook, TikTok URL...">
+                    <small style="color:#666; display:block; margin-top:5px;">Supported: YouTube, Instagram Reels, Facebook videos</small>
+                </div>
+            </div>
+
+            <div id="text-mode" style="display: none;">
+                <div class="input-group">
+                    <label><i class="fas fa-pen"></i> Text to Translate</label>
+                    <textarea id="textInput" placeholder="Enter text you want to translate..."></textarea>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-globe"></i> Target Language</label>
+                <select id="targetLanguage" class="language-select">
+                    <option value="urdu">🇵🇰 Urdu (Simple, Easy to Understand)</option>
+                    <option value="english">🇬🇧 English</option>
+                    <option value="hindi">🇮🇳 Hindi</option>
+                    <option value="arabic">🇸🇦 Arabic</option>
+                    <option value="french">🇫🇷 French</option>
+                    <option value="spanish">🇪🇸 Spanish</option>
+                    <option value="german">🇩🇪 German</option>
+                    <option value="turkish">🇹🇷 Turkish</option>
+                    <option value="bangla">🇧🇩 Bangla</option>
+                </select>
+            </div>
+
+            <button class="btn-primary" id="translateBtn">
+                <i class="fas fa-magic"></i> Translate Now
+            </button>
+        </div>
+
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Translating... This may take a few seconds</p>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <div class="result-header">
+                <h3><i class="fas fa-file-alt"></i> Translation Result</h3>
+                <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+            </div>
+            <div class="result-box">
+                <h4><i class="fas fa-language"></i> Original Text</h4>
+                <p id="originalText"></p>
+            </div>
+            <div class="result-box">
+                <h4><i class="fas fa-magic"></i> Translated Text</h4>
+                <p id="translatedText"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'video';
+
+        // Mode switching
+        document.querySelectorAll('.mode-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentMode = tab.dataset.mode;
+
+                if (currentMode === 'video') {
+                    document.getElementById('video-mode').style.display = 'block';
+                    document.getElementById('text-mode').style.display = 'none';
+                } else {
+                    document.getElementById('video-mode').style.display = 'none';
+                    document.getElementById('text-mode').style.display = 'block';
+                }
+            });
+        });
+
+        // Translation function
+        document.getElementById('translateBtn').addEventListener('click', async () => {
+            const targetLang = document.getElementById('targetLanguage').value;
+            const loading = document.getElementById('loading');
+            const resultCard = document.getElementById('resultCard');
+
+            loading.style.display = 'block';
+            resultCard.style.display = 'none';
+
+            try {
+                let response;
+
+                if (currentMode === 'video') {
+                    const url = document.getElementById('videoUrl').value;
+                    if (!url) {
+                        alert('Please enter a video URL');
+                        loading.style.display = 'none';
+                        return;
+                    }
+                    response = await fetch('/api/translate/video', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url: url, language: targetLang })
+                    });
+                } else {
+                    const text = document.getElementById('textInput').value;
+                    if (!text) {
+                        alert('Please enter text to translate');
+                        loading.style.display = 'none';
+                        return;
+                    }
+                    response = await fetch('/api/translate/text', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text: text, language: targetLang })
+                    });
+                }
+
+                const data = await response.json();
+                loading.style.display = 'none';
+
+                if (data.success) {
+                    document.getElementById('originalText').innerHTML = data.original || data.original_text || 'N/A';
+                    document.getElementById('translatedText').innerHTML = data.translated || data.translated_text || 'N/A';
+                    resultCard.style.display = 'block';
+                } else {
+                    alert('Error: ' + (data.error || 'Something went wrong'));
+                }
+            } catch (error) {
+                loading.style.display = 'none';
+                alert('Error: ' + error.message);
+            }
+        });
+
+        // Copy button
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const text = document.getElementById('translatedText').innerText;
+            navigator.clipboard.writeText(text);
+            alert('Copied to clipboard!');
+        });
+    </script>
+</body>
+</html>
