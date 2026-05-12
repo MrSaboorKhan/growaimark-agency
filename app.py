@@ -18,6 +18,17 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# ==================== TRANSLATOR TOOL IMPORT ====================
+try:
+    from tools.video_translator import VideoTranslator
+
+    translator = VideoTranslator()
+    print("✅ Video Translator imported successfully")
+except ImportError as e:
+    print(f"⚠️ Video Translator import failed: {e}")
+    translator = None
+
+
 # ==================== PAGE ROUTES ====================
 @app.route('/')
 def home():
@@ -54,7 +65,15 @@ def blog_post(slug):
     return render_template('blog_post.html')
 
 
-# ==================== AI CONTENT GENERATOR (WORKING) ====================
+@app.route('/translator')
+def translator_page():
+    """Translator tool page"""
+    if translator is None:
+        return "Translator tool is currently unavailable. Please check back later.", 503
+    return render_template('translator.html')
+
+
+# ==================== AI CONTENT GENERATOR ====================
 @app.route('/api/content/generate', methods=['POST'])
 def generate_content():
     try:
@@ -184,7 +203,7 @@ Get started today and receive a FREE consultation!
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== YOUTUBE SEO OPTIMIZER (WORKING) ====================
+# ==================== YOUTUBE SEO OPTIMIZER ====================
 @app.route('/api/youtube/seo', methods=['POST'])
 def youtube_seo():
     try:
@@ -194,7 +213,6 @@ def youtube_seo():
         if not title:
             return jsonify({'error': 'Video title is required'}), 400
 
-        # Generate optimized titles
         optimized_titles = [
             f"{title} - Complete Guide 2024",
             f"How to {title} Like a Pro (Step by Step)",
@@ -205,7 +223,6 @@ def youtube_seo():
             f"Top 10 {title} Strategies That Work"
         ]
 
-        # Generate tags
         tags = [
             title.lower(),
             f"{title.lower()} tutorial",
@@ -218,7 +235,6 @@ def youtube_seo():
             "social media marketing"
         ]
 
-        # Generate optimized description
         optimized_desc = f"""{title} - Complete Guide 2024
 
 📌 In this video, you'll learn:
@@ -260,7 +276,7 @@ def youtube_seo():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== CONTENT CALENDAR (WORKING) ====================
+# ==================== CONTENT CALENDAR ====================
 @app.route('/api/calendar/generate', methods=['POST'])
 def generate_calendar():
     try:
@@ -322,7 +338,7 @@ def generate_calendar():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== COMPETITOR ANALYSIS (WORKING) ====================
+# ==================== COMPETITOR ANALYSIS ====================
 @app.route('/api/competitor/analyze', methods=['POST'])
 def analyze_competitor():
     try:
@@ -332,7 +348,6 @@ def analyze_competitor():
         if not url:
             return jsonify({'error': 'URL is required'}), 400
 
-        # Simulate competitor analysis
         return jsonify({
             'success': True,
             'url': url,
@@ -375,7 +390,7 @@ def analyze_competitor():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== HASHTAG GENERATOR (WORKING) ====================
+# ==================== HASHTAG GENERATOR ====================
 @app.route('/api/hashtags/generate', methods=['POST'])
 def generate_hashtags():
     try:
@@ -385,7 +400,6 @@ def generate_hashtags():
         if not topic:
             return jsonify({'error': 'Topic is required'}), 400
 
-        # Generate hashtags
         hashtags = [
             f"#{topic.replace(' ', '')}",
             f"#{topic.replace(' ', '')}Tips",
@@ -422,7 +436,7 @@ def generate_hashtags():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== SEO ANALYZER (WORKING) ====================
+# ==================== SEO ANALYZER ====================
 @app.route('/api/seo/analyze', methods=['POST'])
 def analyze_seo():
     try:
@@ -432,7 +446,6 @@ def analyze_seo():
         if not url:
             return jsonify({'error': 'URL is required'}), 400
 
-        # Ensure URL has protocol
         if not url.startswith('http'):
             url = 'https://' + url
 
@@ -463,7 +476,7 @@ def analyze_seo():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== KEYWORD RESEARCH (WORKING) ====================
+# ==================== KEYWORD RESEARCH ====================
 @app.route('/api/keywords/suggest', methods=['POST'])
 def suggest_keywords():
     try:
@@ -503,7 +516,7 @@ def suggest_keywords():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== BACKLINK CHECKER (WORKING) ====================
+# ==================== BACKLINK CHECKER ====================
 @app.route('/api/backlink/analyze', methods=['POST'])
 def analyze_backlinks():
     try:
@@ -532,7 +545,7 @@ def analyze_backlinks():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== RANK TRACKER (WORKING) ====================
+# ==================== RANK TRACKER ====================
 @app.route('/api/rank/track', methods=['POST'])
 def track_rank():
     try:
@@ -563,7 +576,7 @@ def track_rank():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== INTERNATIONAL SEO (WORKING) ====================
+# ==================== INTERNATIONAL SEO ====================
 @app.route('/api/international/seo', methods=['POST'])
 def international_seo():
     try:
@@ -604,7 +617,7 @@ def international_seo():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== CURRENCY CONVERTER (WORKING) ====================
+# ==================== CURRENCY CONVERTER ====================
 @app.route('/api/currency/convert', methods=['POST'])
 def currency_convert():
     try:
@@ -633,7 +646,7 @@ def currency_convert():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== MULTI-LANGUAGE CONTENT (WORKING) ====================
+# ==================== MULTI-LANGUAGE CONTENT ====================
 @app.route('/api/multilanguage/content', methods=['POST'])
 def multilanguage_content():
     try:
@@ -670,7 +683,7 @@ def multilanguage_content():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== MARKET INSIGHTS (WORKING) ====================
+# ==================== MARKET INSIGHTS ====================
 @app.route('/api/market/insights', methods=['POST'])
 def market_insights():
     try:
@@ -716,7 +729,68 @@ def market_insights():
         return jsonify({'error': str(e)}), 500
 
 
-# ==================== BLOG API (WORKING) ====================
+# ==================== TRANSLATOR API ROUTES ====================
+@app.route('/api/translate/video', methods=['POST'])
+def translate_video():
+    """API endpoint for video translation"""
+    if translator is None:
+        return jsonify({'success': False, 'error': 'Translator not available'}), 503
+
+    try:
+        data = request.json
+        url = data.get('url', '')
+        target_lang = data.get('language', 'urdu')
+
+        if not url:
+            return jsonify({'success': False, 'error': 'URL is required'}), 400
+
+        result = translator.process_video(url, target_lang)
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/translate/text', methods=['POST'])
+def translate_text_api():
+    """API endpoint for direct text translation"""
+    if translator is None:
+        return jsonify({'success': False, 'error': 'Translator not available'}), 503
+
+    try:
+        data = request.json
+        text = data.get('text', '')
+        target_lang = data.get('language', 'urdu')
+
+        if not text:
+            return jsonify({'success': False, 'error': 'Text is required'}), 400
+
+        result = translator.translate_direct_text(text, target_lang)
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
+@app.route('/api/translate/languages')
+def get_languages():
+    """Get supported languages"""
+    languages = {
+        'urdu': '🇵🇰 Urdu (Easy to understand)',
+        'english': '🇬🇧 English',
+        'hindi': '🇮🇳 Hindi',
+        'arabic': '🇸🇦 Arabic',
+        'french': '🇫🇷 French',
+        'german': '🇩🇪 German',
+        'spanish': '🇪🇸 Spanish',
+        'turkish': '🇹🇷 Turkish',
+        'bangla': '🇧🇩 Bangla',
+        'pashto': '🇦🇫 Pashto'
+    }
+    return jsonify(languages)
+
+
+# ==================== BLOG API ====================
 BLOG_FILE = 'blog_posts.json'
 
 
@@ -865,73 +939,3 @@ def check_usage():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
-
-# Add these imports at the top
-from tools.video_translator import VideoTranslator
-
-# Initialize translator
-translator = VideoTranslator()
-
-
-@app.route('/translator')
-def translator_page():
-    """Translator tool page"""
-    return render_template('translator.html')
-
-
-@app.route('/api/translate/video', methods=['POST'])
-def translate_video():
-    """API endpoint for video translation"""
-    try:
-        data = request.json
-        url = data.get('url', '')
-        target_lang = data.get('language', 'urdu')
-
-        if not url:
-            return jsonify({'success': False, 'error': 'URL is required'}), 400
-
-        result = translator.process_video(url, target_lang)
-        return jsonify(result)
-
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-
-@app.route('/api/translate/text', methods=['POST'])
-def translate_text():
-    """API endpoint for direct text translation"""
-    try:
-        data = request.json
-        text = data.get('text', '')
-        target_lang = data.get('language', 'urdu')
-
-        if not text:
-            return jsonify({'success': False, 'error': 'Text is required'}), 400
-
-        result = translator.translate_direct_text(text, target_lang)
-        return jsonify(result)
-
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-
-@app.route('/api/translate/languages')
-def get_languages():
-    """Get supported languages"""
-    languages = {
-        'urdu': '🇵🇰 Urdu (Easy to understand)',
-        'english': '🇬🇧 English',
-        'hindi': '🇮🇳 Hindi',
-        'arabic': '🇸🇦 Arabic',
-        'french': '🇫🇷 French',
-        'german': '🇩🇪 German',
-        'spanish': '🇪🇸 Spanish',
-        'turkish': '🇹🇷 Turkish',
-        'bangla': '🇧🇩 Bangla',
-        'pashto': '🇦🇫 Pashto'
-    }
-    return jsonify(languages)
-
-@app.route('/translator')
-def translator_page():
-    return render_template('translator.html')
