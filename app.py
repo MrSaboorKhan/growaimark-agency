@@ -6,8 +6,10 @@ import json
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from ai_helper import ask_gemini, check_rate_limit, get_client_ip, AIError
+from tool_seo import seo_bp
 
 app = Flask(__name__)
+app.register_blueprint(seo_bp)
 app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
 
 # ==================== CONFIGURATION ====================
@@ -382,46 +384,6 @@ def generate_hashtags():
             'popular_hashtags': hashtags[:5],
             'niche_hashtags': hashtags[5:10],
             'message': '#️⃣ Hashtags Generated Successfully!'
-        })
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-# ==================== SEO ANALYZER ====================
-@app.route('/api/seo/analyze', methods=['POST'])
-def analyze_seo():
-    try:
-        data = request.json
-        url = data.get('url', '')
-
-        if not url:
-            return jsonify({'error': 'URL is required'}), 400
-
-        if not url.startswith('http'):
-            url = 'https://' + url
-
-        score = random.randint(65, 95)
-
-        return jsonify({
-            'success': True,
-            'url': url,
-            'score': score,
-            'title': f'{url} - SEO Analysis Report',
-            'meta_description': 'Comprehensive SEO analysis for better search rankings',
-            'word_count': random.randint(300, 2500),
-            'issues': [
-                "Consider adding more internal links",
-                "Improve page loading speed",
-                "Add more high-quality backlinks"
-            ],
-            'recommendations': [
-                "Write compelling meta descriptions",
-                "Optimize images with alt text",
-                "Create more long-form content",
-                "Build quality backlinks"
-            ],
-            'message': '✨ SEO Analysis Complete!'
         })
 
     except Exception as e:
