@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
+import html
 import random
 import json
 from datetime import datetime
 from werkzeug.utils import secure_filename
+from ai_helper import ask_gemini, check_rate_limit, get_client_ip, AIError
 
 app = Flask(__name__)
-app.secret_key = 'growaimark-secret-key-2024'
+app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
 
 # ==================== CONFIGURATION ====================
 UPLOAD_FOLDER = 'static/uploads'
@@ -73,134 +75,84 @@ def translator_page():
     return render_template('translator.html')
 
 
-# ==================== AI CONTENT GENERATOR ====================
+# ==================== AI CONTENT GENERATOR (Gemini) ====================
+CONTENT_TASKS = {
+    'blog': (
+        "Write a helpful, well-structured blog post about: {topic}.\n"
+        "Length: about 600 to 800 words. Put a catchy title on the first line. Then write an introduction, "
+        "4 or 5 sections (each heading on its own line in CAPITAL LETTERS), practical tips with simple examples, "
+        "and a short conclusion with a call to action."
+    ),
+    'social': (
+        "Write 3 different social media posts about: {topic}.\n"
+        "Label them POST 1, POST 2 and POST 3. Each post needs a strong first line (hook), 2 to 4 short lines of value, "
+        "a call to action, and 5 to 8 relevant hashtags. Use a few fitting emojis."
+    ),
+    'email': (
+        "Write a marketing email newsletter about: {topic}.\n"
+        "Start with 3 subject line options (label them SUBJECT 1, 2, 3). Then write the email: a friendly greeting, "
+        "a short engaging opening, 3 clear value points, one call to action, and a sign-off from the GrowAIMark team."
+    ),
+    'ad': (
+        "Write ad copy for: {topic}.\n"
+        "Give 3 Facebook/Instagram ad variations (each with Headline, Primary Text and Call to Action) "
+        "and 3 Google Search ads (each with 2 headlines of max 30 characters and 1 description of max 90 characters). "
+        "Label every variation clearly."
+    ),
+}
+
+CONTENT_SYSTEM = (
+    "You are an expert digital marketing copywriter. Write clear, natural, persuasive content in a {tone} tone, "
+    "in {language}. Output PLAIN TEXT only: no markdown symbols (no ** and no #) and no HTML tags. "
+    "Never invent statistics, percentages, client names, awards or guarantees. "
+    "Give only the finished content, without any introduction like 'Here is your post'."
+)
+
+
 @app.route('/api/content/generate', methods=['POST'])
 def generate_content():
+    data = request.get_json(silent=True) or {}
+    topic = str(data.get('topic', '')).strip()
+    content_type = str(data.get('type', 'blog')).strip().lower()
+    tone = str(data.get('tone', 'professional')).strip()[:30] or 'professional'
+    language = str(data.get('language', 'English')).strip()[:30] or 'English'
+
+    if not topic:
+        return jsonify({'error': 'Topic is required', 'content': 'Please enter a topic.',
+                        'message': 'Topic is required'}), 400
+    if len(topic) > 200:
+        return jsonify({'error': 'Topic is too long', 'content': 'Please keep the topic under 200 characters.',
+                        'message': 'Topic is too long'}), 400
+
+    if content_type not in CONTENT_TASKS:
+        content_type = 'ad' if content_type == 'ad copy' else 'blog'
+
     try:
-        data = request.json
-        topic = data.get('topic', '')
-        content_type = data.get('type', 'blog')
-
-        if not topic:
-            return jsonify({'error': 'Topic is required'}), 400
-
-        # Blog Post Template
-        if content_type == 'blog':
-            content = f"""<h2>Introduction to {topic.title()}</h2>
-<p>{topic.title()} is transforming the digital marketing landscape in 2024. Businesses worldwide are leveraging this powerful strategy to achieve remarkable results.</p>
-
-<h2>Why {topic.title()} Matters</h2>
-<p>In today's competitive market, {topic.lower()} has become essential for business growth. Here's why:</p>
-<ul>
-<li><strong>Increased ROI:</strong> Companies using {topic.lower()} see up to 300% better returns</li>
-<li><strong>Better Engagement:</strong> Audience engagement improves by 150%</li>
-<li><strong>Scalable Solutions:</strong> Easy to scale as your business grows</li>
-<li><strong>Data-Driven Decisions:</strong> Make informed choices based on real data</li>
-</ul>
-
-<h2>How to Get Started with {topic.title()}</h2>
-<p>Follow these steps to implement {topic.lower()} effectively:</p>
-<ol>
-<li><strong>Research:</strong> Understand your audience and competitors</li>
-<li><strong>Strategy:</strong> Develop a comprehensive plan</li>
-<li><strong>Implementation:</strong> Execute your strategy systematically</li>
-<li><strong>Analysis:</strong> Track metrics and optimize continuously</li>
-</ol>
-
-<h2>Best Practices for 2024</h2>
-<p>Stay ahead with these proven strategies:</p>
-<ul>
-<li>Focus on quality over quantity</li>
-<li>Leverage AI tools for automation</li>
-<li>Monitor industry trends regularly</li>
-<li>Test and iterate based on results</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>{topic.title()} is not just a trend - it's the future of digital marketing. Start implementing these strategies today to stay ahead of the competition.</p>
-
-<hr>
-<p><em>Generated by GrowAIMark AI - 100% Free Tool</em></p>"""
-
-        # Social Media Post
-        elif content_type == 'social':
-            content = f"""🔥 **{topic.title()}**: What You Need to Know!
-
-Did you know? Businesses using {topic.lower()} see 3x better engagement!
-
-💡 **Quick Tips:**
-✅ Start with a clear strategy
-✅ Track your metrics daily
-✅ Engage with your audience
-✅ Stay consistent
-
-👇 Tag someone who needs to see this!
-
-#DigitalMarketing #{topic.replace(' ', '')} #MarketingTips #BusinessGrowth #2024Trends
-
----
-*Generated by GrowAIMark AI*"""
-
-        # Email Newsletter
-        elif content_type == 'email':
-            content = f"""**Subject:** Unlock the Power of {topic.title()} 🚀
-
-Hi there,
-
-Are you ready to take your business to the next level? {topic.title()} can help you achieve:
-
-✨ **Key Benefits:**
-• 300% increase in engagement
-• Better ROI than traditional methods
-• Scalable solutions for growth
-• Data-driven decision making
-
-**Getting Started is Easy:**
-1. Assess your current strategy
-2. Identify improvement areas
-3. Implement proven techniques
-4. Monitor and optimize
-
-Ready to transform your marketing? Let's connect!
-
-Best regards,
-GrowAIMark Team
-
-P.S. Reply to this email for personalized advice!
-
----
-*Generated by GrowAIMark AI*"""
-
-        # Ad Copy
-        else:
-            content = f"""🚀 **Supercharge Your Business with {topic.title()}!**
-
-✅ Increase Sales by 50%
-✅ Get More Qualified Leads
-✅ Save Time with Automation
-✅ Scale Your Success
-
-**Limited Time Offer:**
-Get started today and receive a FREE consultation!
-
-👉 Click Here to Learn More
-
-#{topic.replace(' ', '')} #Marketing #BusinessGrowth #DigitalMarketing
-
----
-*Generated by GrowAIMark AI*"""
-
-        return jsonify({
-            'success': True,
-            'topic': topic,
-            'type': content_type,
-            'content': content,
-            'word_count': len(content.split()),
-            'message': '✨ AI Content Generated Successfully!'
-        })
-
+        check_rate_limit(get_client_ip(request))
+        text = ask_gemini(
+            CONTENT_TASKS[content_type].format(topic=topic),
+            system=CONTENT_SYSTEM.format(tone=tone, language=language),
+            temperature=0.8,
+            max_tokens=4096,
+        )
+    except AIError as e:
+        return jsonify({'error': e.message, 'content': e.message, 'message': 'Something went wrong'}), e.status
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        print(f"[AI] Unexpected error in content generator: {e}")
+        msg = 'Something went wrong. Please try again.'
+        return jsonify({'error': msg, 'content': msg, 'message': msg}), 500
+
+    # HTML escape: AI ka text page par safely dikhane ke liye
+    safe_text = html.escape(text)
+
+    return jsonify({
+        'success': True,
+        'topic': topic,
+        'type': content_type,
+        'content': safe_text,
+        'word_count': len(text.split()),
+        'message': 'AI Content Generated Successfully!'
+    })
 
 
 # ==================== YOUTUBE SEO OPTIMIZER ====================
@@ -938,4 +890,4 @@ def check_usage():
 # ==================== RUN APP ====================
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=os.environ.get('FLASK_DEBUG') == '1')
